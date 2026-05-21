@@ -1009,6 +1009,104 @@
     .section-head .num{ font-size:48px; }
     .section-head .right{ display:none; }
   }
+
+  /* ── v1.2: Favorites · Counts · Nav · Export · Scroll-top ─── */
+
+  /* Chip count badge */
+  .chip .badge{
+    font-size:9px; font-family:var(--mono); color:var(--ink-mute);
+    margin-left:5px; letter-spacing:0; vertical-align:middle; opacity:.75;
+  }
+  .chip[aria-pressed="true"] .badge{ color:rgba(242,239,230,.6); }
+
+  /* Favorite button on card */
+  .card .fav-btn{
+    font-size:15px; color:var(--ink-mute); padding:0 2px; line-height:1;
+    flex-shrink:0; background:none; border:0; cursor:pointer;
+    transition: color .14s ease, transform .15s ease;
+  }
+  .card .fav-btn:hover{ color:var(--accent); transform:scale(1.2); }
+  .card .fav-btn.saved{ color:var(--accent); }
+  .card.featured .fav-btn{ color:rgba(242,239,230,.4); }
+  .card.featured .fav-btn.saved{ color:var(--highlight); }
+
+  /* Trigger line: click-to-copy hint */
+  .card .trigger{ cursor:pointer; }
+  .card .trigger:active{ opacity:.6; }
+
+  /* Active filters bar */
+  .active-filters{
+    display:flex; flex-wrap:wrap; gap:6px; align-items:center;
+    padding:10px 0 0; font-family:var(--mono); font-size:10.5px;
+  }
+  .active-filters .af-label{
+    color:var(--ink-mute); text-transform:uppercase; letter-spacing:.1em;
+    white-space:nowrap; flex-shrink:0;
+  }
+  .active-filter-tag{
+    display:inline-flex; align-items:center; gap:4px;
+    padding:3px 9px 3px 10px; border:1px solid var(--accent); color:var(--accent);
+    font-family:var(--mono); font-size:10px; letter-spacing:.06em;
+    text-transform:uppercase; cursor:pointer; background:transparent;
+    transition: background .12s ease, color .12s ease;
+  }
+  .active-filter-tag:hover{ background:var(--accent); color:var(--paper); }
+
+  /* Grid toolbar (surprise · saved · export) */
+  .grid-toolbar{
+    display:flex; gap:8px; align-items:center; flex-wrap:wrap;
+    padding:14px 0; border-bottom:1px solid var(--rule-soft);
+  }
+  .grid-toolbar .spacer{ flex:1; min-width:8px; }
+
+  /* Sheet action buttons */
+  .sheet-actions{
+    display:flex; gap:8px; flex-wrap:wrap; margin-top:8px;
+  }
+  .sheet-actions button{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; border:1px solid var(--rule);
+    padding:5px 11px; color:var(--ink-soft); cursor:pointer;
+    background:transparent; transition: background .12s ease, color .12s ease;
+  }
+  .sheet-actions button:hover{ background:var(--ink); color:var(--paper); }
+  .sheet-actions button.is-saved{ color:var(--accent); border-color:var(--accent); }
+  .sheet-actions button.is-saved:hover{ background:var(--accent); color:var(--paper); }
+
+  /* Sheet prev/next navigation */
+  .sheet-nav{
+    display:flex; gap:8px; align-items:center;
+    margin-top:24px; padding-top:14px; border-top:1px solid var(--rule);
+  }
+  .sheet-nav button{
+    font-family:var(--mono); font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; border:1px solid var(--rule);
+    padding:5px 11px; color:var(--ink); cursor:pointer; background:transparent;
+    transition: background .12s ease, color .12s ease;
+  }
+  .sheet-nav button:hover:not(:disabled){ background:var(--ink); color:var(--paper); }
+  .sheet-nav button:disabled{ opacity:.25; cursor:not-allowed; }
+  .sheet-nav .nav-pos{
+    flex:1; text-align:center; font-family:var(--mono); font-size:10px;
+    text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute);
+  }
+
+  /* Scroll-to-top (bottom-left, mirrors hint-key) */
+  .scroll-top{
+    position:fixed; left:18px; bottom:18px; z-index:55;
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-mute);
+    border:1px solid var(--rule); background:var(--paper);
+    padding:6px 10px; cursor:pointer;
+    opacity:0; pointer-events:none; transition: opacity .2s ease;
+  }
+  .scroll-top.visible{ opacity:1; pointer-events:auto; }
+  .scroll-top:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+
+  @media print{
+    .grid-toolbar, .scroll-top, .active-filters,
+    .sheet-nav, .sheet-actions{ display:none !important; }
+  }
 </style>
 </head>
 
@@ -1108,6 +1206,7 @@
         <button class="chip" id="reset" style="margin-left:auto" aria-label="Reset all filters">Reset ↺</button>
       </div>
     </div>
+    <div id="active-filters" class="active-filters" aria-live="polite"></div>
   </section>
 
   <!-- ─── §II  CATALOG ─── -->
@@ -1131,6 +1230,13 @@
 
     <!-- ── Ecosystem deep-dive strip (v1.1) ── -->
     <div id="eco-strip" class="eco-strip" aria-label="Jump to an ecosystem"></div>
+
+    <div class="grid-toolbar" id="grid-toolbar">
+      <button id="surprise-btn" class="chip" aria-label="Open a random skill">Surprise me →</button>
+      <span class="spacer"></span>
+      <button id="fav-filter-btn" class="chip" aria-pressed="false" aria-label="Show saved skills only">Saved <span id="fav-count" class="badge"></span></button>
+      <button id="export-btn" class="chip" aria-label="Export visible skills as JSON">Export JSON ↓</button>
+    </div>
 
     <div id="grid" class="grid" aria-live="polite" style="border-top:0"></div>
   </section>
@@ -1220,6 +1326,7 @@
 
 <!-- ─── HINT + SHORTCUTS MODAL ─── -->
 <button class="hint-key" id="hint-key" aria-label="Show keyboard shortcuts"><kbd>?</kbd>shortcuts</button>
+<button class="scroll-top" id="scroll-top" aria-label="Scroll to top">↑ top</button>
 <aside class="shortcuts" id="shortcuts" role="dialog" aria-label="Keyboard shortcuts">
   <button class="closeFn" id="closeFn" aria-label="Dismiss shortcuts">✕</button>
   <h6>Footnote</h6>
@@ -1227,9 +1334,13 @@
   <dl>
     <dt>/</dt><dd>focus the search field</dd>
     <dt>?</dt><dd>toggle this footnote</dd>
-    <dt>Esc</dt><dd>close any open sheet, sort menu, or this card</dd>
+    <dt>Esc</dt><dd>close any open sheet or this card</dd>
     <dt>Enter</dt><dd>open the focused skill card</dd>
     <dt>¶</dt><dd>copy a deep link to a skill</dd>
+    <dt>j / k</dt><dd>navigate forward / backward through cards</dd>
+    <dt>← →</dt><dd>previous / next skill inside an open sheet</dd>
+    <dt>f</dt><dd>toggle favorite on focused card or open sheet</dd>
+    <dt>r</dt><dd>open a random skill from current results</dd>
   </dl>
 </aside>
 
@@ -1757,14 +1868,26 @@ const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex"];
 const CATEGORIES = ["Document","Code","Web","Data","Memory","Integration","Visual","Agentic","API"];
 const STATUSES   = ["Stable","Beta","Deprecated"];
 
+/* ───── Favorites (localStorage) ───── */
+const favorites = new Set(JSON.parse(localStorage.getItem("skills-favs")||"[]"));
+function saveFavs(){ localStorage.setItem("skills-favs", JSON.stringify([...favorites])); }
+function updateFavCount(){
+  const el = $("#fav-count"); if(el) el.textContent = favorites.size || "";
+}
+
 /* ───── State ───── */
 const state = {
   query:"",
   ecosystems:new Set(),
   categories:new Set(),
   statuses:new Set(),
-  sort:"index", // "index" | "recent"
+  sort:"index",   // "index" | "recent"
+  favOnly:false,
 };
+
+let lastFiltered   = [];
+let currentSheetIdx = -1;
+let focusedCardIdx  = -1;
 
 /* ───── Ecosystem positioning copy ───── */
 const ECO_BLURB = {
@@ -1783,28 +1906,33 @@ const escapeHTML = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":
 function buildChips(){
   const ecoBox = $("#eco-chips"); ecoBox.innerHTML = "";
   ECOSYSTEMS.forEach(e=>{
+    const cnt = SKILLS.filter(x=>x.ecosystem===e).length;
     const b = document.createElement("button");
     b.className = "chip"; b.setAttribute("aria-pressed","false");
-    b.dataset.eco = e;
-    b.innerHTML = `<span class="glyph-wrap">${GLYPHS[e]}<span>${e}</span></span>`;
+    b.dataset.eco = e; b.dataset.filterVal = e;
+    b.innerHTML = `<span class="glyph-wrap">${GLYPHS[e]}<span>${e}</span></span><span class="badge">${cnt}</span>`;
     b.addEventListener("click", ()=>toggle(state.ecosystems,e,b));
     ecoBox.appendChild(b);
   });
 
   const catBox = $("#cat-chips"); catBox.innerHTML = "";
   CATEGORIES.forEach(c=>{
+    const cnt = SKILLS.filter(x=>x.category===c).length;
     const b = document.createElement("button");
     b.className = "chip"; b.setAttribute("aria-pressed","false");
-    b.textContent = c;
+    b.dataset.filterVal = c;
+    b.innerHTML = `${c}<span class="badge">${cnt}</span>`;
     b.addEventListener("click", ()=>toggle(state.categories,c,b));
     catBox.appendChild(b);
   });
 
   const stBox = $("#status-chips"); stBox.innerHTML = "";
   STATUSES.forEach(s=>{
+    const cnt = SKILLS.filter(x=>x.status===s).length;
     const b = document.createElement("button");
     b.className = "chip"; b.setAttribute("aria-pressed","false");
-    b.textContent = s;
+    b.dataset.filterVal = s;
+    b.innerHTML = `${s}<span class="badge">${cnt}</span>`;
     b.addEventListener("click", ()=>toggle(state.statuses,s,b));
     stBox.appendChild(b);
   });
@@ -1821,6 +1949,7 @@ const SPAN_PATTERN = [4, 4, 4,  6, 6,  4, 4, 4,  8, 4,  4, 4, 4,  6, 6];
 function spanFor(i){ return SPAN_PATTERN[i % SPAN_PATTERN.length]; }
 
 function matchesFilters(s){
+  if(state.favOnly && !favorites.has(s.id)) return false;
   if(state.ecosystems.size && !state.ecosystems.has(s.ecosystem)) return false;
   if(state.categories.size && !state.categories.has(s.category)) return false;
   if(state.statuses.size && !state.statuses.has(s.status)) return false;
@@ -1843,10 +1972,15 @@ function render(){
     filtered = filtered.slice().sort((a,b)=> rank(a) - rank(b));
   }
 
+  lastFiltered = filtered;
+  focusedCardIdx = -1;
+
   $("#count").textContent = filtered.length;
   $("#abs-count").textContent = SKILLS.length;
   const matrixCount = $("#matrix-count"); if(matrixCount) matrixCount.textContent = MATRIX_ROWS.length;
   const refsCount = $("#refs-count"); if(refsCount) refsCount.textContent = REFS.length;
+
+  renderActiveFilters();
 
   if(filtered.length === 0){
     grid.innerHTML = `<div class="no-results">No entries match this query.<small>try widening the filters · or pressing reset</small></div>`;
@@ -1856,6 +1990,7 @@ function render(){
   filtered.forEach((s, i)=>{
     const span = spanFor(i);
     const featured = (span >= 8) || (i === 0);
+    const isSaved = favorites.has(s.id);
     const card = document.createElement("article");
     card.className = `card ${span===6?"span-6":""} ${span===8?"span-8":""} ${span===12?"span-12":""} ${featured?"featured":""}`;
     card.tabIndex = 0;
@@ -1883,24 +2018,42 @@ function render(){
       </div>
       <h3 class="name">${nameHTML}</h3>
       <p class="desc">${escapeHTML(s.description)}</p>
-      <p class="trigger" title="${escapeHTML(s.trigger)}">${escapeHTML(s.trigger)}</p>
+      <p class="trigger" title="Click to copy trigger">${escapeHTML(s.trigger)}</p>
       <div class="bottom">
         <span class="cat">${s.category}</span>
         <span class="status" data-status="${s.status}"><span class="status-dot"></span>${s.status}</span>
+        <button class="fav-btn${isSaved?" saved":""}" data-fav-id="${s.id}"
+          title="${isSaved?"Remove from saved":"Save this skill"}"
+          aria-label="${isSaved?"Remove from saved":"Save"}">${isSaved?"♥":"♡"}</button>
       </div>
     `;
     card.addEventListener("click", (e)=>{
-      if(e.target.closest(".anchor")) return;
+      if(e.target.closest(".anchor") || e.target.closest(".fav-btn")) return;
       openSheet(s);
     });
     card.addEventListener("keydown", e=>{
-      if((e.key==="Enter"||e.key===" ") && !e.target.classList.contains("anchor")){
+      if((e.key==="Enter"||e.key===" ") && !e.target.classList.contains("anchor") && !e.target.classList.contains("fav-btn")){
         e.preventDefault(); openSheet(s);
       }
     });
     card.querySelector(".anchor").addEventListener("click", (e)=>{
+      e.stopPropagation(); copyDeepLink(s.id);
+    });
+    card.querySelector(".fav-btn").addEventListener("click", (e)=>{
       e.stopPropagation();
-      copyDeepLink(s.id);
+      const was = favorites.has(s.id);
+      was ? favorites.delete(s.id) : favorites.add(s.id);
+      saveFavs(); updateFavCount();
+      const btn = e.currentTarget;
+      btn.classList.toggle("saved", !was);
+      btn.textContent = !was ? "♥" : "♡";
+      btn.title = !was ? "Remove from saved" : "Save this skill";
+      if(state.favOnly) render();
+    });
+    card.querySelector(".trigger").addEventListener("click", (e)=>{
+      e.stopPropagation();
+      navigator.clipboard && navigator.clipboard.writeText(s.trigger).catch(()=>{});
+      showToast("trigger copied");
     });
     grid.appendChild(card);
   });
@@ -1918,6 +2071,11 @@ function openSheet(s, opts){
   opts = opts || {};
   const sheet = $("#sheet");
   const nameHTML = s.name.replace(/(\w+)$/, '<span class="it">$1</span>');
+  currentSheetIdx = lastFiltered.findIndex(x => x.id === s.id);
+  const hasPrev = currentSheetIdx > 0;
+  const hasNext = currentSheetIdx < lastFiltered.length - 1;
+  const isSaved = favorites.has(s.id);
+
   sheet.innerHTML = `
     <button class="close" aria-label="Close" id="closeBtn">Close ✕</button>
     <div class="sheet-top">
@@ -1938,11 +2096,54 @@ function openSheet(s, opts){
 
     <h4>Source &amp; citation</h4>
     <a class="src" href="${escapeHTML(s.source)}" target="_blank" rel="noopener">${escapeHTML(s.source)}</a>
+
+    <div class="sheet-actions">
+      <button id="favSheetBtn" class="${isSaved?"is-saved":""}" aria-label="${isSaved?"Remove from saved":"Save this skill"}">${isSaved?"♥ Saved":"♡ Save"}</button>
+      <button id="shareBtn" aria-label="Share this skill">Share →</button>
+      <button id="copyTriggerBtn" aria-label="Copy trigger phrase">Copy trigger</button>
+    </div>
+
+    <div class="sheet-nav">
+      <button id="prevSkill"${!hasPrev?" disabled":""} aria-label="Previous skill">← prev</button>
+      <span class="nav-pos">${currentSheetIdx+1} of ${lastFiltered.length}</span>
+      <button id="nextSkill"${!hasNext?" disabled":""} aria-label="Next skill">next →</button>
+    </div>
   `;
+
   $("#scrim").classList.add("open");
   document.body.style.overflow = "hidden";
+  sheet.scrollTop = 0;
+
   $("#closeBtn").addEventListener("click", closeSheet);
   $("#sheetCopy").addEventListener("click", (e)=>{ e.preventDefault(); copyDeepLink(s.id); });
+
+  if(hasPrev) $("#prevSkill").addEventListener("click", ()=>openSheet(lastFiltered[currentSheetIdx-1]));
+  if(hasNext) $("#nextSkill").addEventListener("click", ()=>openSheet(lastFiltered[currentSheetIdx+1]));
+
+  $("#favSheetBtn").addEventListener("click", ()=>{
+    const was = favorites.has(s.id);
+    was ? favorites.delete(s.id) : favorites.add(s.id);
+    saveFavs(); updateFavCount();
+    const fb = $("#favSheetBtn");
+    fb.className = favorites.has(s.id) ? "is-saved" : "";
+    fb.textContent = favorites.has(s.id) ? "♥ Saved" : "♡ Save";
+    fb.setAttribute("aria-label", favorites.has(s.id) ? "Remove from saved" : "Save this skill");
+    const cardFav = document.querySelector(`[data-fav-id="${s.id}"]`);
+    if(cardFav){ cardFav.classList.toggle("saved", favorites.has(s.id)); cardFav.textContent = favorites.has(s.id)?"♥":"♡"; }
+    if(state.favOnly) render();
+  });
+
+  $("#shareBtn").addEventListener("click", ()=>{
+    const url = location.origin + location.pathname + location.search + "#" + s.id;
+    if(navigator.share){ navigator.share({title:`${s.name} — SkillsAllYouNeed`, url}).catch(()=>copyDeepLink(s.id)); }
+    else { copyDeepLink(s.id); }
+  });
+
+  $("#copyTriggerBtn").addEventListener("click", ()=>{
+    navigator.clipboard && navigator.clipboard.writeText(s.trigger).catch(()=>{});
+    showToast("trigger copied");
+  });
+
   if(opts.pushHash !== false && location.hash !== "#"+s.id){
     history.replaceState(null, "", "#"+s.id);
   }
@@ -1953,12 +2154,6 @@ function closeSheet(){
   if(location.hash){ history.replaceState(null, "", location.pathname + location.search); }
 }
 $("#scrim").addEventListener("click", e=>{ if(e.target.id === "scrim") closeSheet(); });
-document.addEventListener("keydown", e=>{
-  if(e.key==="Escape"){
-    if($("#scrim").classList.contains("open")) closeSheet();
-    else if($("#shortcuts").classList.contains("open")) closeShortcuts();
-  }
-});
 
 /* ───── Deep link / toast ───── */
 function copyDeepLink(id){
@@ -2025,15 +2220,55 @@ $("#hint-key").addEventListener("click", ()=>{
 });
 $("#closeFn").addEventListener("click", closeShortcuts);
 
-/* ───── Global keyboard shortcuts ───── */
+/* ───── Global keyboard shortcuts (unified) ───── */
 document.addEventListener("keydown", (e)=>{
   const tag = (e.target && e.target.tagName || "").toLowerCase();
   const typing = tag === "input" || tag === "textarea" || e.target.isContentEditable;
-  if(typing && e.key !== "Escape") return;
-  if(e.key === "/"){ e.preventDefault(); $("#q").focus(); $("#q").select(); }
-  else if(e.key === "?" || (e.shiftKey && e.key === "/")){
+  const sheetOpen = $("#scrim").classList.contains("open");
+
+  // Escape closes whatever is open
+  if(e.key === "Escape"){
+    if(sheetOpen) closeSheet();
+    else if($("#shortcuts").classList.contains("open")) closeShortcuts();
+    return;
+  }
+
+  // Arrow navigation inside open sheet
+  if(sheetOpen){
+    if(e.key === "ArrowLeft" && currentSheetIdx > 0){
+      e.preventDefault(); openSheet(lastFiltered[currentSheetIdx-1]); return;
+    }
+    if(e.key === "ArrowRight" && currentSheetIdx < lastFiltered.length-1){
+      e.preventDefault(); openSheet(lastFiltered[currentSheetIdx+1]); return;
+    }
+  }
+
+  if(typing) return;
+
+  if(e.key === "/"){
+    e.preventDefault(); $("#q").focus(); $("#q").select();
+  } else if(e.key === "?" || (e.shiftKey && e.key === "/")){
+    e.preventDefault(); $("#shortcuts").classList.toggle("open");
+  } else if((e.key === "j" || e.key === "k") && !sheetOpen){
     e.preventDefault();
-    const s = $("#shortcuts"); s.classList.toggle("open");
+    const cards = $$("#grid .card");
+    if(!cards.length) return;
+    focusedCardIdx = e.key==="j"
+      ? Math.min(focusedCardIdx+1, cards.length-1)
+      : Math.max(focusedCardIdx-1, 0);
+    cards[focusedCardIdx].focus();
+    cards[focusedCardIdx].scrollIntoView({block:"nearest", behavior:"smooth"});
+  } else if(e.key === "f"){
+    if(sheetOpen){
+      const fb = $("#favSheetBtn"); if(fb) fb.click();
+    } else {
+      const focused = document.activeElement;
+      if(focused && focused.classList.contains("card")){
+        const btn = focused.querySelector(".fav-btn"); if(btn) btn.click();
+      }
+    }
+  } else if(e.key === "r" && !sheetOpen){
+    if(lastFiltered.length) openSheet(lastFiltered[Math.floor(Math.random()*lastFiltered.length)]);
   }
 });
 
@@ -2050,6 +2285,75 @@ $("#sort-recent").addEventListener("click", ()=>setSort("recent"));
   $("#"+id).addEventListener("keydown", e=>{
     if(e.key === "Enter" || e.key === " "){ e.preventDefault(); setSort(id==="sort-index"?"index":"recent"); }
   });
+});
+
+/* ───── Active filters bar ───── */
+function renderActiveFilters(){
+  const bar = $("#active-filters"); if(!bar) return;
+  const tags = [];
+  state.ecosystems.forEach(e => tags.push({type:"eco",  val:e}));
+  state.categories.forEach(c => tags.push({type:"cat",  val:c}));
+  state.statuses.forEach(s   => tags.push({type:"stat", val:s}));
+  if(state.favOnly) tags.push({type:"fav", val:"Saved only"});
+  if(state.query)   tags.push({type:"q",   val:`"${state.query}"`});
+
+  if(!tags.length){ bar.style.display="none"; return; }
+  bar.style.display = "flex";
+  bar.innerHTML = `<span class="af-label">Active:</span>` + tags.map(t=>
+    `<button class="active-filter-tag" data-type="${t.type}" data-val="${escapeHTML(t.val)}">${escapeHTML(t.val)} ×</button>`
+  ).join("");
+
+  $$(".active-filter-tag", bar).forEach(tag => {
+    tag.addEventListener("click", ()=>{
+      const {type, val} = tag.dataset;
+      if(type==="eco"){
+        state.ecosystems.delete(val);
+        $$(`#eco-chips .chip`).forEach(c=>{ if(c.dataset.filterVal===val) c.setAttribute("aria-pressed","false"); });
+      } else if(type==="cat"){
+        state.categories.delete(val);
+        $$(`#cat-chips .chip`).forEach(c=>{ if(c.dataset.filterVal===val) c.setAttribute("aria-pressed","false"); });
+      } else if(type==="stat"){
+        state.statuses.delete(val);
+        $$(`#status-chips .chip`).forEach(c=>{ if(c.dataset.filterVal===val) c.setAttribute("aria-pressed","false"); });
+      } else if(type==="fav"){
+        state.favOnly = false;
+        $("#fav-filter-btn")?.setAttribute("aria-pressed","false");
+      } else if(type==="q"){
+        state.query = ""; $("#q").value = "";
+      }
+      render();
+    });
+  });
+}
+
+/* ───── Scroll-to-top ───── */
+window.addEventListener("scroll", ()=>{
+  const btn = $("#scroll-top");
+  if(btn) btn.classList.toggle("visible", window.scrollY > 500);
+}, {passive:true});
+$("#scroll-top").addEventListener("click", ()=>window.scrollTo({top:0, behavior:"smooth"}));
+
+/* ───── Grid toolbar ───── */
+$("#surprise-btn").addEventListener("click", ()=>{
+  if(!lastFiltered.length) return;
+  openSheet(lastFiltered[Math.floor(Math.random()*lastFiltered.length)]);
+});
+
+$("#fav-filter-btn").addEventListener("click", ()=>{
+  state.favOnly = !state.favOnly;
+  $("#fav-filter-btn").setAttribute("aria-pressed", state.favOnly?"true":"false");
+  render();
+});
+
+$("#export-btn").addEventListener("click", ()=>{
+  const data = lastFiltered.map(({id,name,ecosystem,category,status,description,trigger,example,source})=>
+    ({id,name,ecosystem,category,status,description,trigger,example,source}));
+  const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+  const url  = URL.createObjectURL(blob);
+  const a = Object.assign(document.createElement("a"), {href:url, download:`skills-${Date.now()}.json`});
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  showToast(`exported ${data.length} entr${data.length===1?"y":"ies"}`);
 });
 
 /* ───── Hash routing ───── */
@@ -2109,6 +2413,7 @@ $("#q").addEventListener("input", e=>{ state.query = e.target.value.trim(); rend
 $("#reset").addEventListener("click", ()=>{
   state.query = "";
   state.ecosystems.clear(); state.categories.clear(); state.statuses.clear();
+  state.favOnly = false;
   $("#q").value = "";
   $$(".chip[aria-pressed='true']").forEach(c=>c.setAttribute("aria-pressed","false"));
   render();
@@ -2121,6 +2426,7 @@ buildMatrix();
 buildRefs();
 render();
 openFromHash();
+updateFavCount();
 </script>
 </body>
 </html>
