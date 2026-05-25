@@ -1004,7 +1004,7 @@
       <p class="hero-sub">The open registry of AI skills — ready-to-use skill definitions for Claude Code, Claude.ai, ChatGPT and more. Copy into your project, drop into Settings, and go.</p>
       <div class="hero-stats" aria-label="Registry stats">
         <div class="stat"><b id="hero-skill-count">115</b><span>skills</span></div>
-        <div class="stat"><b>6</b><span>models</span></div>
+        <div class="stat"><b>4</b><span>models</span></div>
         <div class="stat"><b>9</b><span>categories</span></div>
         <div class="stat"><b>Free</b><span>to use</span></div>
       </div>
@@ -1147,7 +1147,7 @@
 
     <div class="end">
       <span>© 2026 · SkillsAllYouNeed · CC BY 4.0</span>
-      <span>115+ skills · 6 models · 9 categories</span>
+      <span>skills · 4 models · 9 categories</span>
       <span>kishormorol.github.io/SkillsAllYouNeed</span>
     </div>
   </footer>
@@ -1193,9 +1193,7 @@
             <option>Claude</option>
             <option>Claude Code</option>
             <option>ChatGPT</option>
-            <option>Codex</option>
             <option>Gemini</option>
-            <option>DeepSeek</option>
           </select>
         </div>
       </div>
@@ -1294,24 +1292,9 @@ const GLYPHS = {
     <circle cx="16" cy="16" r="13" />
     <polygon points="16,5 27,12 23,25 9,25 5,12" />
   </svg>`,
-  "Codex": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
-    <rect x="3" y="3" width="11" height="11" />
-    <rect x="18" y="3" width="11" height="11" />
-    <rect x="3" y="18" width="11" height="11" />
-    <rect x="18" y="18" width="11" height="11" />
-    <line x1="14" y1="8.5" x2="18" y2="8.5" />
-    <line x1="14" y1="23.5" x2="18" y2="23.5" />
-    <line x1="8.5" y1="14" x2="8.5" y2="18" />
-    <line x1="23.5" y1="14" x2="23.5" y2="18" />
-  </svg>`,
   "Gemini": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
     <polygon points="16,3 20,13 29,16 20,19 16,29 12,19 3,16 12,13" />
     <circle cx="16" cy="16" r="3" />
-  </svg>`,
-  "DeepSeek": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
-    <path d="M4 20 Q8 8 16 10 Q24 12 28 6" />
-    <path d="M4 20 Q10 28 16 24 Q22 20 28 26" />
-    <circle cx="26" cy="8" r="2.5" />
   </svg>`
 };
 
@@ -1508,37 +1491,6 @@ const SKILLS = [
     example:"A weekly Monday brief summarising the user's calendar and inbox arrives on its own.",
     source:"https://openai.com/blog/tasks"},
 
-  /* CODEX */
-  {id:"cx-cli", name:"Codex CLI", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"Open‑source terminal coding agent that reads, writes, and runs code in your local repo.",
-    trigger:"$ codex",
-    example:"Ask Codex to add a route and tests; it edits files, runs the suite, and shows the diff.",
-    source:"https://github.com/openai/codex"},
-  {id:"cx-cloud", name:"Codex Cloud", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"Long‑running coding agent hosted in cloud sandbox VMs — for tasks that take hours, not minutes.",
-    trigger:"chatgpt.com/codex",
-    example:"A large migration is handed off; Codex Cloud works for an hour and returns a PR.",
-    source:"https://openai.com/blog/codex-cloud"},
-  {id:"cx-ide", name:"Codex IDE Extension", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"Codex inside Visual Studio Code as a side‑panel agent with diff‑aware actions.",
-    trigger:"Install from the VS Code marketplace",
-    example:"A failing test surfaces a one‑click “fix with Codex” affordance in the editor gutter.",
-    source:"https://marketplace.visualstudio.com/items?itemName=openai.codex"},
-  {id:"cx-agents-md", name:"AGENTS.md", ecosystem:"Codex", category:"Memory", status:"Stable",
-    description:"Repo‑level instruction file describing conventions and constraints for the Codex agent.",
-    trigger:"Drop an AGENTS.md at repo root",
-    example:"An AGENTS.md fixes the test command, build steps, and forbidden directories for every Codex run.",
-    source:"https://github.com/openai/codex/blob/main/AGENTS.md"},
-  {id:"cx-github", name:"GitHub integration", ecosystem:"Codex", category:"Integration", status:"Stable",
-    description:"Native PR review, issue triage, and inline review comments on pull requests.",
-    trigger:"Install the Codex GitHub App",
-    example:"A new PR receives a review with concrete diff suggestions within seconds of being opened.",
-    source:"https://github.com/apps/codex"},
-  {id:"cx-in-chat", name:"Codex in ChatGPT", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"Invoke Codex directly from the ChatGPT chat surface to run coding tasks against connected repos.",
-    trigger:"@codex in a ChatGPT thread",
-    example:"A casual “fix the broken login flow on staging” call routes through Codex and returns a PR link.",
-    source:"https://openai.com/blog/codex-in-chatgpt"},
 
   /* ───── v1.1 ADDITIONS ───── */
 
@@ -1663,32 +1615,6 @@ const SKILLS = [
     example:"A pricing extractor returns a guaranteed‑valid object that parses cleanly into a typed struct.",
     source:"https://platform.openai.com/docs/guides/structured-outputs"},
 
-  /* CODEX · v1.1 */
-  {id:"cx-review", name:"Codex Review", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"Automatic PR review triggered by mention or label; surfaces concrete diff suggestions in line.",
-    trigger:"@codex review · label codex/review",
-    example:"A PR labelled codex/review receives a structured review with patch‑level recommendations.",
-    source:"https://github.com/apps/codex"},
-  {id:"cx-slack", name:"Codex for Slack", ecosystem:"Codex", category:"Integration", status:"Beta",
-    description:"Trigger Codex directly from Slack threads; results post back as threaded replies and PR links.",
-    trigger:"@codex in a Slack channel",
-    example:"A staging bug reported in #ops is picked up by @codex and resolved in a PR linked back in‑thread.",
-    source:"https://openai.com/blog/codex-slack"},
-  {id:"cx-jetbrains", name:"Codex JetBrains Plugin", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"IDE plugin for IntelliJ‑family editors that brings Codex agent loops into the JetBrains tool window.",
-    trigger:"Install from JetBrains Marketplace",
-    example:"A failing test launches a Codex agent in a tool window that proposes and applies a fix.",
-    source:"https://plugins.jetbrains.com/plugin/codex"},
-  {id:"cx-web", name:"Codex Web (cloud UI)", ecosystem:"Codex", category:"Code", status:"Stable",
-    description:"Browser interface for Codex Cloud tasks — queue, monitor, and review long‑running runs from any device.",
-    trigger:"chatgpt.com/codex",
-    example:"A nightly migration run is monitored from the browser and merged in the morning.",
-    source:"https://chatgpt.com/codex"},
-  {id:"cx-mcp", name:"Codex MCP support", ecosystem:"Codex", category:"Integration", status:"Beta",
-    description:"Model Context Protocol server integration for Codex agents — plug in databases, search, ticketing.",
-    trigger:"~/.codex/mcp.json",
-    example:"A Postgres MCP lets Codex query the dev database mid‑task and pin the schema to its context.",
-    source:"https://github.com/openai/codex/blob/main/docs/mcp.md"},
 
   /* CROSS‑CUTTING · API category (vendor surfaced via ecosystem glyph) */
   {id:"api-anthropic-computer", name:"Anthropic Computer Use API", ecosystem:"Claude", category:"API", status:"Beta",
@@ -1854,67 +1780,6 @@ const SKILLS = [
     example:"On a long news article, opening the side panel returns a three‑bullet summary and lets the user ask follow‑up questions.",
     source:"https://blog.google/products/chrome/google-chrome-gemini"},
 
-  /* DEEPSEEK */
-  {id:"ds-chat", name:"DeepSeek Chat", ecosystem:"DeepSeek", category:"Agentic", status:"Stable",
-    description:"Web and mobile conversational interface to DeepSeek models, with web search, file upload, and code rendering.",
-    trigger:"chat.deepseek.com · DeepSeek iOS / Android app",
-    example:"A user pastes a broken Python script; DeepSeek Chat diagnoses the bug, explains the fix, and renders the corrected version.",
-    source:"https://chat.deepseek.com"},
-  {id:"ds-deepthink", name:"DeepThink (R1)", ecosystem:"DeepSeek", category:"Agentic", status:"Stable",
-    description:"Extended chain-of-thought reasoning mode powered by DeepSeek-R1 — the model thinks aloud before answering, with the reasoning trace visible in the UI.",
-    trigger:"DeepThink toggle in chat · model: deepseek-reasoner in API",
-    example:"A multi-step maths proof is broken into visible reasoning steps before the final answer is presented.",
-    source:"https://api-docs.deepseek.com/guides/reasoning_model"},
-  {id:"ds-web-search", name:"Web Search", ecosystem:"DeepSeek", category:"Web", status:"Stable",
-    description:"Real-time web search integrated into the chat surface — Deepseek retrieves and cites live sources inline.",
-    trigger:"Search toggle in chat · any freshness-sensitive question",
-    example:"“What happened at the AI Safety Summit last week?” returns a synthesised answer with linked news citations.",
-    source:"https://chat.deepseek.com"},
-  {id:"ds-files", name:"Files in chat", ecosystem:"DeepSeek", category:"Document", status:"Stable",
-    description:"Upload documents (PDF, DOCX, TXT) and images directly into the conversation for analysis and Q&A.",
-    trigger:"Paperclip icon in chat",
-    example:"A 50-page PDF report is uploaded and summarised with key figures extracted as a structured table.",
-    source:"https://chat.deepseek.com"},
-  {id:"ds-artifacts", name:"Artifacts", ecosystem:"DeepSeek", category:"Visual", status:"Stable",
-    description:"Side panel that renders generated HTML, code previews, SVG diagrams, and Markdown — live and iterable.",
-    trigger:"Any request producing renderable code or markup",
-    example:"A request for a bar chart returns an interactive HTML canvas element rendered in a split-panel preview.",
-    source:"https://chat.deepseek.com"},
-  {id:"ds-image-input", name:"Image Understanding", ecosystem:"DeepSeek", category:"Visual", status:"Stable",
-    description:"Multimodal image input — upload or paste images and ask questions about their content.",
-    trigger:"Image icon · paste image into chat",
-    example:"A screenshot of a UI bug is pasted in; DeepSeek identifies the misaligned CSS and suggests a fix.",
-    source:"https://api-docs.deepseek.com/guides/vision"},
-  {id:"ds-coder", name:"DeepSeek Coder", ecosystem:"DeepSeek", category:"Code", status:"Stable",
-    description:"Code-specialised model variant trained on 87% code data across 338 programming languages, accessible via chat and API.",
-    trigger:"Use deepseek-chat (V3) or select Coder model variant",
-    example:"A complex Rust lifetime error is explained and resolved with a working code patch.",
-    source:"https://github.com/deepseek-ai/DeepSeek-Coder"},
-  {id:"api-deepseek-chat", name:"DeepSeek API", ecosystem:"DeepSeek", category:"API", status:"Stable",
-    description:"OpenAI-compatible REST API for chat completions and embeddings — drop-in replacement for many OpenAI integrations.",
-    trigger:"POST /chat/completions · base_url: api.deepseek.com",
-    example:"An app originally written against the OpenAI SDK switches to DeepSeek by changing base URL and model name.",
-    source:"https://api-docs.deepseek.com"},
-  {id:"api-deepseek-function", name:"Function Calling API", ecosystem:"DeepSeek", category:"API", status:"Stable",
-    description:"Structured tool use — define JSON schema tools and the model returns structured function call arguments.",
-    trigger:"tools: [{type: function, …}] in API request",
-    example:"A calendar assistant tool definition lets the model emit structured JSON to book meetings without hallucinating fields.",
-    source:"https://api-docs.deepseek.com/guides/function_calling"},
-  {id:"api-deepseek-fim", name:"Fill-in-the-Middle API", ecosystem:"DeepSeek", category:"API", status:"Stable",
-    description:"FIM (infill) endpoint for inline code completion — provide prefix and optional suffix, model fills the gap.",
-    trigger:"POST /completions · prompt + suffix fields",
-    example:"An IDE plugin sends the lines before and after the cursor; the model inserts a complete, context-aware function body.",
-    source:"https://api-docs.deepseek.com/guides/fim_completion"},
-  {id:"api-deepseek-reasoner", name:"Reasoner API (R1)", ecosystem:"DeepSeek", category:"API", status:"Stable",
-    description:"API access to DeepSeek-R1 with a separate reasoning_content field in the response exposing the full chain-of-thought.",
-    trigger:"model: deepseek-reasoner · read reasoning_content field",
-    example:"A legal-reasoning pipeline logs the R1 chain-of-thought for audit while presenting only the final answer to users.",
-    source:"https://api-docs.deepseek.com/guides/reasoning_model"},
-  {id:"api-deepseek-cache", name:"Context Caching API", ecosystem:"DeepSeek", category:"API", status:"Stable",
-    description:"Prefix-based context caching that reduces cost for repeated long-context calls — cache hits are billed at a lower rate.",
-    trigger:"Automatic on repeated prefix · cache_hit_tokens in usage response",
-    example:"A RAG pipeline that prepends a 100k-token knowledge base on every call saves ~75 % on repeated prompt tokens.",
-    source:"https://api-docs.deepseek.com/guides/kv_cache"}
 ];
 
 /* ───── How-to-use lookup (keyed by skill id) ───── */
@@ -1959,13 +1824,6 @@ const HOWTO = {
   "gpt-sora":         "chatgpt.com → Sora tab (where available) → describe your scene → select duration and aspect ratio.",
   "gpt-operator":     "operator.chatgpt.com (Plus/Pro) → describe the web task → Operator drives a real browser to complete it.",
   "gpt-tasks":        "Say \"every Monday at 9am, send me a brief on…\" — ChatGPT schedules it automatically. Manage in Settings → Tasks.",
-  /* CODEX */
-  "cx-cli":           "Install: `npm install -g @openai/codex` then run `codex` in any repo. Use `--approval-mode` to control autonomy.",
-  "cx-cloud":         "chatgpt.com/codex → New task → describe what you want built. Codex runs in a cloud VM and returns a PR.",
-  "cx-ide":           "Install \"Codex\" from the VS Code Marketplace → open the Codex panel → connect to a repo and start a task.",
-  "cx-agents-md":     "Create `AGENTS.md` at your repo root. Codex reads it at the start of each run to learn your conventions.",
-  "cx-github":        "Install the Codex GitHub App from the GitHub Marketplace → it automatically reviews new PRs on labelled repos.",
-  "cx-in-chat":       "In a ChatGPT thread, type `@codex` followed by your coding task. Codex runs and posts results in-thread.",
   /* v1.1 CLAUDE */
   "cl-research":      "Toggle \"Research mode\" in the Claude composer → ask your question. Claude browses and returns a multi-section cited report.",
   "cl-computer-use":  "Enable in Settings, or call the API with `tools:[{type:\"computer_use_20250124\"}]` and header `anthropic-beta: computer-use-2025-01-24`.",
@@ -1992,12 +1850,6 @@ const HOWTO = {
   "gpt-assistants":   "Existing builds: `POST /v1/assistants` (legacy). For new builds, migrate to the Responses API instead.",
   "gpt-responses":    "`POST /v1/responses` with a `tools` array. The stateful successor to Assistants for new agentic builds.",
   "gpt-structured":   "Add `response_format:{type:\"json_schema\",json_schema:{name:\"...\",schema:{...}}}` to your API call.",
-  /* v1.1 CODEX */
-  "cx-review":        "Label a PR `codex/review` or comment `@codex review` on it. Codex posts structured inline review comments automatically.",
-  "cx-slack":         "Install the Codex Slack app → `@codex` in any channel followed by your task description.",
-  "cx-jetbrains":     "Install \"Codex\" from the JetBrains Marketplace → open the Codex tool window from the right sidebar.",
-  "cx-web":           "chatgpt.com/codex → monitor running tasks, view logs, and merge completed PRs from any browser.",
-  "cx-mcp":           "Add MCP server entries to `~/.codex/mcp.json`. Codex loads them automatically at the start of each task.",
   /* API — CLAUDE */
   "api-anthropic-computer": "Request with `tools:[{type:\"computer_use_20250124\",name:\"computer\",display_width_px:1024,display_height_px:768}]` + header `anthropic-beta: computer-use-2025-01-24`.",
   "api-anthropic-files":    "`POST /v1/files` multipart with your file → use the returned `file_id` in a `document` content block on future requests.",
@@ -2034,20 +1886,6 @@ const HOWTO = {
   "api-google-vertex":    "`pip install google-cloud-aiplatform` → `vertexai.init(project=...,location=...)` → `GenerativeModel(\"gemini-2.0-flash\").generate_content(...)`.",
   "api-google-files":     "`POST https://generativelanguage.googleapis.com/upload/v1beta/files` with your file. Use the returned `uri` in a `file_data` part.",
   "api-google-code-exec": "Add `\"tools\":[{\"code_execution\":{}}]` to your Gemini API request. The model generates and runs Python, returning results inline.",
-  /* DEEPSEEK */
-  "ds-chat":          "Go to chat.deepseek.com or download the DeepSeek iOS/Android app. Sign up and start chatting immediately.",
-  "ds-deepthink":     "Toggle \"DeepThink\" in the chat UI before sending. Via API: `model:\"deepseek-reasoner\"` in your request.",
-  "ds-web-search":    "Click the Search toggle in the DeepSeek chat composer before sending a message to enable live web retrieval.",
-  "ds-files":         "Click the paperclip icon in the DeepSeek chat composer to upload a PDF, DOCX, TXT, or image file.",
-  "ds-artifacts":     "Ask for any renderable output (HTML, SVG, code preview) — the artifacts side panel opens automatically.",
-  "ds-image-input":   "Click the image icon or paste an image directly into the DeepSeek chat composer, then ask your question.",
-  "ds-coder":         "Use deepseek-chat (V3) in the chat UI — it's code-optimised by default. Via API: `model:\"deepseek-chat\"`.",
-  /* API — DEEPSEEK */
-  "api-deepseek-chat":      "Drop-in for OpenAI SDK: `client = OpenAI(api_key=\"sk-...\",base_url=\"https://api.deepseek.com\")`. Change `model` to `\"deepseek-chat\"`.",
-  "api-deepseek-function":  "Add `tools:[{\"type\":\"function\",\"function\":{\"name\":\"...\",\"parameters\":{...}}}]` to your `/chat/completions` request body.",
-  "api-deepseek-fim":       "`POST /completions` with `{\"model\":\"deepseek-chat\",\"prompt\":\"<prefix>\",\"suffix\":\"<suffix>\",\"max_tokens\":128}`.",
-  "api-deepseek-reasoner":  "`model:\"deepseek-reasoner\"` → read `choices[0].message.reasoning_content` for the full chain-of-thought trace.",
-  "api-deepseek-cache":     "Prefix caching is automatic — no setup needed. Check `usage.prompt_cache_hit_tokens` in the response to confirm cache hits.",
 };
 
 /* ───── Merge custom skills from localStorage into SKILLS ───── */
@@ -2060,7 +1898,7 @@ const HOWTO = {
 
 /* ───── Comparison matrix ───── */
 const MATRIX_ROWS = [
-  /* capability                           Claude  CC    GPT   Codex Gemini DS */
+  /* capability                           Claude  CC    GPT   Gemini */
   ["Standalone document/code panel",    "y","n","y","n","y","p"],
   ["Inline diagram/chart rendering",    "y","n","p","n","p","n"],
   ["Code execution sandbox",    "y","y","y","y","y","n"],
@@ -2101,12 +1939,8 @@ const REFS = [
   {who:"OpenAI",   title:"Introducing Canvas in ChatGPT", venue:"openai.com/index/introducing-canvas", year:"2024"},
   {who:"OpenAI",   title:"GPTs, Actions, and the GPT Store", venue:"openai.com/index/introducing-gpts", year:"2024"},
   {who:"OpenAI",   title:"Advanced Data Analysis and Code Interpreter", venue:"help.openai.com/articles/ada", year:"2024"},
-  {who:"OpenAI",   title:"Codex CLI &amp; Codex Cloud documentation", venue:"github.com/openai/codex", year:"2026"},
   {who:"OpenAI",   title:"Operator: a research preview", venue:"openai.com/operator", year:"2025"},
   {who:"OpenAI",   title:"Sora: video generation models", venue:"openai.com/sora", year:"2024"},
-  {who:"Morol, K.", title:"On the proliferation of first‑party assistant capabilities", venue:"Working note, skills‑all‑you‑need.org/notes/001", year:"2026"},
-  {who:"DeepSeek", title:"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL", venue:"arxiv.org/abs/2501.12948", year:"2025"},
-  {who:"DeepSeek", title:"DeepSeek API documentation", venue:"api-docs.deepseek.com", year:"2025"},
   {who:"Google DeepMind", title:"Gemini: A Family of Highly Capable Multimodal Models", venue:"deepmind.google/research/gemini", year:"2023"},
   {who:"Google", title:"Gemini API documentation", venue:"ai.google.dev/gemini-api/docs", year:"2024"},
   {who:"Google", title:"NotebookLM", venue:"notebooklm.google.com", year:"2024"},
@@ -2114,7 +1948,7 @@ const REFS = [
 ];
 
 /* ───── Categories & status (derived) ───── */
-const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex","Gemini","DeepSeek"];
+const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Gemini"];
 const CATEGORIES = ["Document","Code","Web","Data","Memory","Integration","Visual","Agentic","API"];
 const STATUSES   = ["Stable","Beta","Deprecated"];
 
@@ -2144,9 +1978,7 @@ const ECO_BLURB = {
   "Claude":      "Anthropic's web, desktop and mobile assistant — artifacts, skills, projects, memory and connectors.",
   "Claude Code": "Anthropic's terminal‑first coding agent with hooks, subagents, an IDE plugin and CI integration.",
   "ChatGPT":     "OpenAI's flagship assistant — canvas, custom GPTs, voice mode, connectors and a public marketplace.",
-  "Codex":       "OpenAI's coding agent across CLI, IDE, browser and cloud sandbox, with native PR review.",
-  "Gemini":      "Google's AI assistant across web, mobile and Workspace — Gems, Deep Research, Imagen, Veo, and the Gemini API.",
-  "DeepSeek":    "DeepSeek's open-weight models and chat surface — DeepThink R1 reasoning, web search, FIM code completion, and an OpenAI-compatible API."
+  "Gemini":      "Google's AI assistant across web, mobile and Workspace — Gems, Deep Research, Imagen, Veo, and the Gemini API."
 };
 
 /* ───── Helpers ───── */
@@ -2692,8 +2524,7 @@ $("#reset").addEventListener("click", ()=>{
 
 /* ───── Add Skill modal ───── */
 const ECO_PREFIX = {
-  "Claude":"cl","Claude Code":"cc","ChatGPT":"gpt",
-  "Codex":"cx","Gemini":"gm","DeepSeek":"ds"
+  "Claude":"cl","Claude Code":"cc","ChatGPT":"gpt","Gemini":"gm"
 };
 function genId(eco, name){
   const prefix = ECO_PREFIX[eco] || "xx";

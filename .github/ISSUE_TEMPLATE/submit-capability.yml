@@ -25,9 +25,7 @@ body:
         - Claude
         - Claude Code
         - ChatGPT
-        - Codex
         - Gemini
-        - DeepSeek
     validations:
       required: true
 
