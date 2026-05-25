@@ -67,6 +67,8 @@
     --eco-claude-code:  #1B5296;
     --eco-chatgpt:      #1A7A44;
     --eco-gemini:       #4527A0;
+    --eco-perplexity:   #1B9E86;
+    --eco-copilot:      #0078D4;
   }
 
   *{ box-sizing:border-box; }
@@ -295,9 +297,11 @@
   .chip[data-eco="Claude"][aria-pressed="true"]{
     background:var(--accent); border-color:var(--accent); box-shadow:none;
   }
-  .chip[data-eco="Claude Code"][aria-pressed="true"]{ box-shadow: inset 3px 0 0 var(--eco-claude-code); }
-  .chip[data-eco="ChatGPT"][aria-pressed="true"]   { box-shadow: inset 3px 0 0 var(--eco-chatgpt); }
-  .chip[data-eco="Gemini"][aria-pressed="true"]    { box-shadow: inset 3px 0 0 var(--eco-gemini); }
+  .chip[data-eco="Claude Code"][aria-pressed="true"]  { box-shadow: inset 3px 0 0 var(--eco-claude-code); }
+  .chip[data-eco="ChatGPT"][aria-pressed="true"]      { box-shadow: inset 3px 0 0 var(--eco-chatgpt); }
+  .chip[data-eco="Gemini"][aria-pressed="true"]       { box-shadow: inset 3px 0 0 var(--eco-gemini); }
+  .chip[data-eco="Perplexity"][aria-pressed="true"]   { box-shadow: inset 3px 0 0 var(--eco-perplexity); }
+  .chip[data-eco="Copilot"][aria-pressed="true"]      { box-shadow: inset 3px 0 0 var(--eco-copilot); }
   .chip[data-eco="Claude"][aria-pressed="true"] svg *{ stroke:var(--paper); fill:var(--paper); }
 
   /* Search */
@@ -349,6 +353,8 @@
   .card[data-eco="Claude Code"]  { --eco-color: var(--eco-claude-code); }
   .card[data-eco="ChatGPT"]      { --eco-color: var(--eco-chatgpt); }
   .card[data-eco="Gemini"]       { --eco-color: var(--eco-gemini); }
+  .card[data-eco="Perplexity"]   { --eco-color: var(--eco-perplexity); }
+  .card[data-eco="Copilot"]      { --eco-color: var(--eco-copilot); }
 
   .card{
     grid-column: span 4;
@@ -687,6 +693,15 @@
   }
   .card.featured:hover .trigger{ background:rgba(255,255,255,.1); }
 
+  /* Copy-hint badge that appears on trigger hover */
+  .copy-hint{
+    float:right; font-family:var(--mono); font-size:9px; letter-spacing:.06em;
+    text-transform:uppercase; color:var(--accent); opacity:0;
+    transition:opacity .15s ease; pointer-events:none; margin-left:8px;
+    white-space:nowrap;
+  }
+  .card .trigger:hover .copy-hint{ opacity:1; }
+
   .card .top .id-wrap{ display:flex; align-items:baseline; gap:6px; }
   .card .anchor{
     font-family:var(--mono);
@@ -736,6 +751,8 @@
   .eco-cell[data-eco="Claude Code"] { --eco-color: var(--eco-claude-code); }
   .eco-cell[data-eco="ChatGPT"]     { --eco-color: var(--eco-chatgpt); }
   .eco-cell[data-eco="Gemini"]      { --eco-color: var(--eco-gemini); }
+  .eco-cell[data-eco="Perplexity"]  { --eco-color: var(--eco-perplexity); }
+  .eco-cell[data-eco="Copilot"]     { --eco-color: var(--eco-copilot); }
 
   .eco-cell{
     padding:26px 22px 22px;
@@ -1026,6 +1043,21 @@
     text-transform:uppercase; letter-spacing:.08em; color:var(--ink-mute);
   }
 
+  /* Related skills chips */
+  .related-list{
+    display:flex; flex-wrap:wrap; gap:8px; margin-top:6px;
+  }
+  .related-chip{
+    font-family:var(--mono); font-size:10px; text-transform:uppercase;
+    letter-spacing:.06em; padding:5px 10px;
+    border:1px solid var(--rule); background:transparent;
+    color:var(--ink-mute); cursor:pointer; transition:all .15s ease;
+    border-radius:2px;
+  }
+  .related-chip:hover{
+    background:var(--ink); color:var(--paper); border-color:var(--ink);
+  }
+
   /* Scroll-to-top (bottom-left, mirrors hint-key) */
   .scroll-top{
     position:fixed; left:18px; bottom:18px; z-index:55;
@@ -1058,9 +1090,11 @@
     --rule-soft: rgba(240,237,227,.10);
     --accent:    #E05830;
     --highlight: #F5D77A;
-    --eco-claude-code: #4A88C8;
-    --eco-chatgpt:     #3AAA6A;
-    --eco-gemini:      #7A5AE0;
+    --eco-claude-code:  #4A88C8;
+    --eco-chatgpt:      #3AAA6A;
+    --eco-gemini:       #7A5AE0;
+    --eco-perplexity:   #2DC4A8;
+    --eco-copilot:      #3B9FE8;
   }
   [data-theme="dark"] .search-wrap:focus-within{
     box-shadow: 0 0 0 3px rgba(224,88,48,.18), 4px 4px 0 var(--accent);
@@ -1292,6 +1326,30 @@
   .sheet-actions button.is-delete{ color:var(--ink-mute); }
   .sheet-actions button.is-delete:hover{ background:var(--accent); color:var(--paper); border-color:var(--accent); }
 </style>
+
+<!-- JSON-LD structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "SkillsAllYouNeed for LLMs",
+  "description": "The open registry of AI skills — ready-to-use skill definitions for Claude, Claude Code, ChatGPT, Gemini, Perplexity, and Copilot.",
+  "url": "https://kishormorol.github.io/SkillsAllYouNeed/",
+  "license": "https://creativecommons.org/licenses/by/4.0/",
+  "creator": {
+    "@type": "Person",
+    "name": "Md. Kishor Morol"
+  },
+  "keywords": ["AI skills","Claude","ChatGPT","Gemini","Perplexity","Copilot","LLM","prompt engineering"],
+  "distribution": [
+    {
+      "@type": "DataDownload",
+      "encodingFormat": "application/json",
+      "contentUrl": "https://kishormorol.github.io/SkillsAllYouNeed/skills.json"
+    }
+  ]
+}
+</script>
 </head>
 
 <body data-screen-label="SkillsAllYouNeed — single page">
@@ -1313,10 +1371,10 @@
     </div>
     <div class="hero-body">
       <h1>Skills<em>All</em><br/>You<em>Need</em><span class="h1-sub"> for LLMs</span></h1>
-      <p class="hero-sub">The open registry of AI skills — ready-to-use skill definitions for Claude Code, Claude.ai, ChatGPT and more. Copy into your project, drop into Settings, and go.</p>
+      <p class="hero-sub">The open registry of AI skills — ready-to-use skill definitions for Claude, Claude Code, ChatGPT, Gemini, Perplexity, and Copilot. Copy into your project, drop into Settings, and go.</p>
       <div class="hero-stats" aria-label="Registry stats">
         <div class="stat"><b id="hero-skill-count">0</b><span>skills</span></div>
-        <div class="stat"><b>4</b><span>models</span></div>
+        <div class="stat"><b>6</b><span>ecosystems</span></div>
         <div class="stat"><b>9</b><span>categories</span></div>
         <div class="stat"><b>Free</b><span>to use</span></div>
       </div>
@@ -1333,7 +1391,7 @@
     <div class="onboarding-inner">
       <div class="onboarding-title">New here?</div>
       <div class="onboarding-steps">
-        <div class="onboarding-step"><span class="step-num">1</span><span>Browse 111 skills across Claude, ChatGPT, Gemini &amp; more</span></div>
+        <div class="onboarding-step"><span class="step-num">1</span><span>Browse skills across Claude, ChatGPT, Gemini, Perplexity, Copilot &amp; more</span></div>
         <div class="onboarding-step"><span class="step-num">2</span><span>Click any card — see the trigger phrase and how to activate it</span></div>
         <div class="onboarding-step"><span class="step-num">3</span><span>Save favourites ♥, export as JSON, or submit a missing skill</span></div>
       </div>
@@ -1354,7 +1412,7 @@
           <a id="sort-index" class="on" tabindex="0" role="button">index</a>&nbsp;|&nbsp;
           <a id="sort-recent" tabindex="0" role="button">recent</a>
         </span><br/>
-        4 models · 9 categories<br/>
+        6 ecosystems · 9 categories<br/>
         click any card to open
       </div>
     </div>
@@ -1470,7 +1528,7 @@
 
     <div class="end">
       <span>© 2026 · SkillsAllYouNeed · CC BY 4.0</span>
-      <span>skills · 4 models · 9 categories</span>
+      <span>skills · 6 ecosystems · 9 categories</span>
       <span>kishormorol.github.io/SkillsAllYouNeed</span>
     </div>
   </footer>
@@ -1517,6 +1575,8 @@
             <option>Claude Code</option>
             <option>ChatGPT</option>
             <option>Gemini</option>
+            <option>Perplexity</option>
+            <option>Copilot</option>
           </select>
         </div>
       </div>
@@ -1618,6 +1678,19 @@ const GLYPHS = {
   "Gemini": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
     <polygon points="16,3 20,13 29,16 20,19 16,29 12,19 3,16 12,13" />
     <circle cx="16" cy="16" r="3" />
+  </svg>`,
+  "Perplexity": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5">
+    <line x1="16" y1="3"  x2="16" y2="29" />
+    <line x1="3"  y1="16" x2="29" y2="16" />
+    <line x1="6"  y1="6"  x2="26" y2="26" opacity=".55" />
+    <line x1="26" y1="6"  x2="6"  y2="26" opacity=".55" />
+    <circle cx="16" cy="16" r="4" fill="currentColor" stroke="none" />
+  </svg>`,
+  "Copilot": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
+    <rect x="3"  y="3"  width="11" height="11" rx="2" />
+    <rect x="18" y="3"  width="11" height="11" rx="2" />
+    <rect x="3"  y="18" width="11" height="11" rx="2" />
+    <rect x="18" y="18" width="11" height="11" rx="2" />
   </svg>`
 };
 
@@ -2103,6 +2176,94 @@ const SKILLS = [
     example:"On a long news article, opening the side panel returns a three‑bullet summary and lets the user ask follow‑up questions.",
     source:"https://blog.google/products/chrome/google-chrome-gemini"},
 
+  /* ── CLAUDE EXTENDED CAPABILITIES ── */
+  {id:"cl-extended-thinking", name:"Extended Thinking", ecosystem:"Claude", category:"Agentic", status:"Beta",
+    description:"Claude reasons through complex problems step‑by‑step using an explicit thinking budget before producing its final answer, surfacing its chain‑of‑thought as a collapsible block.",
+    trigger:"Enabled automatically for difficult reasoning tasks on claude.ai; toggle via the 'Extended thinking' switch in model settings",
+    howto:"In Claude.ai, open the model selector and enable the 'Extended thinking' toggle. For API access, set thinking: {type:'enabled', budget_tokens:8000} in your request. Claude will emit a thinking block before the response.",
+    example:"Asked to find the flaw in a multi‑step math proof, Claude works through each step in its thinking block, catches the sign error in step 4, and returns a corrected proof.",
+    source:"https://www.anthropic.com/research/claude-think"},
+
+  /* ── CHATGPT ADDITIONAL SKILLS ── */
+  {id:"gpt-deep-research", name:"Deep Research", ecosystem:"ChatGPT", category:"Web", status:"Stable",
+    description:"Autonomous multi‑step web research agent that browses dozens of sources, synthesises findings, and delivers a cited long‑form research report.",
+    trigger:'"Research …" button in ChatGPT · Deep Research mode selector',
+    howto:"In ChatGPT, click the Deep Research button (or select it from the attachment menu). Describe your research question in detail. ChatGPT will show a live progress panel while it searches and reads sources, then produce a structured report with inline citations.",
+    example:"Asked to compare the latest LLM benchmarks across frontier models, ChatGPT browses recent papers and leaderboards, then returns a 2 000‑word structured report with a comparison table and source list.",
+    source:"https://openai.com/index/introducing-deep-research"},
+
+  /* ── PERPLEXITY SKILLS ── */
+  {id:"pp-pro-search", name:"Pro Search", ecosystem:"Perplexity", category:"Web", status:"Stable",
+    description:"Enhanced search mode that triggers multi‑step clarification and deeper source analysis before answering, producing longer, more thorough responses with cited sources.",
+    trigger:"Pro Search button · 'Explain in depth…' queries · automatic for complex questions",
+    howto:"Click the 'Pro Search' toggle in the Perplexity query bar, or phrase your question to be detailed enough that Perplexity automatically activates it. The response will include a source panel with numbered citations.",
+    example:"Asking 'What are the practical differences between RAG and fine‑tuning for production LLM apps?' triggers Pro Search, which reads multiple blog posts and papers before delivering a structured comparison.",
+    source:"https://www.perplexity.ai/hub/blog/pro-search"},
+  {id:"pp-spaces", name:"Spaces", ecosystem:"Perplexity", category:"Memory", status:"Stable",
+    description:"Collaborative workspaces that persist conversation threads, uploaded files, and custom AI personas — shareable with a team.",
+    trigger:"Spaces tab → New Space · Invite members",
+    howto:"Click 'Spaces' in the sidebar and create a new space. Upload reference documents, set a custom AI persona/system prompt, and invite collaborators. All searches and threads inside a space are scoped to the shared context.",
+    example:"A research team creates a Space for a literature review project, uploads 30 PDFs, and each member asks questions that draw on the same document set.",
+    source:"https://www.perplexity.ai/hub/blog/introducing-spaces"},
+  {id:"pp-pages", name:"Perplexity Pages", ecosystem:"Perplexity", category:"Document", status:"Stable",
+    description:"One‑click conversion of a Perplexity research thread into a shareable, richly formatted web page with sections, images, and citations.",
+    trigger:"'Share as Page' button after a search · Pages tab",
+    howto:"After a Perplexity search produces a detailed answer, click 'Share as Page'. A formatted public page is created at perplexity.ai/page/… that you can share via link. You can edit the title and sections before publishing.",
+    example:"After researching the history of transformer models, the user clicks 'Share as Page' and gets a polished article with an auto‑generated header image that they post to a company newsletter.",
+    source:"https://www.perplexity.ai/hub/blog/perplexity-pages"},
+  {id:"pp-focus", name:"Focus Mode", ecosystem:"Perplexity", category:"Web", status:"Stable",
+    description:"Source‑scoped search that restricts results to a specific domain: Reddit, academic papers, YouTube, news, or your own files.",
+    trigger:"Focus selector (All / Academic / YouTube / Reddit / Social / Writing / My Files)",
+    howto:"Before submitting a query, click the Focus selector in the query bar and choose a domain. 'Academic' limits to arXiv, PubMed, and peer‑reviewed sources. 'Reddit' searches community discussions. 'My Files' limits to your uploaded documents.",
+    example:"A user researching side effects of a drug selects 'Academic' focus, ensuring Perplexity only cites journal articles rather than web forums.",
+    source:"https://www.perplexity.ai/hub/getting-started"},
+  {id:"pp-assistant", name:"Perplexity Assistant", ecosystem:"Perplexity", category:"Agentic", status:"Beta",
+    description:"Mobile and desktop AI assistant that goes beyond search — booking, form‑filling, and multi‑app task execution using device permissions.",
+    trigger:"Perplexity mobile app → Assistant tab · 'Do …' commands",
+    howto:"In the Perplexity mobile app, open the Assistant tab. Grant the requested device permissions. Describe a real‑world task such as 'Book a table for 2 at an Italian restaurant near me tonight'. The assistant will browse, confirm details, and complete the action.",
+    example:"User says 'Add the top 3 news stories today to my calendar as reminders'; the assistant reads news summaries and creates calendar events without the user touching the calendar app.",
+    source:"https://www.perplexity.ai/hub/blog/perplexity-assistant"},
+
+  /* ── MICROSOFT COPILOT SKILLS ── */
+  {id:"mc-365", name:"Copilot in Microsoft 365", ecosystem:"Copilot", category:"Integration", status:"Stable",
+    description:"AI assistant embedded natively in Word, Excel, PowerPoint, Outlook, and Teams — drafts, summarises, rewrites, and analyses content in context.",
+    trigger:"Copilot button or M365 Chat pane in any Office app · Alt+I in Word",
+    howto:"In any Microsoft 365 app with a Copilot licence, click the Copilot button in the ribbon. Describe what you need: 'Summarise this email thread', 'Create a first draft from these bullet points', or 'Explain the trend in column B'. Copilot has full document context.",
+    example:"In Outlook, selecting a 40‑message thread and clicking 'Summarise thread' returns a three‑bullet digest with action items, letting the user reply in seconds.",
+    source:"https://www.microsoft.com/en-us/microsoft-365/copilot"},
+  {id:"mc-designer", name:"Copilot Designer", ecosystem:"Copilot", category:"Visual", status:"Stable",
+    description:"AI image‑generation tool integrated into Microsoft 365 and Bing, powered by DALL·E 4, for creating graphics from text prompts.",
+    trigger:"designer.microsoft.com · Copilot Image Creator in Bing · Insert → AI Image in PowerPoint",
+    howto:"Go to designer.microsoft.com or use the Bing image creator. Describe the image you want. For PowerPoint, use Insert → AI Image and describe the graphic; it appears directly on the slide.",
+    example:"A marketer types 'flat‑style illustration of a person at a laptop with glowing charts, teal colour scheme' and gets four polished options to use in a presentation.",
+    source:"https://designer.microsoft.com"},
+  {id:"mc-pages", name:"Copilot Pages", ecosystem:"Copilot", category:"Document", status:"Stable",
+    description:"Persistent, editable collaborative documents created from Copilot chat responses — a living canvas that teams can extend and share.",
+    trigger:"'Edit in Pages' button in Copilot chat · copilot.microsoft.com Pages tab",
+    howto:"In Microsoft Copilot Chat (copilot.microsoft.com or in Teams), after getting a useful response click 'Edit in Pages'. A new Page is created that you and colleagues can continue editing. Changes sync in real time for all editors.",
+    example:"After Copilot drafts a project brief from bullet points, the PM clicks 'Edit in Pages', shares the link with the team, and everyone refines it together in real time.",
+    source:"https://blogs.microsoft.com/blog/2024/09/16/introducing-microsoft-copilot-pages"},
+  {id:"mc-notebook", name:"Copilot Notebook", ecosystem:"Copilot", category:"Code", status:"Stable",
+    description:"Long‑context document workspace in Microsoft Copilot that accepts up to 18 000 words of input, ideal for detailed analysis and iterative drafting.",
+    trigger:"Notebook tab in copilot.microsoft.com",
+    howto:"Open copilot.microsoft.com and click the Notebook tab. Paste in a long document, dataset, or set of notes (up to ~18 000 words) and then ask questions or request rewrites. The context persists for the session so you can iterate freely.",
+    example:"A consultant pastes a 12 000‑word RFP into Notebook and asks Copilot to extract all scoring criteria, then to draft responses for each criterion.",
+    source:"https://support.microsoft.com/en-us/topic/what-is-copilot-notebook"},
+
+  /* ── API SKILLS ── */
+  {id:"api-anthropic-thinking", name:"Claude Extended Thinking API", ecosystem:"Claude", category:"API", status:"Beta",
+    description:"API parameter that enables Claude's internal chain‑of‑thought — returns a thinking block alongside the final response for auditable, budget‑controlled deep reasoning.",
+    trigger:"thinking: {type:'enabled', budget_tokens:N} in the Messages API request",
+    howto:"Add thinking: {type:'enabled', budget_tokens:8000} to your /v1/messages API call. The response will include a content block of type 'thinking' before the final 'text' block. Increase budget_tokens (up to 32 000) for harder problems. Minimum budget is 1 000 tokens.",
+    example:"A legal‑tech app sends a contract clause and asks for a risk analysis; the thinking block reveals the step‑by‑step legal reasoning while the text block returns a concise risk rating.",
+    source:"https://docs.anthropic.com/en/docs/build-with-claude/extended-thinking"},
+  {id:"api-perplexity-sonar", name:"Perplexity Sonar API", ecosystem:"Perplexity", category:"API", status:"Stable",
+    description:"OpenAI‑compatible REST API for Perplexity's real‑time web‑search‑augmented models — get cited, up‑to‑date answers in any application.",
+    trigger:"POST https://api.perplexity.ai/chat/completions with model: 'sonar' or 'sonar-pro'",
+    howto:"Obtain a Perplexity API key at perplexity.ai/settings/api. Use the OpenAI SDK or any HTTP client, pointing to https://api.perplexity.ai. Set model to 'sonar' (fast) or 'sonar-pro' (deep research). The response's citations array contains source URLs.",
+    example:"A news aggregator app calls the Sonar API every hour with 'What are the top AI news stories today?' and parses the citations to build a sourced headline feed.",
+    source:"https://docs.perplexity.ai/reference/post_chat_completions"},
+
   /* ── OPEN-SOURCE SKILLS (anthropics/skills + community) ── */
 
   /* Official Anthropic skill packs — install into .claude/skills/ */
@@ -2359,36 +2520,41 @@ const HOWTO = {
 
 /* ───── Comparison matrix ───── */
 const MATRIX_ROWS = [
-  /* capability                           Claude  CC    GPT   Gemini */
-  ["Standalone document/code panel",    "y","n","y","n","y","p"],
-  ["Inline diagram/chart rendering",    "y","n","p","n","p","n"],
-  ["Code execution sandbox",    "y","y","y","y","y","n"],
-  ["Native image generation",    "p","n","y","n","y","n"],
-  ["Video generation",    "n","n","p","n","p","n"],
-  ["Web search",    "y","p","y","p","y","y"],
-  ["Cross‑chat memory",    "y","y","y","y","p","n"],
-  ["Custom skills / instructions",    "y","y","y","y","y","n"],
-  ["Projects / workspaces",    "y","y","y","p","y","n"],
-  ["MCP / third‑party connectors",    "y","y","y","p","n","n"],
-  ["Voice conversation",    "p","n","y","n","p","n"],
-  ["Browser automation agent",    "p","n","y","n","p","n"],
-  ["Terminal / CLI agent",    "n","y","n","y","n","n"],
-  ["IDE plugin",    "n","y","n","y","n","n"],
-  ["Scheduled / recurring tasks",    "n","n","y","n","n","n"],
-  ["Public marketplace of agents",    "n","n","y","n","n","n"],
+  /* capability                           Claude  CC    GPT   Gemini  Perpl.  Copilot */
+  ["Standalone document/code panel",    "y","n","y","n","n","p"],
+  ["Inline diagram/chart rendering",    "y","n","p","n","n","p"],
+  ["Code execution sandbox",            "y","y","y","y","n","p"],
+  ["Native image generation",           "p","n","y","n","n","y"],
+  ["Video generation",                  "n","n","p","n","n","n"],
+  ["Web search",                        "y","p","y","p","y","y"],
+  ["Cross‑chat memory",                 "y","y","y","y","y","p"],
+  ["Custom skills / instructions",      "y","y","y","y","p","p"],
+  ["Projects / workspaces",             "y","y","y","p","y","n"],
+  ["MCP / third‑party connectors",      "y","y","y","p","n","p"],
+  ["Voice conversation",                "p","n","y","n","n","p"],
+  ["Browser automation agent",          "p","n","y","n","p","n"],
+  ["Terminal / CLI agent",              "n","y","n","y","n","n"],
+  ["IDE plugin",                        "n","y","n","y","n","y"],
+  ["Scheduled / recurring tasks",       "n","n","y","n","n","n"],
+  ["Public marketplace of agents",      "n","n","y","n","n","n"],
   /* v1.1 additions */
-  ["Proactive / scheduled briefs",    "n","n","y","n","n","n"],
-  ["Inline interactive UI generation",    "y","n","p","n","y","p"],
-  ["Spreadsheet agent (Excel/Sheets)",    "y","n","p","n","y","n"],
-  ["Desktop control agent",    "y","n","n","n","p","n"],
-  ["Browser extension agent",    "y","n","p","n","p","n"],
-  ["Repo‑level instruction file",    "n","y","n","y","n","n"],
-  ["Plan‑before‑act mode",    "n","y","p","p","n","p"],
-  ["Meeting recording & transcription",    "n","n","y","n","y","n"],
-  ["Prompt caching (API)",    "y","y","n","n","y","y"],
-  ["Structured JSON outputs (API)",    "y","y","y","y","y","y"],
-  ["Realtime voice API",    "n","n","y","n","y","n"],
-  ["Incognito / ephemeral chat",    "y","n","p","n","n","n"],
+  ["Proactive / scheduled briefs",      "n","n","y","n","n","n"],
+  ["Inline interactive UI generation",  "y","n","p","n","n","p"],
+  ["Spreadsheet agent (Excel/Sheets)",  "y","n","p","n","n","y"],
+  ["Desktop control agent",             "y","n","n","n","n","n"],
+  ["Browser extension agent",           "y","n","p","n","n","n"],
+  ["Repo‑level instruction file",       "n","y","n","y","n","n"],
+  ["Plan‑before‑act mode",              "n","y","p","p","n","n"],
+  ["Meeting recording & transcription", "n","n","y","n","n","y"],
+  ["Prompt caching (API)",              "y","y","n","n","n","n"],
+  ["Structured JSON outputs (API)",     "y","y","y","y","y","n"],
+  ["Realtime voice API",                "n","n","y","n","n","n"],
+  ["Incognito / ephemeral chat",        "y","n","p","n","n","n"],
+  /* v1.3 additions */
+  ["Extended / deep thinking",          "y","n","p","n","n","n"],
+  ["Real‑time cited deep research",     "p","n","y","p","y","p"],
+  ["Collaborative shared Pages/docs",   "p","n","n","n","y","y"],
+  ["Source‑scoped search focus",        "n","n","n","n","y","n"],
 ];
 
 /* ───── References ───── */
@@ -2409,18 +2575,23 @@ const REFS = [
 ];
 
 /* ───── Categories & status (derived) ───── */
-const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Gemini"];
+const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Gemini","Perplexity","Copilot"];
 const CATEGORIES = ["Document","Code","Web","Data","Memory","Integration","Visual","Agentic","API"];
 const STATUSES   = ["Stable","Beta","Deprecated"];
 
-/* IDs added in the open-source batch — used to show the "new" badge */
+/* IDs added recently — used to show the "new" badge */
 const NEW_IDS = new Set([
   "cc-skill-docx","cc-skill-pptx","cc-skill-xlsx","cc-skill-pdf",
   "cc-skill-frontend","cc-skill-mcp-builder","cc-skill-webapp-testing",
   "cc-skill-creator","cc-skill-algo-art","cc-skill-brand",
   "cc-skill-internal-comms","cc-skill-canvas-design","cc-skill-claude-api",
   "cc-skill-web-artifacts","cc-skill-slack-gif","cc-skill-theme-factory",
-  "cc-skill-ai-research","cc-skill-cybersecurity","cc-skill-awesome-collection"
+  "cc-skill-ai-research","cc-skill-cybersecurity","cc-skill-awesome-collection",
+  /* v1.3 additions */
+  "cl-extended-thinking","gpt-deep-research",
+  "pp-pro-search","pp-spaces","pp-pages","pp-focus","pp-assistant",
+  "mc-365","mc-designer","mc-pages","mc-notebook",
+  "api-anthropic-thinking","api-perplexity-sonar"
 ]);
 
 /* ───── Favorites (localStorage) ───── */
@@ -2450,7 +2621,9 @@ const ECO_BLURB = {
   "Claude":      "Anthropic's web, desktop and mobile assistant — artifacts, skills, projects, memory and connectors.",
   "Claude Code": "Anthropic's terminal‑first coding agent with hooks, subagents, an IDE plugin and CI integration.",
   "ChatGPT":     "OpenAI's flagship assistant — canvas, custom GPTs, voice mode, connectors and a public marketplace.",
-  "Gemini":      "Google's AI assistant across web, mobile and Workspace — Gems, Deep Research, Imagen, Veo, and the Gemini API."
+  "Gemini":      "Google's AI assistant across web, mobile and Workspace — Gems, Deep Research, Imagen, Veo, and the Gemini API.",
+  "Perplexity":  "Real‑time answer engine with cited web search — Pro Search, Spaces, Pages, Focus modes, and the Sonar API.",
+  "Copilot":     "Microsoft's AI assistant embedded across Windows, Microsoft 365, Bing, and the Edge browser."
 };
 
 /* ───── Helpers ───── */
@@ -2579,7 +2752,7 @@ function render(){
       </div>
       <h3 class="name">${nameHTML}</h3>
       <p class="desc">${escapeHTML(s.description)}</p>
-      <p class="trigger" title="Click to copy trigger">${escapeHTML(s.trigger)}</p>
+      <p class="trigger" title="Click to copy trigger phrase">${escapeHTML(s.trigger)}<span class="copy-hint" aria-hidden="true">⎘ copy</span></p>
       <div class="bottom">
         <span class="cat" data-cat="${s.category}">${s.category}</span>
         <span class="status" data-status="${s.status}"><span class="status-dot"></span>${s.status}</span>
@@ -2669,6 +2842,20 @@ function openSheet(s, opts){
       <button id="copyTriggerBtn" aria-label="Copy trigger phrase">Copy trigger</button>
     </div>
 
+    ${(()=>{
+      const related = SKILLS.filter(r =>
+        r.id !== s.id && (
+          r.category === s.category ||
+          (r.ecosystem === s.ecosystem && r.id !== s.id)
+        )
+      ).slice(0,4);
+      if(!related.length) return "";
+      return `<h4>Related skills</h4>
+      <div class="related-list">${
+        related.map(r => `<button class="related-chip" data-related-id="${r.id}">${r.name}</button>`).join("")
+      }</div>`;
+    })()}
+
     <div class="sheet-nav">
       <button id="prevSkill"${!hasPrev?" disabled":""} aria-label="Previous skill">← prev</button>
       <span class="nav-pos">${currentSheetIdx+1} of ${lastFiltered.length}</span>
@@ -2708,6 +2895,13 @@ function openSheet(s, opts){
   $("#copyTriggerBtn").addEventListener("click", ()=>{
     navigator.clipboard && navigator.clipboard.writeText(s.trigger).catch(()=>{});
     showToast("trigger copied");
+  });
+
+  $$(".related-chip", sheet).forEach(btn => {
+    btn.addEventListener("click", ()=>{
+      const target = SKILLS.find(x=>x.id === btn.dataset.relatedId);
+      if(target) openSheet(target);
+    });
   });
 
   if(s._custom){
@@ -3011,7 +3205,8 @@ $("#reset").addEventListener("click", ()=>{
 
 /* ───── Add Skill modal ───── */
 const ECO_PREFIX = {
-  "Claude":"cl","Claude Code":"cc","ChatGPT":"gpt","Gemini":"gm"
+  "Claude":"cl","Claude Code":"cc","ChatGPT":"gpt","Gemini":"gm",
+  "Perplexity":"pp","Copilot":"mc"
 };
 function genId(eco, name){
   const prefix = ECO_PREFIX[eco] || "xx";

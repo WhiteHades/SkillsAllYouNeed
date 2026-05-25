@@ -26,6 +26,8 @@ body:
         - Claude Code
         - ChatGPT
         - Gemini
+        - Perplexity
+        - Copilot
     validations:
       required: true
 
