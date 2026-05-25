@@ -88,8 +88,4 @@ Single HTML file, zero build step, zero dependencies.
 
 ---
 
-## Maintained by
-
-Kishor Morol · [mdkishor.morol@stonybrook.edu](mailto:mdkishor.morol@stonybrook.edu)
-
 Corrections and additions welcome via [Issues](https://github.com/kishormorol/SkillsAllYouNeed/issues).
