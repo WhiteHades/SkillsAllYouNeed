@@ -1,8 +1,8 @@
 # SkillsAllYouNeed
 
-A curated, single-file directory of every first-party skill, capability, tool, and extension shipping across the four major AI assistant ecosystems. Named in tribute to *Attention Is All You Need*.
+A curated, single-file directory of every first-party skill, capability, tool, and extension shipping across six major AI assistant ecosystems. Named in tribute to *Attention Is All You Need*.
 
-**Live site:** https://kishormorol.github.io/SkillsAllYouNeed/SkillsAllYouNeed.html
+**Live site:** https://kishormorol.github.io/SkillsAllYouNeed/
 
 ---
 
@@ -15,8 +15,10 @@ An editorial-preprint-styled reference — arXiv meets print magazine — that c
 - Claude Code (CLI + IDE)
 - ChatGPT (chatgpt.com — web, desktop, mobile)
 - Codex (OpenAI's coding agent — CLI, cloud, IDE)
+- Gemini (Google's AI assistant — web, mobile, Workspace)
+- DeepSeek (DeepSeek chat and API)
 
-**81 entries** across nine functional categories: Document, Code, Web, Data, Memory, Integration, Visual, Agentic, API.
+**115+ entries** across nine functional categories: Document, Code, Web, Data, Memory, Integration, Visual, Agentic, API.
 
 ---
 
@@ -57,10 +59,11 @@ An editorial-preprint-styled reference — arXiv meets print magazine — that c
 - **Export JSON ↓** — downloads the currently visible skills as a JSON file
 
 ### Other
-- Comparison matrix (28 capability rows × 4 ecosystems)
+- Comparison matrix (28 capability rows × 6 ecosystems)
 - Sort: index order or recent (Beta-first proxy)
 - Scroll-to-top button (appears after 500px scroll)
 - Full print stylesheet — single column, page numbers, expanded trigger/example/source
+- Clickable references with source links
 
 ---
 
@@ -81,7 +84,7 @@ Single HTML file, zero build step, zero dependencies.
 |---------|---------|
 | v1.0 | Initial release — 38 entries across four ecosystems |
 | v1.1 | +43 entries, API category, hash routing, keyboard shortcuts, ecosystem strip, print stylesheet |
-| v1.2 | Favorites, chip count badges, sheet prev/next nav, sheet actions, active filter tags, grid toolbar (Surprise / Export / Saved), j/k/f/r keyboard shortcuts, scroll-to-top, click-to-copy trigger |
+| v1.2 | Favorites, chip count badges, sheet prev/next nav, sheet actions, active filter tags, grid toolbar (Surprise / Export / Saved), j/k/f/r keyboard shortcuts, scroll-to-top, click-to-copy trigger, Gemini & DeepSeek ecosystems |
 
 ---
 

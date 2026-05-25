@@ -1145,9 +1145,9 @@
     <div class="sub">
       <p class="abstract">
         We present a comprehensive directory of every first‑party skill, capability, tool, and extension
-        currently shipping across four major AI assistant ecosystems: <em>Claude</em>, <em>Claude Code</em>,
-        <em>ChatGPT</em>, and <em>OpenAI Codex</em>, including their first‑party developer APIs.
-        Version 1.1 catalogs <b id="abs-count">38</b>—now <em>eighty‑plus</em>—distinct capabilities,
+        currently shipping across six major AI assistant ecosystems: <em>Claude</em>, <em>Claude Code</em>,
+        <em>ChatGPT</em>, <em>OpenAI Codex</em>, <em>Gemini</em>, and <em>DeepSeek</em>, including their first‑party developer APIs.
+        This directory now catalogs <b id="abs-count">38</b> distinct capabilities,
         classifies them along nine functional axes, and provides a side‑by‑side results table comparing
         what each ecosystem can and cannot do. The directory is searchable, filterable, deep‑linkable,
         and intended as a practitioner's reference rather than an exhaustive academic survey.
@@ -1159,7 +1159,7 @@
         <div class="row"><dt>DOI</dt><dd>10.48550/skills.2605.10847</dd></div>
         <div class="row"><dt>Updated</dt><dd id="meta-updated">20 May 2026, 14:02 UTC</dd></div>
         <div class="row"><dt>License</dt><dd>CC BY 4.0</dd></div>
-        <div class="row"><dt>Source</dt><dd><a href="#references">github.com/skills‑all‑you‑need</a></dd></div>
+        <div class="row"><dt>Source</dt><dd><a href="https://github.com/kishormorol/SkillsAllYouNeed" target="_blank" rel="noopener">github.com/kishormorol/SkillsAllYouNeed</a></dd></div>
       </dl>
     </div>
   </section>
@@ -1173,7 +1173,7 @@
         <h2>Filter <span class="it">&amp; query</span> the corpus.</h2>
       </div>
       <div class="right">
-        Four ecosystems<br/>
+        Six ecosystems<br/>
         Nine categories<br/>
         Three states
       </div>
@@ -1184,7 +1184,7 @@
       <div class="search-wrap">
         <span class="lbl">Q</span>
         <input id="q" type="search" placeholder="search names, descriptions, triggers…" aria-label="Search skills" />
-        <span class="count"><b id="count">38</b>&nbsp;of&nbsp;38&nbsp;entries</span>
+        <span class="count"><b id="count">38</b>&nbsp;of&nbsp;<b id="total-count">38</b>&nbsp;entries</span>
       </div>
 
       <!-- ecosystem chips -->
@@ -1252,13 +1252,13 @@
       <div class="right">
         Table 1 of 1<br/>
         n = <span id="matrix-count">28</span> capabilities<br/>
-        4 systems
+        6 systems
       </div>
     </div>
 
     <div class="matrix-wrap">
       <table class="matrix" id="matrix">
-        <caption><b>Table 1.</b> &nbsp;Side‑by‑side capability comparison across the four catalogued ecosystems. Cells are coded ✓ supported · ✗ not supported · partial (limited or via third‑party).</caption>
+        <caption><b>Table 1.</b> &nbsp;Side‑by‑side capability comparison across the six catalogued ecosystems. Cells are coded ✓ supported · ✗ not supported · partial (limited or via third‑party).</caption>
       </table>
     </div>
   </section>
@@ -1297,22 +1297,22 @@
   <!-- ─── COLOPHON ─── -->
   <footer class="colophon">
     <div>
-      <h5>Colophon · v1.1</h5>
-      <p>Composed in plain HTML &amp; CSS without a framework. Typeset on a 12‑column hairline grid. Body type set in Newsreader at 17/24. Display set in Instrument Serif. Metadata, IDs, and citation furniture set in JetBrains Mono. <em>What's new in v1.1:</em> added the <b>API</b> category and roughly forty new capabilities across all four ecosystems, alongside deep‑linking, keyboard shortcuts, an ecosystem strip, and a print stylesheet.</p>
+      <h5>Colophon · v1.2</h5>
+      <p>Composed in plain HTML &amp; CSS without a framework. Typeset on a 12‑column hairline grid. Body type set in Newsreader at 17/24. Display set in Instrument Serif. Metadata, IDs, and citation furniture set in JetBrains Mono. <em>v1.1:</em> API category, ~40 new entries, deep‑linking, keyboard shortcuts, ecosystem strip, print stylesheet. <em>v1.2:</em> favorites, chip counts, sheet nav, Export JSON, Surprise me, active filter tags, scroll‑to‑top, Gemini &amp; DeepSeek ecosystems.</p>
     </div>
     <div>
       <h5>Submission</h5>
       <ul>
-        <li><a href="#">→ Submit a capability</a></li>
-        <li><a href="#">→ Report a correction</a></li>
-        <li><a href="#">→ Subscribe to the changelog</a></li>
-        <li><a href="#">→ View raw JSON corpus</a></li>
+        <li><a href="https://github.com/kishormorol/SkillsAllYouNeed/issues/new" target="_blank" rel="noopener">→ Submit a capability</a></li>
+        <li><a href="https://github.com/kishormorol/SkillsAllYouNeed/issues/new" target="_blank" rel="noopener">→ Report a correction</a></li>
+        <li><a href="https://github.com/kishormorol/SkillsAllYouNeed/commits/main" target="_blank" rel="noopener">→ View changelog</a></li>
+        <li><a href="#" id="export-corpus-link">→ Download JSON corpus</a></li>
       </ul>
     </div>
     <div>
       <h5>Maintainer</h5>
       <p>Curated &amp; maintained by <em>Kishor Morol</em>. With thanks to the practitioners who reported missing capabilities.</p>
-      <p style="margin-top:10px"><a href="#" style="border-bottom:1px solid var(--rule)">kishor@skills-all-you-need.org</a></p>
+      <p style="margin-top:10px"><a href="mailto:kishor@skills-all-you-need.org" style="border-bottom:1px solid var(--rule)">kishor@skills-all-you-need.org</a></p>
     </div>
 
     <div class="end">
@@ -1383,6 +1383,15 @@ const GLYPHS = {
     <line x1="14" y1="23.5" x2="18" y2="23.5" />
     <line x1="8.5" y1="14" x2="8.5" y2="18" />
     <line x1="23.5" y1="14" x2="23.5" y2="18" />
+  </svg>`,
+  "Gemini": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
+    <polygon points="16,3 20,13 29,16 20,19 16,29 12,19 3,16 12,13" />
+    <circle cx="16" cy="16" r="3" />
+  </svg>`,
+  "DeepSeek": `<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4">
+    <path d="M4 20 Q8 8 16 10 Q24 12 28 6" />
+    <path d="M4 20 Q10 28 16 24 Q22 20 28 26" />
+    <circle cx="26" cy="8" r="2.5" />
   </svg>`
 };
 
@@ -1811,40 +1820,215 @@ const SKILLS = [
     description:"Supervised fine‑tuning and preference fine‑tuning surfaces for tailoring models to a domain.",
     trigger:"POST /v1/fine_tuning/jobs",
     example:"A medical‑coding model is tuned on a curated corpus and outperforms zero‑shot on the firm's task.",
-    source:"https://platform.openai.com/docs/guides/fine-tuning"}
+    source:"https://platform.openai.com/docs/guides/fine-tuning"},
+
+  /* GEMINI */
+  {id:"gm-gems", name:"Gems", ecosystem:"Gemini", category:"Agentic", status:"Stable",
+    description:"Custom AI experts with a persona, instructions, and optional knowledge files — Gemini’s equivalent of Custom GPTs.",
+    trigger:"Sidebar → Gem manager → New Gem",
+    example:"A “Research Assistant” Gem is configured to always cite primary sources and respond in academic register.",
+    source:"https://gemini.google.com/gems"},
+  {id:"gm-deep-research", name:"Deep Research", ecosystem:"Gemini", category:"Agentic", status:"Stable",
+    description:"Multi‑step autonomous research agent that browses the web, synthesises sources, and returns a cited long‑form report.",
+    trigger:"“Deep Research” button · research X in depth",
+    example:"A competitive landscape question returns a 10‑page report with 40 cited sources, generated in minutes.",
+    source:"https://blog.google/products/gemini/google-gemini-deep-research"},
+  {id:"gm-live", name:"Live (Multimodal Live)", ecosystem:"Gemini", category:"Agentic", status:"Beta",
+    description:"Real‑time, low‑latency voice and video conversation — point your camera and talk to Gemini about what it sees.",
+    trigger:"Microphone / camera icon in the mobile app",
+    example:"A user holds their phone up to a broken circuit board and describes the fault aloud; Gemini diagnoses it live.",
+    source:"https://deepmind.google/technologies/gemini/live"},
+  {id:"gm-imagegen", name:"Image Generation (Imagen 3)", ecosystem:"Gemini", category:"Visual", status:"Stable",
+    description:"Native high‑fidelity image generation powered by Imagen 3, available directly in the chat surface.",
+    trigger:"“Generate an image of…” · “Create a picture of…”",
+    example:"A product‑mockup prompt returns a photorealistic render with accurate text and fine details.",
+    source:"https://deepmind.google/technologies/imagen"},
+  {id:"gm-veo", name:"Veo 2 Video Generation", ecosystem:"Gemini", category:"Visual", status:"Beta",
+    description:"AI‑powered video generation from text prompts, surfaced inside Gemini Advanced for eligible users.",
+    trigger:"“Generate a video of…”",
+    example:"A nature‑documentary‑style prompt returns an 8‑second clip with cinematic camera movement.",
+    source:"https://deepmind.google/technologies/veo"},
+  {id:"gm-canvas", name:"Canvas", ecosystem:"Gemini", category:"Document", status:"Stable",
+    description:"Side‑panel collaborative editing surface for long‑form documents and code — with inline revision and one‑click copy.",
+    trigger:"Canvas icon in the toolbar · open in Canvas",
+    example:"A 2,000‑word report draft is opened in Canvas; the user highlights a paragraph and asks Gemini to shorten it.",
+    source:"https://workspace.google.com/blog/gemini-canvas"},
+  {id:"gm-files", name:"Files in chat", ecosystem:"Gemini", category:"Document", status:"Stable",
+    description:"Upload and analyse documents (PDF, DOCX), images, audio, and video directly in the conversation.",
+    trigger:"Paperclip icon · drag‑and‑drop into chat",
+    example:"A 100‑page PDF contract is uploaded and summarised with key obligations extracted as a bullet list.",
+    source:"https://support.google.com/gemini/answer/file-upload"},
+  {id:"gm-notebooklm", name:"NotebookLM", ecosystem:"Gemini", category:"Document", status:"Stable",
+    description:"Document‑grounded research assistant that answers only from your uploaded sources and can generate Audio Overviews (podcast‑style summaries).",
+    trigger:"notebooklm.google.com · upload sources",
+    example:"A researcher uploads 15 papers; NotebookLM answers questions with inline citations and generates a podcast episode summary.",
+    source:"https://notebooklm.google.com"},
+  {id:"gm-web-search", name:"Web Search", ecosystem:"Gemini", category:"Web", status:"Stable",
+    description:"Real‑time Google Search grounding — Gemini queries the live web and cites its sources inline.",
+    trigger:"Any freshness‑sensitive question",
+    example:"“What did the Fed announce today?” returns a synthesised answer with linked news sources.",
+    source:"https://support.google.com/gemini/answer/web-search"},
+  {id:"gm-code-exec", name:"Code Execution", ecosystem:"Gemini", category:"Code", status:"Stable",
+    description:"Python sandbox that runs code, produces charts, and manipulates uploaded files — powered by a Colab‑style kernel.",
+    trigger:"Run this code · upload a CSV and ask to analyse",
+    example:"An uploaded sales spreadsheet is cleaned with pandas, then a matplotlib chart is generated and returned.",
+    source:"https://ai.google.dev/gemini-api/docs/code-execution"},
+  {id:"gm-data-analysis", name:"Data Analysis", ecosystem:"Gemini", category:"Data", status:"Stable",
+    description:"Conversational data analysis over uploaded spreadsheets and CSVs — summary statistics, charts, and trend commentary.",
+    trigger:"Upload a file → Analyse this data",
+    example:"A marketing CSV is profiled with descriptive stats, an outlier is flagged, and a revenue‑trend chart is produced.",
+    source:"https://workspace.google.com/blog/gemini-data-analysis"},
+  {id:"gm-workspace", name:"Workspace AI (Gemini for Workspace)", ecosystem:"Gemini", category:"Integration", status:"Stable",
+    description:"Gemini embedded across Google Docs, Sheets, Slides, Gmail, and Meet — drafting, summarising, and formatting inside each app.",
+    trigger:"Help me write · Summarise in Docs / Gmail · side panel in Sheets / Slides",
+    example:"“Summarise this email thread and draft a follow‑up” runs inside Gmail, returning a reply draft in seconds.",
+    source:"https://workspace.google.com/blog/gemini-for-workspace"},
+  {id:"gm-extensions", name:"Google Extensions", ecosystem:"Gemini", category:"Integration", status:"Stable",
+    description:"First‑party connectors to Google Search, Maps, YouTube, Hotels, Flights, and Workspace that Gemini queries during a conversation.",
+    trigger:"Settings → Extensions → enable; or implicit from context",
+    example:"“Find me a 4‑star hotel near the Colosseum for next Friday” uses the Hotels extension to return live results.",
+    source:"https://support.google.com/gemini/answer/extensions"},
+  {id:"gm-astra", name:"Project Astra", ecosystem:"Gemini", category:"Agentic", status:"Beta",
+    description:"Real‑time multimodal agent that uses the phone camera as a continuous input stream — see, hear, and act on the live world.",
+    trigger:"Astra mode in Gemini mobile app",
+    example:"A user pans across a whiteboard diagram; Astra explains each component and suggests improvements verbally.",
+    source:"https://deepmind.google/technologies/gemini/project-astra"},
+  {id:"gm-memory", name:"Memory", ecosystem:"Gemini", category:"Memory", status:"Beta",
+    description:"Persistent cross‑conversation facts Gemini learns and recalls to personalise future responses.",
+    trigger:"“Remember that I…” · settings → Memory",
+    example:"Gemini recalls that a user prefers metric units and a formal tone across every new conversation.",
+    source:"https://support.google.com/gemini/answer/memory"},
+  {id:"gm-projects", name:"Projects", ecosystem:"Gemini", category:"Memory", status:"Stable",
+    description:"Persistent workspaces that group related chats and shared context — Gemini remembers the background across all conversations inside a project.",
+    trigger:"Sidebar → New Project",
+    example:"A “Thesis” project keeps all research chats, uploaded PDFs, and draft notes under one persistent context.",
+    source:"https://support.google.com/gemini/answer/projects"},
+  {id:"api-google-gemini", name:"Gemini API", ecosystem:"Gemini", category:"API", status:"Stable",
+    description:"Google AI Studio API giving programmatic access to Gemini models — function calling, multimodal inputs, streaming, and long‑context up to 1M tokens.",
+    trigger:"POST /v1beta/models/gemini-*:generateContent",
+    example:"An app sends a 500‑page PDF and a question in one API call; the model answers with references to specific pages.",
+    source:"https://ai.google.dev/gemini-api/docs"},
+  {id:"api-google-grounding", name:"Grounding with Google Search (API)", ecosystem:"Gemini", category:"API", status:"Stable",
+    description:"API‑level Google Search grounding that injects live web results into model responses with inline citations.",
+    trigger:"tools: [{googleSearch:{}}] in the API request",
+    example:"A product‑comparison request returns a structured answer sourced from current web pages, with cited URLs.",
+    source:"https://ai.google.dev/gemini-api/docs/grounding"},
+  {id:"api-google-vertex", name:"Vertex AI Gemini", ecosystem:"Gemini", category:"API", status:"Stable",
+    description:"Enterprise‑grade Gemini access via Google Cloud — private endpoints, VPC‑SC, audit logs, and SLA‑backed throughput.",
+    trigger:"google.cloud.aiplatform",
+    example:"A regulated financial firm routes all model calls through Vertex for compliance logging and data residency.",
+    source:"https://cloud.google.com/vertex-ai/generative-ai/docs/learn/overview"},
+  {id:"api-google-files", name:"Gemini Files API", ecosystem:"Gemini", category:"API", status:"Stable",
+    description:"Upload large files (up to 2 GB) once and reference them by URI across multiple API calls without re‑uploading.",
+    trigger:"POST /upload/v1beta/files",
+    example:"A 90‑minute audio interview is uploaded once; multiple summarise / transcribe calls reference the same file URI.",
+    source:"https://ai.google.dev/gemini-api/docs/files"},
+  {id:"api-google-code-exec", name:"Code Execution API", ecosystem:"Gemini", category:"API", status:"Stable",
+    description:"API‑level sandboxed Python execution tool that lets Gemini models run generated code and return results programmatically.",
+    trigger:"tools: [{codeExecution:{}}] in the API request",
+    example:"A model generates a data‑cleaning script, executes it against an uploaded CSV, and returns cleaned data in the same response.",
+    source:"https://ai.google.dev/gemini-api/docs/code-execution"},
+  {id:"gm-chrome", name:"Gemini in Chrome", ecosystem:"Gemini", category:"Integration", status:"Beta",
+    description:"Browser‑integrated Gemini assistant accessible from the Chrome address bar and side panel for page summarisation and Q&A.",
+    trigger:"Omnibox → @gemini · Ctrl+Shift+Space side panel",
+    example:"On a long news article, opening the side panel returns a three‑bullet summary and lets the user ask follow‑up questions.",
+    source:"https://blog.google/products/chrome/google-chrome-gemini"},
+
+  /* DEEPSEEK */
+  {id:"ds-chat", name:"DeepSeek Chat", ecosystem:"DeepSeek", category:"Agentic", status:"Stable",
+    description:"Web and mobile conversational interface to DeepSeek models, with web search, file upload, and code rendering.",
+    trigger:"chat.deepseek.com · DeepSeek iOS / Android app",
+    example:"A user pastes a broken Python script; DeepSeek Chat diagnoses the bug, explains the fix, and renders the corrected version.",
+    source:"https://chat.deepseek.com"},
+  {id:"ds-deepthink", name:"DeepThink (R1)", ecosystem:"DeepSeek", category:"Agentic", status:"Stable",
+    description:"Extended chain-of-thought reasoning mode powered by DeepSeek-R1 — the model thinks aloud before answering, with the reasoning trace visible in the UI.",
+    trigger:"DeepThink toggle in chat · model: deepseek-reasoner in API",
+    example:"A multi-step maths proof is broken into visible reasoning steps before the final answer is presented.",
+    source:"https://api-docs.deepseek.com/guides/reasoning_model"},
+  {id:"ds-web-search", name:"Web Search", ecosystem:"DeepSeek", category:"Web", status:"Stable",
+    description:"Real-time web search integrated into the chat surface — Deepseek retrieves and cites live sources inline.",
+    trigger:"Search toggle in chat · any freshness-sensitive question",
+    example:"“What happened at the AI Safety Summit last week?” returns a synthesised answer with linked news citations.",
+    source:"https://chat.deepseek.com"},
+  {id:"ds-files", name:"Files in chat", ecosystem:"DeepSeek", category:"Document", status:"Stable",
+    description:"Upload documents (PDF, DOCX, TXT) and images directly into the conversation for analysis and Q&A.",
+    trigger:"Paperclip icon in chat",
+    example:"A 50-page PDF report is uploaded and summarised with key figures extracted as a structured table.",
+    source:"https://chat.deepseek.com"},
+  {id:"ds-artifacts", name:"Artifacts", ecosystem:"DeepSeek", category:"Visual", status:"Stable",
+    description:"Side panel that renders generated HTML, code previews, SVG diagrams, and Markdown — live and iterable.",
+    trigger:"Any request producing renderable code or markup",
+    example:"A request for a bar chart returns an interactive HTML canvas element rendered in a split-panel preview.",
+    source:"https://chat.deepseek.com"},
+  {id:"ds-image-input", name:"Image Understanding", ecosystem:"DeepSeek", category:"Visual", status:"Stable",
+    description:"Multimodal image input — upload or paste images and ask questions about their content.",
+    trigger:"Image icon · paste image into chat",
+    example:"A screenshot of a UI bug is pasted in; DeepSeek identifies the misaligned CSS and suggests a fix.",
+    source:"https://api-docs.deepseek.com/guides/vision"},
+  {id:"ds-coder", name:"DeepSeek Coder", ecosystem:"DeepSeek", category:"Code", status:"Stable",
+    description:"Code-specialised model variant trained on 87% code data across 338 programming languages, accessible via chat and API.",
+    trigger:"Use deepseek-chat (V3) or select Coder model variant",
+    example:"A complex Rust lifetime error is explained and resolved with a working code patch.",
+    source:"https://github.com/deepseek-ai/DeepSeek-Coder"},
+  {id:"api-deepseek-chat", name:"DeepSeek API", ecosystem:"DeepSeek", category:"API", status:"Stable",
+    description:"OpenAI-compatible REST API for chat completions and embeddings — drop-in replacement for many OpenAI integrations.",
+    trigger:"POST /chat/completions · base_url: api.deepseek.com",
+    example:"An app originally written against the OpenAI SDK switches to DeepSeek by changing base URL and model name.",
+    source:"https://api-docs.deepseek.com"},
+  {id:"api-deepseek-function", name:"Function Calling API", ecosystem:"DeepSeek", category:"API", status:"Stable",
+    description:"Structured tool use — define JSON schema tools and the model returns structured function call arguments.",
+    trigger:"tools: [{type: function, …}] in API request",
+    example:"A calendar assistant tool definition lets the model emit structured JSON to book meetings without hallucinating fields.",
+    source:"https://api-docs.deepseek.com/guides/function_calling"},
+  {id:"api-deepseek-fim", name:"Fill-in-the-Middle API", ecosystem:"DeepSeek", category:"API", status:"Stable",
+    description:"FIM (infill) endpoint for inline code completion — provide prefix and optional suffix, model fills the gap.",
+    trigger:"POST /completions · prompt + suffix fields",
+    example:"An IDE plugin sends the lines before and after the cursor; the model inserts a complete, context-aware function body.",
+    source:"https://api-docs.deepseek.com/guides/fim_completion"},
+  {id:"api-deepseek-reasoner", name:"Reasoner API (R1)", ecosystem:"DeepSeek", category:"API", status:"Stable",
+    description:"API access to DeepSeek-R1 with a separate reasoning_content field in the response exposing the full chain-of-thought.",
+    trigger:"model: deepseek-reasoner · read reasoning_content field",
+    example:"A legal-reasoning pipeline logs the R1 chain-of-thought for audit while presenting only the final answer to users.",
+    source:"https://api-docs.deepseek.com/guides/reasoning_model"},
+  {id:"api-deepseek-cache", name:"Context Caching API", ecosystem:"DeepSeek", category:"API", status:"Stable",
+    description:"Prefix-based context caching that reduces cost for repeated long-context calls — cache hits are billed at a lower rate.",
+    trigger:"Automatic on repeated prefix · cache_hit_tokens in usage response",
+    example:"A RAG pipeline that prepends a 100k-token knowledge base on every call saves ~75 % on repeated prompt tokens.",
+    source:"https://api-docs.deepseek.com/guides/kv_cache"}
 ];
 
 /* ───── Comparison matrix ───── */
 const MATRIX_ROWS = [
-  ["Standalone document/code panel",    "y","n","y","n"],
-  ["Inline diagram/chart rendering",    "y","n","p","n"],
-  ["Code execution sandbox",            "y","y","y","y"],
-  ["Native image generation",           "p","n","y","n"],
-  ["Video generation",                  "n","n","p","n"],
-  ["Web search",                        "y","p","y","p"],
-  ["Cross‑chat memory",                 "y","y","y","y"],
-  ["Custom skills / instructions",      "y","y","y","y"],
-  ["Projects / workspaces",             "y","y","y","p"],
-  ["MCP / third‑party connectors",      "y","y","y","p"],
-  ["Voice conversation",                "p","n","y","n"],
-  ["Browser automation agent",          "p","n","y","n"],
-  ["Terminal / CLI agent",              "n","y","n","y"],
-  ["IDE plugin",                        "n","y","n","y"],
-  ["Scheduled / recurring tasks",       "n","n","y","n"],
-  ["Public marketplace of agents",      "n","n","y","n"],
+  /* capability                           Claude  CC    GPT   Codex Gemini DS */
+  ["Standalone document/code panel",    "y","n","y","n","y","p"],
+  ["Inline diagram/chart rendering",    "y","n","p","n","p","n"],
+  ["Code execution sandbox",    "y","y","y","y","y","n"],
+  ["Native image generation",    "p","n","y","n","y","n"],
+  ["Video generation",    "n","n","p","n","p","n"],
+  ["Web search",    "y","p","y","p","y","y"],
+  ["Cross‑chat memory",    "y","y","y","y","p","n"],
+  ["Custom skills / instructions",    "y","y","y","y","y","n"],
+  ["Projects / workspaces",    "y","y","y","p","y","n"],
+  ["MCP / third‑party connectors",    "y","y","y","p","n","n"],
+  ["Voice conversation",    "p","n","y","n","p","n"],
+  ["Browser automation agent",    "p","n","y","n","p","n"],
+  ["Terminal / CLI agent",    "n","y","n","y","n","n"],
+  ["IDE plugin",    "n","y","n","y","n","n"],
+  ["Scheduled / recurring tasks",    "n","n","y","n","n","n"],
+  ["Public marketplace of agents",    "n","n","y","n","n","n"],
   /* v1.1 additions */
-  ["Proactive / scheduled briefs",      "n","n","y","n"],
-  ["Inline interactive UI generation",  "y","n","p","n"],
-  ["Spreadsheet agent (Excel/Sheets)",  "y","n","p","n"],
-  ["Desktop control agent",             "y","n","n","n"],
-  ["Browser extension agent",           "y","n","p","n"],
-  ["Repo‑level instruction file",       "n","y","n","y"],
-  ["Plan‑before‑act mode",              "n","y","p","p"],
-  ["Meeting recording & transcription", "n","n","y","n"],
-  ["Prompt caching (API)",              "y","y","n","n"],
-  ["Structured JSON outputs (API)",     "y","y","y","y"],
-  ["Realtime voice API",                "n","n","y","n"],
-  ["Incognito / ephemeral chat",        "y","n","p","n"],
+  ["Proactive / scheduled briefs",    "n","n","y","n","n","n"],
+  ["Inline interactive UI generation",    "y","n","p","n","y","p"],
+  ["Spreadsheet agent (Excel/Sheets)",    "y","n","p","n","y","n"],
+  ["Desktop control agent",    "y","n","n","n","p","n"],
+  ["Browser extension agent",    "y","n","p","n","p","n"],
+  ["Repo‑level instruction file",    "n","y","n","y","n","n"],
+  ["Plan‑before‑act mode",    "n","y","p","p","n","p"],
+  ["Meeting recording & transcription",    "n","n","y","n","y","n"],
+  ["Prompt caching (API)",    "y","y","n","n","y","y"],
+  ["Structured JSON outputs (API)",    "y","y","y","y","y","y"],
+  ["Realtime voice API",    "n","n","y","n","y","n"],
+  ["Incognito / ephemeral chat",    "y","n","p","n","n","n"],
 ];
 
 /* ───── References ───── */
@@ -1860,11 +2044,16 @@ const REFS = [
   {who:"OpenAI",   title:"Operator: a research preview", venue:"openai.com/operator", year:"2025"},
   {who:"OpenAI",   title:"Sora: video generation models", venue:"openai.com/sora", year:"2024"},
   {who:"Morol, K.", title:"On the proliferation of first‑party assistant capabilities", venue:"Working note, skills‑all‑you‑need.org/notes/001", year:"2026"},
+  {who:"DeepSeek", title:"DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via RL", venue:"arxiv.org/abs/2501.12948", year:"2025"},
+  {who:"DeepSeek", title:"DeepSeek API documentation", venue:"api-docs.deepseek.com", year:"2025"},
+  {who:"Google DeepMind", title:"Gemini: A Family of Highly Capable Multimodal Models", venue:"deepmind.google/research/gemini", year:"2023"},
+  {who:"Google", title:"Gemini API documentation", venue:"ai.google.dev/gemini-api/docs", year:"2024"},
+  {who:"Google", title:"NotebookLM", venue:"notebooklm.google.com", year:"2024"},
   {who:"Vaswani, A. et al.", title:"Attention Is All You Need", venue:"NeurIPS, arXiv:1706.03762", year:"2017"},
 ];
 
 /* ───── Categories & status (derived) ───── */
-const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex"];
+const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex","Gemini","DeepSeek"];
 const CATEGORIES = ["Document","Code","Web","Data","Memory","Integration","Visual","Agentic","API"];
 const STATUSES   = ["Stable","Beta","Deprecated"];
 
@@ -1894,7 +2083,9 @@ const ECO_BLURB = {
   "Claude":      "Anthropic's web, desktop and mobile assistant — artifacts, skills, projects, memory and connectors.",
   "Claude Code": "Anthropic's terminal‑first coding agent with hooks, subagents, an IDE plugin and CI integration.",
   "ChatGPT":     "OpenAI's flagship assistant — canvas, custom GPTs, voice mode, connectors and a public marketplace.",
-  "Codex":       "OpenAI's coding agent across CLI, IDE, browser and cloud sandbox, with native PR review."
+  "Codex":       "OpenAI's coding agent across CLI, IDE, browser and cloud sandbox, with native PR review.",
+  "Gemini":      "Google's AI assistant across web, mobile and Workspace — Gems, Deep Research, Imagen, Veo, and the Gemini API.",
+  "DeepSeek":    "DeepSeek's open-weight models and chat surface — DeepThink R1 reasoning, web search, FIM code completion, and an OpenAI-compatible API."
 };
 
 /* ───── Helpers ───── */
@@ -1976,6 +2167,7 @@ function render(){
   focusedCardIdx = -1;
 
   $("#count").textContent = filtered.length;
+  const totalEl = $("#total-count"); if(totalEl) totalEl.textContent = SKILLS.length;
   $("#abs-count").textContent = SKILLS.length;
   const matrixCount = $("#matrix-count"); if(matrixCount) matrixCount.textContent = MATRIX_ROWS.length;
   const refsCount = $("#refs-count"); if(refsCount) refsCount.textContent = REFS.length;
@@ -2002,7 +2194,7 @@ function render(){
     card.dataset.example = s.example;
     card.dataset.source  = s.source;
 
-    const nameHTML = s.name.replace(/(\w+)$/, '<span class="it">$1</span>');
+    const nameHTML = s.name.replace(/(\S+)$/, '<span class="it">$1</span>');
 
     card.innerHTML = `
       <div class="top">
@@ -2070,7 +2262,7 @@ function render(){
 function openSheet(s, opts){
   opts = opts || {};
   const sheet = $("#sheet");
-  const nameHTML = s.name.replace(/(\w+)$/, '<span class="it">$1</span>');
+  const nameHTML = s.name.replace(/(\S+)$/, '<span class="it">$1</span>');
   currentSheetIdx = lastFiltered.findIndex(x => x.id === s.id);
   const hasPrev = currentSheetIdx > 0;
   const hasNext = currentSheetIdx < lastFiltered.length - 1;
@@ -2400,12 +2592,13 @@ function buildMatrix(){
 /* ───── References ───── */
 function buildRefs(){
   const ol = $("#refs-list");
-  ol.innerHTML = REFS.map(r=>`
-    <li>
-      ${escapeHTML(r.who)}. <em>${r.title}</em>. ${r.year}.
-      <span class="where">${r.venue}</span>
-    </li>
-  `).join("");
+  ol.innerHTML = REFS.map(r=>{
+    const isUrl = r.venue && !r.venue.includes(' ');
+    const venueHTML = isUrl
+      ? `<a href="https://${r.venue}" target="_blank" rel="noopener">${r.venue}</a>`
+      : r.venue;
+    return `<li>${r.who}. <em>${r.title}</em>. ${r.year}.<span class="where">${venueHTML}</span></li>`;
+  }).join("");
 }
 
 /* ───── Wire search ───── */
@@ -2427,6 +2620,10 @@ buildRefs();
 render();
 openFromHash();
 updateFavCount();
+
+/* Wire corpus download link in footer */
+const _corpusLink = document.getElementById("export-corpus-link");
+if(_corpusLink) _corpusLink.addEventListener("click", (e)=>{ e.preventDefault(); $("#export-btn").click(); });
 </script>
 </body>
 </html>
