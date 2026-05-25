@@ -768,7 +768,7 @@
 
     html, body{ background:#fff !important; color:#111 !important; }
     body::before, body{ background-image: none !important; }
-    .hero-nav, #filters-section, .hint-key, .shortcuts, .scrim, .toast, .eco-strip, .sort-toggle{ display:none !important; }
+    .hero-nav, .filters, .hint-key, .shortcuts, .scrim, .toast, .eco-strip, .sort-toggle, .grid-toolbar, .active-filters{ display:none !important; }
     .section{ border-bottom:1px solid #111 !important; padding:18pt 0 !important; }
     .section-head{ break-after:avoid; }
     .grid{ display:block !important; border:0 !important; }
@@ -1017,20 +1017,26 @@
     </div>
   </header>
 
-  <!-- ─── FILTERS ─── -->
-  <section class="section tight" id="filters-section">
+  <!-- ─── CATALOG + FILTERS (combined) ─── -->
+  <section class="section tight" id="catalog-section">
     <div class="section-head">
       <div>
-        <div class="label">Filter</div>
-        <h2>Find the <span class="it">right skill.</span></h2>
+        <div class="label">Catalog</div>
+        <h2>Browse all <span class="it">skills.</span></h2>
       </div>
       <div class="right">
-        6 ecosystems · 9 categories<br/>
-        Stable · Beta · Deprecated
+        <span class="sort-toggle" aria-label="Sort entries">
+          sort:&nbsp;
+          <a id="sort-index" class="on" tabindex="0" role="button">index</a>&nbsp;|&nbsp;
+          <a id="sort-recent" tabindex="0" role="button">recent</a>
+        </span><br/>
+        4 models · 9 categories<br/>
+        click any card to open
       </div>
     </div>
 
-    <div class="filters">
+    <!-- ── Filters ── -->
+    <div class="filters" id="filters-section">
       <!-- search -->
       <div class="search-wrap">
         <span class="lbl">Q</span>
@@ -1058,29 +1064,11 @@
       </div>
     </div>
     <div id="active-filters" class="active-filters" aria-live="polite"></div>
-  </section>
 
-  <!-- ─── CATALOG ─── -->
-  <section class="section" id="catalog-section">
-    <div class="section-head">
-      <div>
-        <div class="label">Catalog</div>
-        <h2>Browse all <span class="it">skills.</span></h2>
-      </div>
-      <div class="right">
-        <span class="sort-toggle" aria-label="Sort entries">
-          sort:&nbsp;
-          <a id="sort-index" class="on" tabindex="0" role="button">index</a>&nbsp;|&nbsp;
-          <a id="sort-recent" tabindex="0" role="button">recent</a>
-        </span><br/>
-        click any card<br/>
-        for full details
-      </div>
-    </div>
-
-    <!-- ── Ecosystem deep-dive strip (v1.1) ── -->
+    <!-- ── Ecosystem strip ── -->
     <div id="eco-strip" class="eco-strip" aria-label="Jump to an ecosystem"></div>
 
+    <!-- ── Grid toolbar ── -->
     <div class="grid-toolbar" id="grid-toolbar">
       <button id="surprise-btn" class="chip" aria-label="Open a random skill">Surprise me →</button>
       <button id="add-skill-btn" class="chip" aria-label="Add a new skill">Add skill +</button>
