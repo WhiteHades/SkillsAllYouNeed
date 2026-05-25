@@ -37,6 +37,7 @@
   }
 
   *{ box-sizing:border-box; }
+  html{ scroll-behavior: smooth; }
   html,body{ margin:0; padding:0; background:var(--paper); color:var(--ink); }
   body{
     font-family:var(--serif-body);
@@ -380,7 +381,7 @@
   .card.featured .status-dot{ background:var(--paper); }
 
   /* fade-in stagger */
-  .card{ opacity:0; transform:translateY(6px); transition: opacity .55s ease, transform .55s ease, background .14s ease; }
+  .card{ opacity:0; transform:translateY(5px); transition: opacity .25s ease, transform .25s ease, background .14s ease; }
   .card.in{ opacity:1; transform:none; }
 
   .no-results{
@@ -1034,7 +1035,7 @@
       <div class="search-wrap">
         <span class="lbl">Q</span>
         <input id="q" type="search" placeholder="search names, descriptions, triggers…" aria-label="Search skills" />
-        <span class="count"><b id="count">38</b>&nbsp;of&nbsp;<b id="total-count">38</b>&nbsp;entries</span>
+        <span class="count"><b id="count">92</b>&nbsp;of&nbsp;<b id="total-count">92</b>&nbsp;skills</span>
       </div>
 
       <!-- ecosystem chips -->
@@ -2141,11 +2142,13 @@ function render(){
     grid.appendChild(card);
   });
 
-  // staggered fade-in
+  // staggered fade-in — fast stagger on filter, gentle on first load
   requestAnimationFrame(()=>{
+    const step = render._firstDone ? 8 : 18;
     $$("#grid .card").forEach((c,i)=>{
-      setTimeout(()=>c.classList.add("in"), 30 + i*22);
+      setTimeout(()=>c.classList.add("in"), i*step);
     });
+    render._firstDone = true;
   });
 }
 
@@ -2330,8 +2333,9 @@ document.addEventListener("keydown", (e)=>{
 
   // Escape closes whatever is open
   if(e.key === "Escape"){
-    if(sheetOpen) closeSheet();
-    else if($("#shortcuts").classList.contains("open")) closeShortcuts();
+    if(sheetOpen) { closeSheet(); return; }
+    if(document.getElementById("add-scrim").classList.contains("open")){ closeAddSheet(); return; }
+    if($("#shortcuts").classList.contains("open")){ closeShortcuts(); return; }
     return;
   }
 
@@ -2600,6 +2604,30 @@ updateFavCount();
 /* Wire corpus download link in footer */
 const _corpusLink = document.getElementById("export-corpus-link");
 if(_corpusLink) _corpusLink.addEventListener("click", (e)=>{ e.preventDefault(); $("#export-btn").click(); });
+
+/* ───── Smooth-scroll all internal anchor links ───── */
+document.querySelectorAll('a[href^="#"]').forEach(link=>{
+  link.addEventListener("click", (e)=>{
+    const id = link.getAttribute("href").slice(1);
+    const target = document.getElementById(id);
+    if(target){ e.preventDefault(); target.scrollIntoView({behavior:"smooth", block:"start"}); }
+  });
+});
+
+/* ───── Chip: reset all on double-click of already-active chip ───── */
+// (chips already toggle on single click; this just adds polish)
+
+
+/* ───── Make add-skill-btn also reachable via keyboard Enter/Space ───── */
+document.getElementById("add-skill-btn").addEventListener("keydown", e=>{
+  if(e.key === "Enter" || e.key === " "){ e.preventDefault(); openAddSheet(); }
+});
+document.getElementById("surprise-btn").addEventListener("keydown", e=>{
+  if(e.key === "Enter" || e.key === " "){
+    e.preventDefault();
+    if(lastFiltered.length) openSheet(lastFiltered[Math.floor(Math.random()*lastFiltered.length)]);
+  }
+});
 </script>
 </body>
 </html>
