@@ -123,9 +123,30 @@
   }
   .hero-brand{ display:flex; align-items:center; gap:8px; font-weight:500; color:var(--ink); }
   .hero-dot{ width:8px; height:8px; background:var(--accent); display:inline-block; flex-shrink:0; }
-  .hero-nav{ display:flex; gap:20px; }
+  .hero-nav{ display:flex; gap:20px; align-items:center; }
   .hero-nav a{ color:var(--ink-soft); transition:color .12s ease; }
   .hero-nav a:hover{ color:var(--accent); }
+
+  /* GitHub star button */
+  .star-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+    padding:5px 10px 5px 9px;
+    border:1px solid var(--rule); background:var(--paper-2);
+    color:var(--ink-soft); cursor:pointer; text-decoration:none;
+    transition: all .15s ease; white-space:nowrap;
+    border-radius:2px;
+  }
+  .star-btn:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .star-btn svg{ width:13px; height:13px; flex-shrink:0; }
+  .star-btn .star-icon{ color:var(--accent); font-size:13px; line-height:1; }
+  .star-btn .star-count{
+    font-size:10px; color:var(--ink-mute); padding-left:4px;
+    border-left:1px solid var(--rule); margin-left:2px;
+    transition: color .15s ease;
+  }
+  .star-btn:hover .star-count{ color:var(--paper); border-color:rgba(255,255,255,.2); }
+  [data-theme="dark"] .star-btn{ background:rgba(255,255,255,.05); }
 
   .hero-body{ padding:56px 0 52px; }
   .hero-body h1{
@@ -201,6 +222,14 @@
     transition:background .12s ease, color .12s ease, border-color .12s ease;
   }
   .cta-ghost:hover{ background:var(--ink); color:var(--paper); border-color:var(--ink); }
+  .star-cta{ gap:8px; }
+  .star-count-cta{
+    font-family:var(--mono); font-size:10px; letter-spacing:.04em;
+    background:var(--paper-edge); color:var(--ink-mute);
+    padding:1px 6px; border-radius:20px; display:none;
+  }
+  .star-count-cta.loaded{ display:inline; }
+  .star-cta:hover .star-count-cta{ background:rgba(255,255,255,.15); color:var(--paper); }
 
   /* ── Section header ─────────────────────────────────────── */
   .section{ padding:80px 0 40px; border-bottom:1px solid var(--rule); }
@@ -1366,6 +1395,15 @@
       <nav class="hero-nav" aria-label="Site links">
         <a href="https://github.com/kishormorol/SkillsAllYouNeed" target="_blank" rel="noopener">GitHub</a>
         <a href="https://github.com/kishormorol/SkillsAllYouNeed/issues/new?template=submit-capability.yml" target="_blank" rel="noopener">Submit skill</a>
+        <a id="star-btn" class="star-btn"
+           href="https://github.com/kishormorol/SkillsAllYouNeed"
+           target="_blank" rel="noopener"
+           aria-label="Star this project on GitHub"
+           title="Star on GitHub">
+          <span class="star-icon">★</span>
+          Star
+          <span class="star-count" id="star-count">…</span>
+        </a>
         <button class="dark-toggle" id="dark-toggle" aria-label="Toggle dark mode" title="Toggle dark mode">◑</button>
       </nav>
     </div>
@@ -1381,7 +1419,10 @@
       <div class="hero-cta">
         <a href="#catalog-section" class="cta-primary">Browse skills ↓</a>
         <a href="https://github.com/kishormorol/SkillsAllYouNeed/issues/new?template=submit-capability.yml" target="_blank" rel="noopener" class="cta-ghost">Submit a skill</a>
-        <a href="https://github.com/kishormorol/SkillsAllYouNeed" target="_blank" rel="noopener" class="cta-ghost">GitHub ↗</a>
+        <a href="https://github.com/kishormorol/SkillsAllYouNeed" target="_blank" rel="noopener" class="cta-ghost star-cta" aria-label="Star on GitHub">
+          ★ Star on GitHub
+          <span id="star-count-cta" class="star-count-cta"></span>
+        </a>
       </div>
     </div>
   </header>
@@ -3324,6 +3365,54 @@ function animateCount(el, target, duration){
 setTimeout(()=>{
   animateCount(document.getElementById("hero-skill-count"), SKILLS.length, 1100);
 }, 80);
+
+/* ═══════════════════════════════════════════════════════════
+   GITHUB STAR COUNT
+   Fetches star count from the GitHub API and updates the nav
+   star button + the CTA badge. Cached in sessionStorage so
+   it survives page navigations without extra API calls.
+═══════════════════════════════════════════════════════════ */
+(function(){
+  const REPO = "kishormorol/SkillsAllYouNeed";
+  const CACHE_KEY = "sayn-stars";
+  const CACHE_TTL = 3600 * 1000; // 1 hour
+
+  function fmtStars(n){
+    if(n >= 1000) return (n/1000).toFixed(1).replace(/\.0$/,"") + "k";
+    return String(n);
+  }
+
+  function applyCount(n){
+    const navCount = document.getElementById("star-count");
+    const ctaCount = document.getElementById("star-count-cta");
+    const formatted = fmtStars(n);
+    if(navCount) navCount.textContent = formatted;
+    if(ctaCount){ ctaCount.textContent = formatted; ctaCount.classList.add("loaded"); }
+  }
+
+  /* Try sessionStorage cache first */
+  try {
+    const cached = JSON.parse(sessionStorage.getItem(CACHE_KEY) || "null");
+    if(cached && (Date.now() - cached.ts) < CACHE_TTL){
+      applyCount(cached.stars);
+      return;
+    }
+  } catch(_){}
+
+  /* Fetch from GitHub API (unauthenticated — 60 req/hr per IP) */
+  fetch("https://api.github.com/repos/" + REPO)
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(data => {
+      const stars = data.stargazers_count || 0;
+      applyCount(stars);
+      try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({stars, ts: Date.now()})); } catch(_){}
+    })
+    .catch(() => {
+      /* Hide the count element gracefully on failure */
+      const navCount = document.getElementById("star-count");
+      if(navCount) navCount.textContent = "★";
+    });
+})();
 
 /* ═══════════════════════════════════════════════════════════
    QUICK PRESET FILTERS
