@@ -1775,6 +1775,124 @@ const SKILLS = [
     example:"On a long news article, opening the side panel returns a three‑bullet summary and lets the user ask follow‑up questions.",
     source:"https://blog.google/products/chrome/google-chrome-gemini"},
 
+  /* ── OPEN-SOURCE SKILLS (anthropics/skills + community) ── */
+
+  /* Official Anthropic skill packs — install into .claude/skills/ */
+  {id:"cc-skill-docx", name:"DOCX Skill", ecosystem:"Claude Code", category:"Document", status:"Stable",
+    description:"Official Anthropic skill pack that generates polished, editable Word documents from a prompt — headings, tables, bullets, and tracked changes.",
+    trigger:'"Write me a report on…" · auto-discovered when a .docx output is needed',
+    example:"Ask for a technical spec; the skill produces a formatted .docx with sections, a TOC, and consistent heading styles.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/docx"},
+
+  {id:"cc-skill-pptx", name:"PPTX Skill", ecosystem:"Claude Code", category:"Document", status:"Stable",
+    description:"Official Anthropic skill pack that builds real, editable PowerPoint presentations with slide layouts, speaker notes, and branded styling.",
+    trigger:'"Make me a deck about…" · auto-discovered for presentation requests',
+    example:"A 10-slide investor deck with title, agenda, and chart slides is generated as a real .pptx file.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/pptx"},
+
+  {id:"cc-skill-xlsx", name:"XLSX Skill", ecosystem:"Claude Code", category:"Document", status:"Stable",
+    description:"Official Anthropic skill pack that creates structured Excel workbooks with formulas, named ranges, charts, and multiple sheets.",
+    trigger:'"Build me a budget spreadsheet" · auto-discovered for data/table requests',
+    example:"A financial model with three sheets, linked formulas, and a chart is generated as a real .xlsx file.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/xlsx"},
+
+  {id:"cc-skill-pdf", name:"PDF Skill", ecosystem:"Claude Code", category:"Document", status:"Stable",
+    description:"Official Anthropic skill pack that produces formatted PDF documents — reports, invoices, briefs — with consistent typography and layout.",
+    trigger:'"Create a PDF report on…" · auto-discovered for PDF output requests',
+    example:"A client-ready consulting brief is generated as a styled PDF with cover page and page numbers.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/pdf"},
+
+  {id:"cc-skill-frontend", name:"Frontend Design Skill", ecosystem:"Claude Code", category:"Visual", status:"Stable",
+    description:"Official Anthropic skill pack for designing production-quality web UIs — component libraries, responsive layouts, and design systems.",
+    trigger:'"Design a landing page for…" · "Build a dashboard component"',
+    example:"A marketing landing page is designed with hero, features, and CTA sections using modern HTML/CSS.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/frontend-design"},
+
+  {id:"cc-skill-mcp-builder", name:"MCP Builder Skill", ecosystem:"Claude Code", category:"Integration", status:"Stable",
+    description:"Official Anthropic skill pack that scaffolds a working MCP server from a description — tools, resources, and transports included.",
+    trigger:'"Build an MCP server that…"',
+    example:"Describe a GitHub MCP server and receive a complete, runnable server with tool definitions and transport config.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/mcp-builder"},
+
+  {id:"cc-skill-webapp-testing", name:"Webapp Testing Skill", ecosystem:"Claude Code", category:"Code", status:"Stable",
+    description:"Official Anthropic skill pack that writes and runs Playwright browser tests — end-to-end flows, accessibility checks, and screenshot assertions.",
+    trigger:'"Test my login flow" · "Write e2e tests for…"',
+    example:"Claude writes a full Playwright test suite for a checkout flow, runs it, and reports failures with annotated screenshots.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/webapp-testing"},
+
+  {id:"cc-skill-creator", name:"Skill Creator Skill", ecosystem:"Claude Code", category:"Agentic", status:"Stable",
+    description:"Official Anthropic meta-skill that authors new SKILL.md files — writes the frontmatter, instructions, and references from a plain description.",
+    trigger:'"Create a skill that…"',
+    example:'Say "Create a skill that reviews Python for PEP 8" and receive a ready-to-use SKILL.md folder.',
+    source:"https://github.com/anthropics/skills/tree/main/skills/skill-creator"},
+
+  {id:"cc-skill-algo-art", name:"Algorithmic Art Skill", ecosystem:"Claude Code", category:"Visual", status:"Stable",
+    description:"Official Anthropic creative skill that generates generative art scripts — SVG patterns, canvas animations, and mathematical visualisations.",
+    trigger:'"Generate algorithmic art with…" · "Make a generative pattern"',
+    example:"A Fibonacci spiral with colour gradients is produced as a self-contained HTML canvas animation.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/algorithmic-art"},
+
+  {id:"cc-skill-brand", name:"Brand Guidelines Skill", ecosystem:"Claude Code", category:"Document", status:"Stable",
+    description:"Official Anthropic skill that enforces brand voice, tone, and visual rules across generated copy and designs.",
+    trigger:'"Write in our brand voice" · "Check this copy against brand guidelines"',
+    example:"Marketing copy is rewritten to match the brand's defined tone — concise, active, and jargon-free.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/brand-guidelines"},
+
+  {id:"cc-skill-internal-comms", name:"Internal Comms Skill", ecosystem:"Claude Code", category:"Document", status:"Stable",
+    description:"Official Anthropic skill for drafting internal communications — all-hands updates, incident reports, and policy announcements.",
+    trigger:'"Write an all-hands email about…" · "Draft an incident post-mortem"',
+    example:"A major outage post-mortem is structured with timeline, root cause, and action items in the correct company format.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/internal-comms"},
+
+  {id:"cc-skill-canvas-design", name:"Canvas Design Skill", ecosystem:"Claude Code", category:"Visual", status:"Stable",
+    description:"Official Anthropic skill for producing visual designs — diagrams, mockups, and styled layouts — inside Claude's canvas surface.",
+    trigger:'"Design a…" · canvas-mode requests',
+    example:"A mobile app mockup with navigation bar, card grid, and bottom tab bar is produced directly in canvas.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/canvas-design"},
+
+  {id:"cc-skill-claude-api", name:"Claude API Skill", ecosystem:"Claude Code", category:"API", status:"Stable",
+    description:"Official Anthropic skill that guides building with the Claude Messages API — prompt patterns, tool use, streaming, and batching best practices.",
+    trigger:'"Build an app using the Claude API" · "How do I implement tool_use?"',
+    example:"A customer-support bot is scaffolded with tool definitions, system prompt, and retry handling using the Claude SDK.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/claude-api"},
+
+  {id:"cc-skill-web-artifacts", name:"Web Artifacts Builder Skill", ecosystem:"Claude Code", category:"Visual", status:"Stable",
+    description:"Official Anthropic skill for building elaborate multi-component web artifacts — interactive dashboards, data visualisations, and mini-apps.",
+    trigger:'"Build a rich web artifact with…"',
+    example:"A multi-tab dashboard with live charts, a filterable data table, and a sidebar is produced as a self-contained HTML artifact.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/web-artifacts-builder"},
+
+  {id:"cc-skill-slack-gif", name:"Slack GIF Creator Skill", ecosystem:"Claude Code", category:"Integration", status:"Stable",
+    description:"Official Anthropic skill that generates animated GIFs formatted and sized for Slack — from text prompts or data.",
+    trigger:'"Make a Slack GIF for…"',
+    example:"An animated celebration GIF is generated for a team milestone and exported at Slack-optimal dimensions.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/slack-gif-creator"},
+
+  {id:"cc-skill-theme-factory", name:"Theme Factory Skill", ecosystem:"Claude Code", category:"Visual", status:"Stable",
+    description:"Official Anthropic skill that generates complete design tokens and theme files — colours, typography, spacing — for any brand or product.",
+    trigger:'"Create a dark theme for…" · "Generate design tokens for…"',
+    example:"A full dark-mode design system with CSS custom properties, Tailwind config, and component previews is generated from a brand brief.",
+    source:"https://github.com/anthropics/skills/tree/main/skills/theme-factory"},
+
+  /* Community open-source skill packs */
+  {id:"cc-skill-ai-research", name:"AI Research Skills", ecosystem:"Claude Code", category:"Agentic", status:"Stable",
+    description:"Open-source library of 83+ structured research skills (Orchestra Research) — literature review, paper summarisation, experimental design, and citation management.",
+    trigger:'`npx @orchestra-research/ai-research-skills` · then invoke by task type',
+    example:"Ask Claude to review recent papers on RAG and receive a structured literature matrix with key findings and citation links.",
+    source:"https://github.com/Orchestra-Research/AI-research-SKILLs"},
+
+  {id:"cc-skill-cybersecurity", name:"Cybersecurity Skills", ecosystem:"Claude Code", category:"Agentic", status:"Stable",
+    description:"Open-source library of 754 structured cybersecurity skills mapped to MITRE ATT&CK, NIST CSF 2.0, and D3FEND frameworks (mukul975).",
+    trigger:"Copy skill folder to `.claude/skills/` · invoke by security domain",
+    example:"Ask for a threat model for a web API and receive a structured report mapped to MITRE ATT&CK TTPs with mitigations.",
+    source:"https://github.com/mukul975/Anthropic-Cybersecurity-Skills"},
+
+  {id:"cc-skill-awesome-collection", name:"Awesome Claude Skills", ecosystem:"Claude Code", category:"Agentic", status:"Stable",
+    description:"Community-curated registry of 100+ Claude Code SKILL.md packs — productivity, engineering, marketing, research, and domain-specific skills.",
+    trigger:"Browse and clone individual skill folders from the repo",
+    example:"Pick the 'aws-skills' pack, drop it in `.claude/skills/`, and Claude Code gains AWS CDK and cost-optimisation expertise.",
+    source:"https://github.com/travisvn/awesome-claude-skills"},
+
 ];
 
 /* ───── How-to-use lookup (keyed by skill id) ───── */
@@ -1881,6 +1999,26 @@ const HOWTO = {
   "api-google-vertex":    "`pip install google-cloud-aiplatform` → `vertexai.init(project=...,location=...)` → `GenerativeModel(\"gemini-2.0-flash\").generate_content(...)`.",
   "api-google-files":     "`POST https://generativelanguage.googleapis.com/upload/v1beta/files` with your file. Use the returned `uri` in a `file_data` part.",
   "api-google-code-exec": "Add `\"tools\":[{\"code_execution\":{}}]` to your Gemini API request. The model generates and runs Python, returning results inline.",
+  /* OPEN-SOURCE SKILLS — anthropics/skills + community */
+  "cc-skill-docx":           "Clone `anthropics/skills` and copy the `skills/docx` folder to `.claude/skills/` in your repo. Claude Code auto-discovers it and gains Word document creation for any prompt requesting a .docx file.",
+  "cc-skill-pptx":           "Clone `anthropics/skills` and copy `skills/pptx` to `.claude/skills/`. Claude Code will generate fully-formatted PowerPoint files when you ask for a deck or presentation.",
+  "cc-skill-xlsx":           "Clone `anthropics/skills` and copy `skills/xlsx` to `.claude/skills/`. Ask Claude Code to produce a spreadsheet or data table — it writes a real .xlsx file.",
+  "cc-skill-pdf":            "Clone `anthropics/skills` and copy `skills/pdf` to `.claude/skills/`. Claude Code will convert or generate PDFs from any content you provide.",
+  "cc-skill-frontend":       "Clone `anthropics/skills` and copy `skills/frontend-design` to `.claude/skills/`. Claude Code uses it to scaffold polished, accessible UI components and layouts.",
+  "cc-skill-mcp-builder":    "Clone `anthropics/skills` and copy `skills/mcp-builder` to `.claude/skills/`. Ask Claude Code to \"build an MCP server for X\" and it follows the full spec end-to-end.",
+  "cc-skill-webapp-testing": "Clone `anthropics/skills` and copy `skills/webapp-testing` to `.claude/skills/`. Claude Code uses Playwright to write and run browser tests against any web app.",
+  "cc-skill-creator":        "Clone `anthropics/skills` and copy `skills/skill-creator` to `.claude/skills/`. Ask Claude Code to \"create a new skill for X\" — it scaffolds a valid SKILL.md pack automatically.",
+  "cc-skill-algo-art":       "Clone `anthropics/skills` and copy `skills/algorithmic-art` to `.claude/skills/`. Ask for generative art — Claude Code writes and runs the code to produce SVG, canvas, or p5.js output.",
+  "cc-skill-brand":          "Clone `anthropics/skills` and copy `skills/brand-guidelines` to `.claude/skills/`. Claude Code enforces your brand kit (colors, fonts, tone) across any design or copy task.",
+  "cc-skill-internal-comms": "Clone `anthropics/skills` and copy `skills/internal-comms` to `.claude/skills/`. Claude Code drafts memos, announcements, and all-hands updates in a consistent company voice.",
+  "cc-skill-canvas-design":  "Clone `anthropics/skills` and copy `skills/canvas-design` to `.claude/skills/`. Claude Code designs and exports canvas-based graphics for social media, slides, or print.",
+  "cc-skill-claude-api":     "Clone `anthropics/skills` and copy `skills/claude-api` to `.claude/skills/`. Claude Code writes idiomatic Anthropic SDK calls, handles streaming, and wires up tool use correctly.",
+  "cc-skill-web-artifacts":  "Clone `anthropics/skills` and copy `skills/web-artifacts-builder` to `.claude/skills/`. Claude Code builds self-contained HTML/CSS/JS artifacts ready to embed or deploy.",
+  "cc-skill-slack-gif":      "Clone `anthropics/skills` and copy `skills/slack-gif-creator` to `.claude/skills/`. Describe a reaction — Claude Code generates and posts a custom GIF to Slack via the API.",
+  "cc-skill-theme-factory":  "Clone `anthropics/skills` and copy `skills/theme-factory` to `.claude/skills/`. Ask Claude Code to \"create a dark/light theme\" and it outputs a complete CSS variable set.",
+  "cc-skill-ai-research":    "Clone `Orchestra-Research/AI-research-SKILLs` and copy desired skill folders to `.claude/skills/`. Adds systematic literature review, hypothesis generation, and experiment design workflows.",
+  "cc-skill-cybersecurity":  "Clone `mukul975/Anthropic-Cybersecurity-Skills` and copy skill folders to `.claude/skills/`. Equips Claude Code with threat modelling, OWASP audit, and secure-code-review workflows.",
+  "cc-skill-awesome-collection": "Browse `travisvn/awesome-claude-skills` on GitHub, pick any skill pack you need, and copy its folder to `.claude/skills/`. The README groups 100+ packs by domain for easy discovery.",
 };
 
 /* ───── Merge custom skills from localStorage into SKILLS ───── */
