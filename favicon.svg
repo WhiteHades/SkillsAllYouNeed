@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- background: site ink colour -->
+  <rect width="32" height="32" fill="#15130E"/>
+  <!-- brand dot, top-right, like the hero navbar dot -->
+  <rect x="21" y="5" width="6" height="6" fill="#C7401E"/>
+  <!-- large italic S in the paper/cream colour — mirrors Instrument Serif display headings -->
+  <text
+    x="14" y="27"
+    font-family="Georgia, 'Times New Roman', serif"
+    font-style="italic"
+    font-weight="400"
+    font-size="26"
+    fill="#F2EFE6"
+    text-anchor="middle"
+  >S</text>
+</svg>

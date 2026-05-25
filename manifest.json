@@ -1,0 +1,20 @@
+{
+  "name": "SkillsAllYouNeed for LLMs",
+  "short_name": "SAYN",
+  "description": "The open registry of AI skills — ready-to-use skill definitions for Claude Code, Claude.ai, ChatGPT and Gemini.",
+  "start_url": "/SkillsAllYouNeed/",
+  "scope": "/SkillsAllYouNeed/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F2EFE6",
+  "theme_color": "#15130E",
+  "icons": [
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["productivity", "education", "developer tools"]
+}
