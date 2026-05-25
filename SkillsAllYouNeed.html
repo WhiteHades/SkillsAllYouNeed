@@ -1107,6 +1107,76 @@
     .grid-toolbar, .scroll-top, .active-filters,
     .sheet-nav, .sheet-actions{ display:none !important; }
   }
+
+  /* ── Add Skill form ─── */
+  .add-scrim{
+    position:fixed; inset:0; background:rgba(21,19,14,.62);
+    z-index:50; display:none; align-items:flex-start;
+    justify-content:center; padding:48px 24px; overflow-y:auto;
+  }
+  .add-scrim.open{ display:flex; }
+  .add-sheet{
+    background:var(--paper); width:100%; max-width:680px;
+    padding:48px 56px 48px; position:relative;
+    border:1px solid var(--ink);
+    box-shadow:18px 18px 0 -2px var(--ink);
+  }
+  @media(max-width:720px){ .add-sheet{ padding:36px 24px; box-shadow:8px 8px 0 -2px var(--ink); } }
+  .add-sheet h3{
+    font-family:var(--serif-display); font-weight:400;
+    font-size:clamp(36px,4vw,56px); line-height:1; letter-spacing:-.015em;
+    margin:0 0 6px;
+  }
+  .add-sheet h3 .it{ font-style:italic; color:var(--accent); }
+  .add-sheet .form-sub{
+    font-family:var(--mono); font-size:11px; text-transform:uppercase;
+    letter-spacing:.1em; color:var(--ink-mute); margin-bottom:28px;
+    padding-bottom:18px; border-bottom:1px solid var(--rule);
+  }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:16px; }
+  .form-row.full{ grid-template-columns:1fr; }
+  @media(max-width:540px){ .form-row{ grid-template-columns:1fr; } }
+  .form-group{ display:flex; flex-direction:column; gap:5px; }
+  .form-group label{
+    font-family:var(--mono); font-size:10.5px; text-transform:uppercase;
+    letter-spacing:.12em; color:var(--ink-mute);
+  }
+  .form-group input,.form-group select,.form-group textarea{
+    font-family:var(--serif-body); font-size:16px;
+    border:1px solid var(--rule); background:var(--paper);
+    color:var(--ink); padding:10px 12px; outline:none;
+    border-radius:0; -webkit-appearance:none; resize:vertical;
+  }
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+    border-color:var(--ink); box-shadow:3px 3px 0 -1px var(--ink);
+  }
+  .form-group .id-preview{
+    font-family:var(--mono); font-size:11px; color:var(--ink-mute); margin-top:2px;
+  }
+  .form-group .id-preview b{ color:var(--accent); }
+  .form-actions{ display:flex; gap:10px; margin-top:24px; padding-top:18px; border-top:1px solid var(--rule); flex-wrap:wrap; }
+  .btn-primary{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; padding:10px 20px;
+    background:var(--ink); color:var(--paper); border:1px solid var(--ink);
+    cursor:pointer; transition:background .12s ease, border-color .12s ease;
+  }
+  .btn-primary:hover{ background:var(--accent); border-color:var(--accent); }
+  .btn-ghost{
+    font-family:var(--mono); font-size:11px; letter-spacing:.1em;
+    text-transform:uppercase; padding:10px 20px;
+    background:transparent; color:var(--ink-soft); border:1px solid var(--rule);
+    cursor:pointer; transition:background .12s ease, color .12s ease;
+  }
+  .btn-ghost:hover{ background:var(--ink); color:var(--paper); }
+  .custom-badge{
+    font-family:var(--mono); font-size:9px; text-transform:uppercase;
+    letter-spacing:.06em; color:var(--paper); background:var(--accent);
+    padding:1px 5px; margin-left:6px; vertical-align:middle;
+  }
+  .card.featured .custom-badge{ background:var(--highlight); color:var(--ink); }
+  .sheet-actions button.is-delete{ color:var(--ink-mute); }
+  .sheet-actions button.is-delete:hover{ background:var(--accent); color:var(--paper); border-color:var(--accent); }
 </style>
 </head>
 
@@ -1232,6 +1302,7 @@
 
     <div class="grid-toolbar" id="grid-toolbar">
       <button id="surprise-btn" class="chip" aria-label="Open a random skill">Surprise me →</button>
+      <button id="add-skill-btn" class="chip" aria-label="Add a new skill">Add skill +</button>
       <span class="spacer"></span>
       <button id="fav-filter-btn" class="chip" aria-pressed="false" aria-label="Show saved skills only">Saved <span id="fav-count" class="badge"></span></button>
       <button id="export-btn" class="chip" aria-label="Export visible skills as JSON">Export JSON ↓</button>
@@ -1342,6 +1413,90 @@
     <dt>r</dt><dd>open a random skill from current results</dd>
   </dl>
 </aside>
+
+<!-- ─── ADD SKILL SCRIM ─── -->
+<div class="add-scrim" id="add-scrim" role="dialog" aria-modal="true" aria-label="Add a new skill">
+  <div class="add-sheet">
+    <button class="close" id="add-close-btn" aria-label="Close" style="position:absolute;top:18px;right:18px;font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.12em;border:1px solid var(--rule);padding:6px 10px;background:none;cursor:pointer;">Close ✕</button>
+    <h3>Add a <span class="it">skill.</span></h3>
+    <p class="form-sub">Saves to this browser · survives refreshes · export JSON to back up</p>
+    <form id="add-skill-form" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-name">Name *</label>
+          <input id="f-name" type="text" placeholder="e.g. Smart Notes" autocomplete="off" />
+        </div>
+        <div class="form-group">
+          <label for="f-ecosystem">Ecosystem *</label>
+          <select id="f-ecosystem">
+            <option value="">— select —</option>
+            <option>Claude</option>
+            <option>Claude Code</option>
+            <option>ChatGPT</option>
+            <option>Codex</option>
+            <option>Gemini</option>
+            <option>DeepSeek</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-category">Category *</label>
+          <select id="f-category">
+            <option value="">— select —</option>
+            <option>Document</option>
+            <option>Code</option>
+            <option>Web</option>
+            <option>Data</option>
+            <option>Memory</option>
+            <option>Integration</option>
+            <option>Visual</option>
+            <option>Agentic</option>
+            <option>API</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="f-status">Status *</label>
+          <select id="f-status">
+            <option value="">— select —</option>
+            <option>Stable</option>
+            <option>Beta</option>
+            <option>Deprecated</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group">
+          <label for="f-desc">Description *</label>
+          <textarea id="f-desc" rows="2" placeholder="What this skill does in one or two sentences."></textarea>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group">
+          <label for="f-trigger">Trigger phrase *</label>
+          <input id="f-trigger" type="text" placeholder='"Phrase that triggers it" · "alternate phrasing"' autocomplete="off" />
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group">
+          <label for="f-example">Worked example *</label>
+          <textarea id="f-example" rows="2" placeholder="A concrete real-world scenario showing the skill in action."></textarea>
+        </div>
+      </div>
+      <div class="form-row full">
+        <div class="form-group">
+          <label for="f-source">Source URL</label>
+          <input id="f-source" type="url" placeholder="https://docs.example.com/this-skill" />
+          <span class="id-preview" id="id-preview">id: <b>—</b></span>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn-primary">Add to catalog →</button>
+        <button type="button" class="btn-ghost" id="add-cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>
 
 <!-- ─── TOAST ─── -->
 <div class="toast" id="toast" role="status" aria-live="polite">link copied</div>
@@ -1996,6 +2151,14 @@ const SKILLS = [
     source:"https://api-docs.deepseek.com/guides/kv_cache"}
 ];
 
+/* ───── Merge custom skills from localStorage into SKILLS ───── */
+(function(){
+  try{
+    const custom = JSON.parse(localStorage.getItem("skills-custom")||"[]");
+    custom.forEach(s=>{ if(!SKILLS.find(x=>x.id===s.id)) SKILLS.push(s); });
+  }catch(e){}
+})();
+
 /* ───── Comparison matrix ───── */
 const MATRIX_ROWS = [
   /* capability                           Claude  CC    GPT   Codex Gemini DS */
@@ -2199,7 +2362,7 @@ function render(){
       <div class="top">
         <div class="glyph">${GLYPHS[s.ecosystem]}</div>
         <div class="id-wrap">
-          <div class="id">${s.id}</div>
+          <div class="id">${s.id}${s._custom?'<span class="custom-badge">custom</span>':''}</div>
           <button class="anchor" title="Copy deep link" aria-label="Copy deep link to ${s.name}" data-copy="${s.id}">¶</button>
         </div>
         <div class="meta-top" style="flex:1">
@@ -2334,6 +2497,22 @@ function openSheet(s, opts){
     navigator.clipboard && navigator.clipboard.writeText(s.trigger).catch(()=>{});
     showToast("trigger copied");
   });
+
+  if(s._custom){
+    const delBtn = document.createElement("button");
+    delBtn.className = "is-delete"; delBtn.textContent = "Delete ✕";
+    delBtn.setAttribute("aria-label","Delete this custom skill");
+    delBtn.addEventListener("click", ()=>{
+      if(!confirm(`Delete "${s.name}"? This cannot be undone.`)) return;
+      const idx = SKILLS.findIndex(x=>x.id===s.id);
+      if(idx > -1) SKILLS.splice(idx, 1);
+      const remaining = JSON.parse(localStorage.getItem("skills-custom")||"[]").filter(x=>x.id!==s.id);
+      localStorage.setItem("skills-custom", JSON.stringify(remaining));
+      closeSheet(); render();
+      showToast(`"${s.name}" deleted`);
+    });
+    sheet.querySelector(".sheet-actions").appendChild(delBtn);
+  }
 
   if(opts.pushHash !== false && location.hash !== "#"+s.id){
     history.replaceState(null, "", "#"+s.id);
@@ -2609,6 +2788,74 @@ $("#reset").addEventListener("click", ()=>{
   $("#q").value = "";
   $$(".chip[aria-pressed='true']").forEach(c=>c.setAttribute("aria-pressed","false"));
   render();
+});
+
+/* ───── Add Skill modal ───── */
+const ECO_PREFIX = {
+  "Claude":"cl","Claude Code":"cc","ChatGPT":"gpt",
+  "Codex":"cx","Gemini":"gm","DeepSeek":"ds"
+};
+function genId(eco, name){
+  const prefix = ECO_PREFIX[eco] || "xx";
+  const slug = name.toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+  return prefix + "-" + slug;
+}
+function openAddSheet(){
+  document.getElementById("add-scrim").classList.add("open");
+  document.body.style.overflow = "hidden";
+  setTimeout(()=>document.getElementById("f-name").focus(), 60);
+}
+function closeAddSheet(){
+  document.getElementById("add-scrim").classList.remove("open");
+  document.body.style.overflow = "";
+  document.getElementById("add-skill-form").reset();
+  document.getElementById("id-preview").innerHTML = "id: <b>—</b>";
+}
+document.getElementById("add-skill-btn").addEventListener("click", openAddSheet);
+document.getElementById("add-close-btn").addEventListener("click", closeAddSheet);
+document.getElementById("add-cancel-btn").addEventListener("click", closeAddSheet);
+document.getElementById("add-scrim").addEventListener("click", e=>{ if(e.target.id==="add-scrim") closeAddSheet(); });
+
+// Live ID preview as user types name / picks ecosystem
+["f-name","f-ecosystem"].forEach(fid=>{
+  document.getElementById(fid).addEventListener("input", ()=>{
+    const name = document.getElementById("f-name").value;
+    const eco  = document.getElementById("f-ecosystem").value;
+    const el   = document.getElementById("id-preview");
+    el.innerHTML = (name && eco) ? `id: <b>${genId(eco,name)}</b>` : "id: <b>—</b>";
+  });
+});
+
+document.getElementById("add-skill-form").addEventListener("submit", e=>{
+  e.preventDefault();
+  const val = id => document.getElementById(id).value.trim();
+  const name        = val("f-name");
+  const ecosystem   = val("f-ecosystem");
+  const category    = val("f-category");
+  const status      = val("f-status");
+  const description = val("f-desc");
+  const trigger     = val("f-trigger");
+  const example     = val("f-example");
+  const source      = val("f-source") || "#";
+
+  if(!name||!ecosystem||!category||!status||!description||!trigger||!example){
+    showToast("please fill in all required fields");
+    return;
+  }
+  const id = genId(ecosystem, name);
+  if(SKILLS.find(x=>x.id===id)){
+    showToast("a skill with that name already exists");
+    return;
+  }
+  const skill = {id,name,ecosystem,category,status,description,trigger,example,source,_custom:true};
+  SKILLS.push(skill);
+  const saved = JSON.parse(localStorage.getItem("skills-custom")||"[]");
+  saved.push(skill);
+  localStorage.setItem("skills-custom", JSON.stringify(saved));
+  closeAddSheet();
+  render();
+  showToast(`"${name}" added`);
+  requestAnimationFrame(()=>openSheet(skill));
 });
 
 /* ───── Boot ───── */
