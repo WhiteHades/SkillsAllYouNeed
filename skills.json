@@ -1523,7 +1523,7 @@
       "description": "Long-running autonomous task execution toward a measurable finish line. Codex keeps working, across hours or days, until the goal's success criterion is met.",
       "trigger": "/goal in the thread composer",
       "example": "User sets goal: 'Migrate the Python CLI to Rust, done when all existing tests pass' -> Codex works for hours -> pauses when it needs a decision -> user resumes after lunch",
-      "source": "https://developers.openai.com/codex/app/features/"
+      "source": "https://developers.openai.com/codex/use-cases/follow-goals"
     },
     {
       "id": "cx-agent-skills",
