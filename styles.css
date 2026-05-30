@@ -114,7 +114,12 @@
   .star-btn:hover .star-count{ color:var(--paper); border-color:rgba(255,255,255,.2); }
   [data-theme="dark"] .star-btn{ background:rgba(255,255,255,.05); }
 
-  .hero-body{ padding:56px 0 52px; }
+  .hero-body{ padding:56px 0 52px; position:relative; background:var(--paper); }
+  /* hero accent glow — smooth elliptical dissolve from left edge */
+  .hero-body::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse 70% 90% at 0% 60%, rgba(199,64,30,.06) 0%, transparent 100%);
+  }
   .hero-body h1{
     font-family:var(--serif-display);
     font-weight:400;
@@ -1152,6 +1157,9 @@
       repeating-linear-gradient(0deg, rgba(240,237,227,.01) 0 1px, transparent 1px 3px),
       repeating-linear-gradient(90deg, rgba(240,237,227,.007) 0 1px, transparent 1px 4px);
   }
+  [data-theme="dark"] .hero-body::after{
+    background: radial-gradient(ellipse 70% 90% at 0% 60%, rgba(224,88,48,.08) 0%, transparent 100%);
+  }
   /* dark-mode toggle button */
   .dark-toggle{
     font-size:15px; line-height:1; letter-spacing:0;
@@ -1291,11 +1299,6 @@
   .card .glyph{ transition: transform .18s ease; }
   .card:hover .glyph{ transform: scale(1.12); }
   .card.featured:hover .glyph{ transform: scale(1.12); }
-
-  /* hero accent glow */
-  .hero-body{
-    background: radial-gradient(ellipse at 0% 70%, rgba(199,64,30,.08) 0%, rgba(199,64,30,.04) 30%, rgba(199,64,30,.01) 55%, transparent 85%);
-  }
 
   /* ── Add Skill form ─── */
   .add-scrim{
