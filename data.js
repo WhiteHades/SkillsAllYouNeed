@@ -1173,8 +1173,7 @@ const REFS = [
   {who:"Vaswani, A. et al.", title:"Attention Is All You Need", venue:"NeurIPS, arXiv:1706.03762", year:"2017"},
 ];
 
-/* ───── Categories & status (derived) ───── */
-const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex","OpenCode","Gemini","Perplexity","Microsoft 365 Copilot","GitHub Copilot","Antigravity"];
+/* ───── Categories & status ───── */
 const CATEGORIES = ["Document","Code","Web","Data","Memory","Integration","Visual","Agentic","API"];
 const STATUSES   = ["Stable","Beta","Deprecated"];
 
