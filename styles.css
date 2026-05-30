@@ -428,7 +428,7 @@
   .card .meta-top{
     text-align:right;
     font-family:var(--mono);
-    font-size:10px;
+    font-size:10.5px;
     letter-spacing:.08em;
     text-transform:uppercase;
     color:var(--ink-mute);
