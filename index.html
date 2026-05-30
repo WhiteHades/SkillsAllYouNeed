@@ -3261,7 +3261,7 @@ function buildEcoStrip(){
         c.setAttribute("aria-pressed", c.dataset.eco === eco ? "true" : "false");
       });
       render();
-      $("#eco-strip").scrollIntoView({behavior:"smooth", block:"start"});
+      $("#grid").scrollIntoView({behavior:"smooth", block:"start"});
     });
     wrap.appendChild(cell);
   });
