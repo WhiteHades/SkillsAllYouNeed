@@ -173,6 +173,18 @@ Every entry needs: `id`, `name`, `ecosystem`, `category`, `status`, `description
 
 ---
 
+## Contributors
+
+Thanks to everyone who has helped grow the registry:
+
+| Contributor | What they added |
+|-------------|----------------|
+| [@WhiteHades](https://github.com/WhiteHades) | OpenCode + Codex ecosystems, 22 skills, branded SVG icons (v1.4) |
+
+Want to see your name here? [Open a PR](https://github.com/kishormorol/SkillsAllYouNeed/compare) adding skills or fixing entries.
+
+---
+
 ## License
 
 Content: **CC BY 4.0** — free to use, adapt, and redistribute with attribution.  
