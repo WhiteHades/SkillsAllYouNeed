@@ -43,6 +43,7 @@
 
   :root{
     --paper:        #F2EFE6;   /* off-white, warm */
+    --paper-rgb:    242, 239, 230;
     --paper-2:      #EAE6DA;
     --paper-edge:   #DCD7C7;
     --ink:          #15130E;   /* near-black, warm */
@@ -71,6 +72,8 @@
     --eco-copilot:      #0078D4;
     --eco-opencode:     #14B85A;
     --eco-codex:        #19C37D;
+    --eco-github-copilot: #24292F;
+    --eco-antigravity: #4285F4;
   }
 
   *{ box-sizing:border-box; }
@@ -332,9 +335,11 @@
   .chip[data-eco="ChatGPT"][aria-pressed="true"]      { box-shadow: inset 3px 0 0 var(--eco-chatgpt); }
   .chip[data-eco="Gemini"][aria-pressed="true"]       { box-shadow: inset 3px 0 0 var(--eco-gemini); }
   .chip[data-eco="Perplexity"][aria-pressed="true"]   { box-shadow: inset 3px 0 0 var(--eco-perplexity); }
-  .chip[data-eco="Copilot"][aria-pressed="true"]      { box-shadow: inset 3px 0 0 var(--eco-copilot); }
+  .chip[data-eco="Microsoft 365 Copilot"][aria-pressed="true"]      { box-shadow: inset 3px 0 0 var(--eco-copilot); }
   .chip[data-eco="OpenCode"][aria-pressed="true"]     { box-shadow: inset 3px 0 0 var(--eco-opencode); }
   .chip[data-eco="Codex"][aria-pressed="true"]        { box-shadow: inset 3px 0 0 var(--eco-codex); }
+  .chip[data-eco="GitHub Copilot"][aria-pressed="true"] { box-shadow: inset 3px 0 0 var(--eco-github-copilot); }
+  .chip[data-eco="Antigravity"][aria-pressed="true"]     { box-shadow: inset 3px 0 0 var(--eco-antigravity); }
   .chip[data-eco="Claude"][aria-pressed="true"] svg *{ stroke:var(--paper); fill:var(--paper); }
 
   /* Search */
@@ -387,9 +392,11 @@
   .card[data-eco="ChatGPT"]      { --eco-color: var(--eco-chatgpt); }
   .card[data-eco="Gemini"]       { --eco-color: var(--eco-gemini); }
   .card[data-eco="Perplexity"]   { --eco-color: var(--eco-perplexity); }
-  .card[data-eco="Copilot"]      { --eco-color: var(--eco-copilot); }
+  .card[data-eco="Microsoft 365 Copilot"]      { --eco-color: var(--eco-copilot); }
   .card[data-eco="OpenCode"]     { --eco-color: var(--eco-opencode); }
   .card[data-eco="Codex"]        { --eco-color: var(--eco-codex); }
+  .card[data-eco="GitHub Copilot"] { --eco-color: var(--eco-github-copilot); }
+  .card[data-eco="Antigravity"]    { --eco-color: var(--eco-antigravity); }
 
   .card{
     grid-column: span 4;
@@ -787,9 +794,11 @@
   .eco-cell[data-eco="ChatGPT"]     { --eco-color: var(--eco-chatgpt); }
   .eco-cell[data-eco="Gemini"]      { --eco-color: var(--eco-gemini); }
   .eco-cell[data-eco="Perplexity"]  { --eco-color: var(--eco-perplexity); }
-  .eco-cell[data-eco="Copilot"]     { --eco-color: var(--eco-copilot); }
+  .eco-cell[data-eco="Microsoft 365 Copilot"]     { --eco-color: var(--eco-copilot); }
   .eco-cell[data-eco="OpenCode"]    { --eco-color: var(--eco-opencode); }
   .eco-cell[data-eco="Codex"]       { --eco-color: var(--eco-codex); }
+  .eco-cell[data-eco="GitHub Copilot"] { --eco-color: var(--eco-github-copilot); }
+  .eco-cell[data-eco="Antigravity"]    { --eco-color: var(--eco-antigravity); }
 
   .eco-cell{
     padding:26px 22px 22px;
@@ -1117,6 +1126,7 @@
   ══════════════════════════════════════════════════════════ */
   [data-theme="dark"]{
     --paper:     #17140F;
+    --paper-rgb: 23, 20, 15;
     --paper-2:   #1F1C14;
     --paper-edge:#252019;
     --ink:       #F0EDE3;
@@ -1134,6 +1144,8 @@
     --eco-copilot:      #3B9FE8;
     --eco-opencode:     #38C96E;
     --eco-codex:        #42DCA0;
+    --eco-github-copilot: #8B949E;
+    --eco-antigravity: #8AB4F8;
   }
   [data-theme="dark"] .card.featured{
     background: linear-gradient(150deg, #1F1C14 0%, #0D0B08 100%);
@@ -1193,7 +1205,7 @@
   .onboarding-step{
     display:flex; align-items:baseline; gap:7px;
     font-family:var(--serif-body); font-size:13.5px;
-    line-height:1.4; color:rgba(242,239,230,.72); max-width:200px;
+    line-height:1.4; color:rgba(var(--paper-rgb, 21,19,14), .72); max-width:200px;
   }
   .step-num{
     font-family:var(--mono); font-size:10px; font-weight:600;
@@ -1203,12 +1215,12 @@
   }
   .onboarding-dismiss{
     font-family:var(--mono); font-size:10px; letter-spacing:.1em;
-    text-transform:uppercase; color:rgba(242,239,230,.4);
-    border:1px solid rgba(242,239,230,.18); padding:5px 10px;
+    text-transform:uppercase; color:rgba(var(--paper-rgb, 21,19,14), .4);
+    border:1px solid rgba(var(--paper-rgb, 21,19,14), .18); padding:5px 10px;
     background:transparent; cursor:pointer; white-space:nowrap; flex-shrink:0;
     transition:color .12s ease, border-color .12s ease;
   }
-  .onboarding-dismiss:hover{ color:var(--paper); border-color:rgba(242,239,230,.5); }
+  .onboarding-dismiss:hover{ color:var(--paper); border-color:rgba(var(--paper-rgb, 21,19,14), .5); }
   @media(max-width:700px){
     .onboarding-steps .onboarding-step:last-child{ display:none; }
   }
@@ -1303,7 +1315,7 @@
 
   /* hero accent glow */
   .hero-body{
-    background: radial-gradient(ellipse at 0% 70%, rgba(199,64,30,.07) 0%, transparent 60%);
+    background: radial-gradient(ellipse at 0% 70%, rgba(199,64,30,.07) 0%, rgba(199,64,30,.02) 35%, transparent 70%);
   }
 
   /* ── Add Skill form ─── */
@@ -1434,10 +1446,10 @@
     </div>
     <div class="hero-body">
       <h1>Skills<em>All</em><br/>You<em>Need</em><span class="h1-sub"> for LLMs</span></h1>
-      <p class="hero-sub">The open registry of AI skills — ready-to-use skill definitions for Claude, Claude Code, ChatGPT, Gemini, Perplexity, Copilot, OpenCode, and Codex. Copy into your project, drop into Settings, and go.</p>
+      <p class="hero-sub">The open registry of AI skills — ready-to-use skill definitions for Claude, Claude Code, ChatGPT, Gemini, Perplexity, Microsoft 365 Copilot, OpenCode, Codex, GitHub Copilot, and Antigravity. Copy into your project, drop into Settings, and go.</p>
       <div class="hero-stats" aria-label="Registry stats">
         <div class="stat"><b id="hero-skill-count">0</b><span>skills</span></div>
-        <div class="stat"><b>8</b><span>ecosystems</span></div>
+        <div class="stat"><b>10</b><span>ecosystems</span></div>
         <div class="stat"><b>9</b><span>categories</span></div>
         <div class="stat"><b>Free</b><span>to use</span></div>
       </div>
@@ -1457,7 +1469,7 @@
     <div class="onboarding-inner">
       <div class="onboarding-title">New here?</div>
       <div class="onboarding-steps">
-        <div class="onboarding-step"><span class="step-num">1</span><span>Browse skills across Claude, ChatGPT, Gemini, Perplexity, Copilot, OpenCode, Codex &amp; more</span></div>
+        <div class="onboarding-step"><span class="step-num">1</span><span>Browse skills across Claude, ChatGPT, Gemini, Perplexity, Microsoft 365 Copilot, OpenCode, Codex, GitHub Copilot, Antigravity &amp; more</span></div>
         <div class="onboarding-step"><span class="step-num">2</span><span>Click any card — see the trigger phrase and how to activate it</span></div>
         <div class="onboarding-step"><span class="step-num">3</span><span>Save favourites ♥, export as JSON, or submit a missing skill</span></div>
       </div>
@@ -1726,6 +1738,16 @@
    SkillsAllYouNeed — data + behaviour
    ========================================================= */
 
+/* ───── Unique SVG ID helper (prevents gradient/mask ID collisions) ───── */
+let _glyphSeq = 0;
+function uniqueSvg(svg) {
+  const n = ++_glyphSeq;
+  let out = svg;
+  out = out.replace(/\bid\s*=\s*"([^"]+)"/g, (_, d) => `id="${d}-${n}"`);
+  out = out.replace(/\burl\s*\(\s*#([^)\s]+)\s*\)/g, (_, r) => `url(#${r}-${n})`);
+  return out;
+}
+
 /* ───── Ecosystem glyphs (original geometric marks) ───── */
 const GLYPHS = {
   "Claude": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 257" preserveAspectRatio="xMidYMid"><path fill="currentColor" stroke="none" d="m50.228 170.321 50.357-28.257.843-2.463-.843-1.361h-2.462l-8.426-.518-28.775-.778-24.952-1.037-24.175-1.296-6.092-1.297L0 125.796l.583-3.759 5.12-3.434 7.324.648 16.202 1.101 24.304 1.685 17.629 1.037 26.118 2.722h4.148l.583-1.685-1.426-1.037-1.101-1.037-25.147-17.045-27.22-18.017-14.258-10.37-7.713-5.25-3.888-4.925-1.685-10.758 7-7.713 9.397.649 2.398.648 9.527 7.323 20.35 15.75L94.817 91.9l3.889 3.24 1.555-1.102.195-.777-1.75-2.917-14.453-26.118-15.425-26.572-6.87-11.018-1.814-6.61c-.648-2.723-1.102-4.991-1.102-7.778l7.972-10.823L71.42 0 82.05 1.426l4.472 3.888 6.61 15.101 10.694 23.786 16.591 32.34 4.861 9.592 2.592 8.879.973 2.722h1.685v-1.556l1.36-18.211 2.528-22.36 2.463-28.776.843-8.1 4.018-9.722 7.971-5.25 6.222 2.981 5.12 7.324-.713 4.73-3.046 19.768-5.962 30.98-3.889 20.739h2.268l2.593-2.593 10.499-13.934 17.628-22.036 7.778-8.749 9.073-9.657 5.833-4.601h11.018l8.1 12.055-3.628 12.443-11.342 14.388-9.398 12.184-13.48 18.147-8.426 14.518.778 1.166 2.01-.194 30.46-6.481 16.462-2.982 19.637-3.37 8.88 4.148.971 4.213-3.5 8.62-20.998 5.184-24.628 4.926-36.682 8.685-.454.324.519.648 16.526 1.555 7.065.389h17.304l32.21 2.398 8.426 5.574 5.055 6.805-.843 5.184-12.962 6.611-17.498-4.148-40.83-9.721-14-3.5h-1.944v1.167l11.666 11.406 21.387 19.314 26.767 24.887 1.36 6.157-3.434 4.86-3.63-.518-23.526-17.693-9.073-7.972-20.545-17.304h-1.36v1.814l4.73 6.935 25.017 37.59 1.296 11.536-1.814 3.76-6.481 2.268-7.13-1.297-14.647-20.544-15.1-23.138-12.185-20.739-1.49.843-7.194 77.448-3.37 3.953-7.778 2.981-6.48-4.925-3.436-7.972 3.435-15.749 4.148-20.544 3.37-16.333 3.046-20.285 1.815-6.74-.13-.454-1.49.194-15.295 20.999-23.267 31.433-18.406 19.702-4.407 1.75-7.648-3.954.713-7.064 4.277-6.286 25.47-32.405 15.36-20.092 9.917-11.6-.065-1.686h-.583L44.07 198.125l-12.055 1.555-5.185-4.86.648-7.972 2.463-2.593 20.35-13.999-.064.065Z"/></svg>`,
@@ -1734,9 +1756,11 @@ const GLYPHS = {
   "OpenCode": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 300" fill="none"><path d="M180 60H60V240H180V60ZM240 300H0V0H240V300Z" fill="currentColor" stroke="none" fill-rule="evenodd"/><path d="M180 240H60V120H180V240Z" fill="currentColor" stroke="none" opacity="0.38"/></svg>`,
   "Codex": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"><path fill="currentColor" stroke="none" fill-rule="evenodd" d="M8.086.457a6.105 6.105 0 013.046-.415c1.333.153 2.521.72 3.564 1.7a.117.117 0 00.107.029c1.408-.346 2.762-.224 4.061.366l.063.03.154.076c1.357.703 2.33 1.77 2.918 3.198.278.679.418 1.388.421 2.126a5.655 5.655 0 01-.18 1.631.167.167 0 00.04.155 5.982 5.982 0 011.578 2.891c.385 1.901-.01 3.615-1.183 5.14l-.182.22a6.063 6.063 0 01-2.934 1.851.162.162 0 00-.108.102c-.255.736-.511 1.364-.987 1.992-1.199 1.582-2.962 2.462-4.948 2.451-1.583-.008-2.986-.587-4.21-1.736a.145.145 0 00-.14-.032c-.518.167-1.04.191-1.604.185a5.924 5.924 0 01-2.595-.622 6.058 6.058 0 01-2.146-1.781c-.203-.269-.404-.522-.551-.821a7.74 7.74 0 01-.495-1.283 6.11 6.11 0 01-.017-3.064.166.166 0 00.008-.074.115.115 0 00-.037-.064 5.958 5.958 0 01-1.38-2.202 5.196 5.196 0 01-.333-1.589 6.915 6.915 0 01.188-2.132c.45-1.484 1.309-2.648 2.577-3.493.282-.188.55-.334.802-.438.286-.12.573-.22.861-.304a.129.129 0 00.087-.087A6.016 6.016 0 015.635 2.31C6.315 1.464 7.132.846 8.086.457zm-.804 7.85a.848.848 0 00-1.473.842l1.694 2.965-1.688 2.848a.849.849 0 001.46.864l1.94-3.272a.849.849 0 00.007-.854l-1.94-3.393zm5.446 6.24a.849.849 0 000 1.695h4.848a.849.849 0 000-1.696h-4.848z"/></svg>`,
   "Perplexity": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#1FB8CD" stroke="none"><path d="M22.3977 7.0896h-2.3106V.0676l-7.5094 6.3542V.1577h-1.1554v6.1966L4.4904 0v7.0896H1.6023v10.3976h2.8882V24l6.932-6.3591v6.2005h1.1554v-6.0469l6.9318 6.1807v-6.4879h2.8882V7.0896zm-3.4657-4.531v4.531h-5.355l5.355-4.531zm-13.2862.0676 4.8691 4.4634H5.6458V2.6262zM2.7576 16.332V8.245h7.8476l-6.1149 6.1147v1.9723H2.7576zm2.8882 5.0404v-3.8852h.0001v-2.6488l5.7763-5.7764v7.0111l-5.7764 5.2993zm12.7086.0248-5.7766-5.1509V9.0618l5.7766 5.7766v6.5588zm2.8882-5.0652h-1.733v-1.9723L13.3948 8.245h7.8478v8.087z"/></svg>`,
-  "Copilot": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 208" fill="currentColor" stroke="none"><path d="M205.3 31.4c14 14.8 20 35.2 22.5 63.6 6.6 0 12.8 1.5 17 7.2l7.8 10.6c2.2 3 3.4 6.6 3.4 10.4v28.7a12 12 0 0 1-4.8 9.5C215.9 187.2 172.3 208 128 208c-49 0-98.2-28.3-123.2-46.6a12 12 0 0 1-4.8-9.5v-28.7c0-3.8 1.2-7.4 3.4-10.5l7.8-10.5c4.2-5.7 10.4-7.2 17-7.2 2.5-28.4 8.4-48.8 22.5-63.6C77.3 3.2 112.6 0 127.6 0h.4c14.7 0 50.4 2.9 77.3 31.4ZM128 78.7c-3 0-6.5.2-10.3.6a27.1 27.1 0 0 1-6 12.1 45 45 0 0 1-32 13c-6.8 0-13.9-1.5-19.7-5.2-5.5 1.9-10.8 4.5-11.2 11-.5 12.2-.6 24.5-.6 36.8 0 6.1 0 12.3-.2 18.5 0 3.6 2.2 6.9 5.5 8.4C79.9 185.9 105 192 128 192s48-6 74.5-18.1a9.4 9.4 0 0 0 5.5-8.4c.3-18.4 0-37-.8-55.3-.4-6.6-5.7-9.1-11.2-11-5.8 3.7-13 5.1-19.7 5.1a45 45 0 0 1-32-12.9 27.1 27.1 0 0 1-6-12.1c-3.4-.4-6.9-.5-10.3-.6Zm-27 44c5.8 0 10.5 4.6 10.5 10.4v19.2a10.4 10.4 0 0 1-20.8 0V133c0-5.8 4.6-10.4 10.4-10.4Zm53.4 0c5.8 0 10.4 4.6 10.4 10.4v19.2a10.4 10.4 0 0 1-20.8 0V133c0-5.8 4.7-10.4 10.4-10.4Zm-73-94.4c-11.2 1.1-20.6 4.8-25.4 10-10.4 11.3-8.2 40.1-2.2 46.2A31.2 31.2 0 0 0 75 91.7c6.8 0 19.6-1.5 30.1-12.2 4.7-4.5 7.5-15.7 7.2-27-.3-9.1-2.9-16.7-6.7-19.9-4.2-3.6-13.6-5.2-24.2-4.3Zm69 4.3c-3.8 3.2-6.4 10.8-6.7 19.9-.3 11.3 2.5 22.5 7.2 27a41.7 41.7 0 0 0 30 12.2c8.9 0 17-2.9 21.3-7.2 6-6.1 8.2-34.9-2.2-46.3-4.8-5-14.2-8.8-25.4-9.9-10.6-1-20 .7-24.2 4.3ZM128 56c-2.6 0-5.6.2-9 .5.4 1.7.5 3.7.7 5.7 0 1.5 0 3-.2 4.5 3.2-.3 6-.3 8.5-.3 2.6 0 5.3 0 8.5.3-.2-1.6-.2-3-.2-4.5.2-2 .3-4 .7-5.7-3.4-.3-6.4-.5-9-.5Z"/></svg>`,
-  "Gemini": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296 298" fill="none"><path fill="currentColor" stroke="none" d="M141.201 4.886c2.282-6.17 11.042-6.071 13.184.148l5.985 17.37a184.004 184.004 0 0 0 111.257 113.049l19.304 6.997c6.143 2.227 6.156 10.91.02 13.155l-19.35 7.082a184.001 184.001 0 0 0-109.495 109.385l-7.573 20.629c-2.241 6.105-10.869 6.121-13.133.025l-7.908-21.296a184 184 0 0 0-109.02-108.658l-19.698-7.239c-6.102-2.243-6.118-10.867-.025-13.132l20.083-7.467A183.998 183.998 0 0 0 133.291 26.28l7.91-21.394Z"/></svg>`
-};
+  "Microsoft 365 Copilot": `<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"><path d="M34.1423 7.32501C33.5634 5.35387 31.7547 4 29.7003 4L28.3488 4C26.1142 4 24.1985 5.59611 23.7952 7.79398L21.4805 20.4072L22.0549 18.4419C22.6319 16.4679 24.4419 15.1111 26.4986 15.1111H34.3524L37.6462 16.3942L40.8213 15.1111H39.8946C37.8401 15.1111 36.0315 13.7572 35.4525 11.7861L34.1423 7.32501Z" fill="url(#paint0_radial_56201_15503)"/><path d="M14.3307 40.656C14.9032 42.6366 16.7165 44 18.7783 44H21.6486C24.1592 44 26.2122 41.999 26.2767 39.4893L26.5893 27.3271L25.9354 29.5602C25.3577 31.5332 23.5481 32.8889 21.4923 32.8889L13.5732 32.8889L10.7499 31.3573L7.69336 32.8889H8.60461C10.6663 32.8889 12.4796 34.2522 13.0521 36.2329L14.3307 40.656Z" fill="url(#paint1_radial_56201_15503)"/><path d="M29.4993 4H13.46C8.87732 4 6.12772 10.0566 4.29466 16.1132C2.12296 23.2886 -0.718769 32.8852 7.50252 32.8852H14.4282C16.4978 32.8852 18.3147 31.5168 18.8835 29.5269C20.0876 25.3143 22.1978 17.9655 23.8554 12.3712C24.6977 9.52831 25.3993 7.08673 26.4762 5.56628C27.0799 4.71385 28.086 4 29.4993 4Z" fill="url(#paint2_linear_56201_15503)"/><path d="M29.4993 4H13.46C8.87732 4 6.12772 10.0566 4.29466 16.1132C2.12296 23.2886 -0.718769 32.8852 7.50252 32.8852H14.4282C16.4978 32.8852 18.3147 31.5168 18.8835 29.5269C20.0876 25.3143 22.1978 17.9655 23.8554 12.3712C24.6977 9.52831 25.3993 7.08673 26.4762 5.56628C27.0799 4.71385 28.086 4 29.4993 4Z" fill="url(#paint3_linear_56201_15503)"/><path d="M18.498 44H34.5374C39.12 44 41.8696 37.9424 43.7027 31.8848C45.8744 24.7081 48.7161 15.1098 40.4948 15.1098H33.5693C31.4996 15.1098 29.6827 16.4784 29.114 18.4684C27.9098 22.6817 25.7996 30.032 24.142 35.6273C23.2996 38.4708 22.598 40.9127 21.5212 42.4335C20.9175 43.286 19.9113 44 18.498 44Z" fill="url(#paint4_radial_56201_15503)"/><path d="M18.498 44H34.5374C39.12 44 41.8696 37.9424 43.7027 31.8848C45.8744 24.7081 48.7161 15.1098 40.4948 15.1098H33.5693C31.4996 15.1098 29.6827 16.4784 29.114 18.4684C27.9098 22.6817 25.7996 30.032 24.142 35.6273C23.2996 38.4708 22.598 40.9127 21.5212 42.4335C20.9175 43.286 19.9113 44 18.498 44Z" fill="url(#paint5_linear_56201_15503)"/><defs><radialGradient id="paint0_radial_56201_15503" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(38.005 20.5144) rotate(-129.304) scale(17.3033 16.2706)"><stop offset="0.0955758" stop-color="#00AEFF"/><stop offset="0.773185" stop-color="#2253CE"/><stop offset="1" stop-color="#0736C4"/></radialGradient><radialGradient id="paint1_radial_56201_15503" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(11.1215 32.8171) rotate(51.84) scale(15.9912 15.5119)"><stop stop-color="#FFB657"/><stop offset="0.633728" stop-color="#FF5F3D"/><stop offset="0.923392" stop-color="#C02B3C"/></radialGradient><linearGradient id="paint2_linear_56201_15503" x1="12.5" y1="7.5" x2="14.7884" y2="33.9751" gradientUnits="userSpaceOnUse"><stop offset="0.156162" stop-color="#0D91E1"/><stop offset="0.487484" stop-color="#52B471"/><stop offset="0.652394" stop-color="#98BD42"/><stop offset="0.937361" stop-color="#FFC800"/></linearGradient><linearGradient id="paint3_linear_56201_15503" x1="14.5" y1="4" x2="15.7496" y2="32.8852" gradientUnits="userSpaceOnUse"><stop stop-color="#3DCBFF"/><stop offset="0.246674" stop-color="#0588F7" stop-opacity="0"/></linearGradient><radialGradient id="paint4_radial_56201_15503" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(41.3187 12.2813) rotate(109.274) scale(38.3873 45.9867)"><stop offset="0.0661714" stop-color="#8C48FF"/><stop offset="0.5" stop-color="#F2598A"/><stop offset="0.895833" stop-color="#FFB152"/></radialGradient><linearGradient id="paint5_linear_56201_15503" x1="42.5859" y1="13.346" x2="42.5695" y2="21.2147" gradientUnits="userSpaceOnUse"><stop offset="0.0581535" stop-color="#F8ADFA"/><stop offset="0.708063" stop-color="#A86EDD" stop-opacity="0"/></linearGradient></defs></svg>`,
+  "Gemini": `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 296 298" fill="none"><path fill="currentColor" stroke="none" d="M141.201 4.886c2.282-6.17 11.042-6.071 13.184.148l5.985 17.37a184.004 184.004 0 0 0 111.257 113.049l19.304 6.997c6.143 2.227 6.156 10.91.02 13.155l-19.35 7.082a184.001 184.001 0 0 0-109.495 109.385l-7.573 20.629c-2.241 6.105-10.869 6.121-13.133.025l-7.908-21.296a184 184 0 0 0-109.02-108.658l-19.698-7.239c-6.102-2.243-6.118-10.867-.025-13.132l20.083-7.467A183.998 183.998 0 0 0 133.291 26.28l7.91-21.394Z"/></svg>`,
+  "GitHub Copilot": `<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid" viewBox="0 0 256 208"><path fill="currentColor" stroke="none" d="M205.3 31.4c14 14.8 20 35.2 22.5 63.6 6.6 0 12.8 1.5 17 7.2l7.8 10.6c2.2 3 3.4 6.6 3.4 10.4v28.7a12 12 0 0 1-4.8 9.5C215.9 187.2 172.3 208 128 208c-49 0-98.2-28.3-123.2-46.6a12 12 0 0 1-4.8-9.5v-28.7c0-3.8 1.2-7.4 3.4-10.5l7.8-10.5c4.2-5.7 10.4-7.2 17-7.2 2.5-28.4 8.4-48.8 22.5-63.6C77.3 3.2 112.6 0 127.6 0h.4c14.7 0 50.4 2.9 77.3 31.4ZM128 78.7c-3 0-6.5.2-10.3.6a27.1 27.1 0 0 1-6 12.1 45 45 0 0 1-32 13c-6.8 0-13.9-1.5-19.7-5.2-5.5 1.9-10.8 4.5-11.2 11-.5 12.2-.6 24.5-.6 36.8 0 6.1 0 12.3-.2 18.5 0 3.6 2.2 6.9 5.5 8.4C79.9 185.9 105 192 128 192s48-6 74.5-18.1a9.4 9.4 0 0 0 5.5-8.4c.3-18.4 0-37-.8-55.3-.4-6.6-5.7-9.1-11.2-11-5.8 3.7-13 5.1-19.7 5.1a45 45 0 0 1-32-12.9 27.1 27.1 0 0 1-6-12.1c-3.4-.4-6.9-.5-10.3-.6Zm-27 44c5.8 0 10.5 4.6 10.5 10.4v19.2a10.4 10.4 0 0 1-20.8 0V133c0-5.8 4.6-10.4 10.4-10.4Zm53.4 0c5.8 0 10.4 4.6 10.4 10.4v19.2a10.4 10.4 0 0 1-20.8 0V133c0-5.8 4.7-10.4 10.4-10.4Zm-73-94.4c-11.2 1.1-20.6 4.8-25.4 10-10.4 11.3-8.2 40.1-2.2 46.2A31.2 31.2 0 0 0 75 91.7c6.8 0 19.6-1.5 30.1-12.2 4.7-4.5 7.5-15.7 7.2-27-.3-9.1-2.9-16.7-6.7-19.9-4.2-3.6-13.6-5.2-24.2-4.3Zm69 4.3c-3.8 3.2-6.4 10.8-6.7 19.9-.3 11.3 2.5 22.5 7.2 27a41.7 41.7 0 0 0 30 12.2c8.9 0 17-2.9 21.3-7.2 6-6.1 8.2-34.9-2.2-46.3-4.8-5-14.2-8.8-25.4-9.9-10.6-1-20 .7-24.2 4.3ZM128 56c-2.6 0-5.6.2-9 .5.4 1.7.5 3.7.7 5.7 0 1.5 0 3-.2 4.5 3.2-.3 6-.3 8.5-.3 2.6 0 5.3 0 8.5.3-.2-1.6-.2-3-.2-4.5.2-2 .3-4 .7-5.7-3.4-.3-6.4-.5-9-.5Z"/></svg>`,
+  "Antigravity": `<svg width="16" height="15" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg"><mask id="mask0_111_52" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="16" height="15"><path d="M14.0777 13.984C14.945 14.6345 16.2458 14.2008 15.0533 13.0084C11.476 9.53949 12.2349 0 7.79033 0C3.34579 0 4.10461 9.53949 0.527295 13.0084C-0.773543 14.3092 0.635692 14.6345 1.50293 13.984C4.86344 11.7076 4.64663 7.69664 7.79033 7.69664C10.934 7.69664 10.7172 11.7076 14.0777 13.984Z" fill="black"/></mask><g mask="url(#mask0_111_52)"><g filter="url(#filter0_f_111_52)"><path d="M-0.658907 -3.2306C-0.922679 -0.906781 1.07986 1.22861 3.81388 1.53894C6.54791 1.84927 8.97811 0.217009 9.24188 -2.10681C9.50565 -4.43063 7.50312 -6.56602 4.76909 -6.87635C2.03506 -7.18667 -0.395135 -5.55442 -0.658907 -3.2306Z" fill="#FFE432"/></g><g filter="url(#filter1_f_111_52)"><path d="M9.88233 4.36642C10.5673 7.31568 13.566 9.13902 16.5801 8.43896C19.5942 7.73891 21.4823 4.78056 20.7973 1.83131C20.1123 -1.11795 17.1136 -2.94128 14.0995 -2.24123C11.0854 -1.54118 9.19733 1.41717 9.88233 4.36642Z" fill="#FC413D"/></g><g filter="url(#filter2_f_111_52)"><path d="M-8.05291 6.34512C-7.18736 9.38883 -3.28925 10.9473 0.653774 9.82598C4.5968 8.7047 7.09158 5.32829 6.22603 2.28458C5.36048 -0.759142 1.46236 -2.31758 -2.48066 -1.19629C-6.42368 -0.0750048 -8.91846 3.3014 -8.05291 6.34512Z" fill="#00B95C"/></g><g filter="url(#filter3_f_111_52)"><path d="M-8.05291 6.34512C-7.18736 9.38883 -3.28925 10.9473 0.653774 9.82598C4.5968 8.7047 7.09158 5.32829 6.22603 2.28458C5.36048 -0.759142 1.46236 -2.31758 -2.48066 -1.19629C-6.42368 -0.0750048 -8.91846 3.3014 -8.05291 6.34512Z" fill="#00B95C"/></g><g filter="url(#filter4_f_111_52)"><path d="M-4.92402 8.86746C-2.75421 11.0837 0.982691 10.9438 3.42257 8.55507C5.86246 6.1663 6.08139 2.43321 3.91158 0.216963C1.74177 -1.99928 -1.99513 -1.85942 -4.43501 0.529349C-6.87489 2.91812 -7.09383 6.65122 -4.92402 8.86746Z" fill="#00B95C"/></g><g filter="url(#filter5_f_111_52)"><path d="M6.42819 17.2263C7.10197 20.1273 9.91278 21.953 12.7063 21.3042C15.4998 20.6553 17.2182 17.7777 16.5444 14.8767C15.8707 11.9757 13.0599 10.15 10.2663 10.7988C7.47281 11.4477 5.75441 14.3253 6.42819 17.2263Z" fill="#3186FF"/></g><g filter="url(#filter6_f_111_52)"><path d="M1.66508 -5.94539C0.254213 -2.80254 1.7978 0.951609 5.11277 2.43973C8.42774 3.92785 12.2588 2.58642 13.6696 -0.556431C15.0805 -3.69928 13.5369 -7.45343 10.222 -8.94155C6.90699 -10.4297 3.07594 -9.08824 1.66508 -5.94539Z" fill="#FBBC04"/></g><g filter="url(#filter7_f_111_52)"><path d="M-2.11428 24.3903C-5.52984 23.0496 0.307266 12.0177 1.75874 8.32038C3.21024 4.62304 7.15576 2.71272 10.5713 4.05357C13.9869 5.39442 18.0354 12.7796 16.5838 16.477C15.1323 20.1743 1.30129 25.7311 -2.11428 24.3903Z" fill="#3186FF"/></g><g filter="url(#filter8_f_111_52)"><path d="M18.5814 10.6598C17.6669 11.727 15.2806 11.1828 13.2514 9.44417C11.2222 7.70556 10.3185 5.43097 11.2329 4.3637C12.1473 3.29646 14.5336 3.84069 16.5628 5.57928C18.592 7.31789 19.4958 9.59249 18.5814 10.6598Z" fill="#749BFF"/></g><g filter="url(#filter9_f_111_52)"><path d="M11.7552 5.22715C15.5162 7.77124 19.8471 7.93838 21.4286 5.60045C23.0101 3.26253 21.2433 -0.695128 17.4823 -3.23922C13.7213 -5.78331 9.39044 -5.95044 7.80896 -3.61252C6.22747 -1.27459 7.99428 2.68306 11.7552 5.22715Z" fill="#FC413D"/></g><g filter="url(#filter10_f_111_52)"><path d="M-0.592149 1.08896C-1.5239 3.33663 -1.21959 5.59799 0.0875457 6.13985C1.39468 6.68171 3.20966 5.29888 4.14141 3.05121C5.07316 0.803541 4.76885 -1.45782 3.46171 -1.99968C2.15458 -2.54154 0.339602 -1.15871 -0.592149 1.08896Z" fill="#FFEE48"/></g></g><defs><filter id="filter0_f_111_52" x="-2.12817" y="-8.35998" width="12.8393" height="11.383" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="0.722959" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter1_f_111_52" x="2.75168" y="-9.38089" width="25.1763" height="24.96" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="3.49513" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter2_f_111_52" x="-14.1669" y="-7.50196" width="26.5068" height="23.6338" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.97119" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter3_f_111_52" x="-14.1669" y="-7.50196" width="26.5068" height="23.6338" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.97119" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter4_f_111_52" x="-12.3607" y="-7.29981" width="23.709" height="23.6846" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.97119" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter5_f_111_52" x="0.634962" y="5.02095" width="21.7027" height="22.0616" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.82351" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter6_f_111_52" x="-3.97547" y="-14.6666" width="23.2857" height="22.8313" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.5589" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter7_f_111_52" x="-7.7407" y="-0.945408" width="29.1982" height="30.1105" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.2852" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter8_f_111_52" x="6.78641" y="-0.27231" width="16.2415" height="15.5681" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.04485" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter9_f_111_52" x="3.77526" y="-8.71693" width="21.687" height="19.4212" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="1.72712" result="effect1_foregroundBlur_111_52"/></filter><filter id="filter10_f_111_52" x="-5.40727" y="-6.39238" width="14.3639" height="16.9254" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur stdDeviation="2.1376" result="effect1_foregroundBlur_111_52"/></filter></defs></svg>`,
+}
 
 /* ───── Data corpus ───── */
 const SKILLS = [
@@ -2269,30 +2293,88 @@ const SKILLS = [
     source:"https://www.perplexity.ai/hub/blog/perplexity-assistant"},
 
   /* ── MICROSOFT COPILOT SKILLS ── */
-  {id:"mc-365", name:"Copilot in Microsoft 365", ecosystem:"Copilot", category:"Integration", status:"Stable",
+  {id:"mc-365", name:"Copilot in Microsoft 365", ecosystem:"Microsoft 365 Copilot", category:"Integration", status:"Stable",
     description:"AI assistant embedded natively in Word, Excel, PowerPoint, Outlook, and Teams — drafts, summarises, rewrites, and analyses content in context.",
     trigger:"Copilot button or M365 Chat pane in any Office app · Alt+I in Word",
     howto:"In any Microsoft 365 app with a Copilot licence, click the Copilot button in the ribbon. Describe what you need: 'Summarise this email thread', 'Create a first draft from these bullet points', or 'Explain the trend in column B'. Copilot has full document context.",
     example:"In Outlook, selecting a 40‑message thread and clicking 'Summarise thread' returns a three‑bullet digest with action items, letting the user reply in seconds.",
     source:"https://www.microsoft.com/en-us/microsoft-365/copilot"},
-  {id:"mc-designer", name:"Copilot Designer", ecosystem:"Copilot", category:"Visual", status:"Stable",
+  {id:"mc-designer", name:"Copilot Designer", ecosystem:"Microsoft 365 Copilot", category:"Visual", status:"Stable",
     description:"AI image‑generation tool integrated into Microsoft 365 and Bing, powered by DALL·E 4, for creating graphics from text prompts.",
     trigger:"designer.microsoft.com · Copilot Image Creator in Bing · Insert → AI Image in PowerPoint",
     howto:"Go to designer.microsoft.com or use the Bing image creator. Describe the image you want. For PowerPoint, use Insert → AI Image and describe the graphic; it appears directly on the slide.",
     example:"A marketer types 'flat‑style illustration of a person at a laptop with glowing charts, teal colour scheme' and gets four polished options to use in a presentation.",
     source:"https://designer.microsoft.com"},
-  {id:"mc-pages", name:"Copilot Pages", ecosystem:"Copilot", category:"Document", status:"Stable",
+  {id:"mc-pages", name:"Copilot Pages", ecosystem:"Microsoft 365 Copilot", category:"Document", status:"Stable",
     description:"Persistent, editable collaborative documents created from Copilot chat responses — a living canvas that teams can extend and share.",
     trigger:"'Edit in Pages' button in Copilot chat · copilot.microsoft.com Pages tab",
     howto:"In Microsoft Copilot Chat (copilot.microsoft.com or in Teams), after getting a useful response click 'Edit in Pages'. A new Page is created that you and colleagues can continue editing. Changes sync in real time for all editors.",
     example:"After Copilot drafts a project brief from bullet points, the PM clicks 'Edit in Pages', shares the link with the team, and everyone refines it together in real time.",
     source:"https://blogs.microsoft.com/blog/2024/09/16/introducing-microsoft-copilot-pages"},
-  {id:"mc-notebook", name:"Copilot Notebook", ecosystem:"Copilot", category:"Code", status:"Stable",
+  {id:"mc-notebook", name:"Copilot Notebook", ecosystem:"Microsoft 365 Copilot", category:"Code", status:"Stable",
     description:"Long‑context document workspace in Microsoft Copilot that accepts up to 18 000 words of input, ideal for detailed analysis and iterative drafting.",
     trigger:"Notebook tab in copilot.microsoft.com",
     howto:"Open copilot.microsoft.com and click the Notebook tab. Paste in a long document, dataset, or set of notes (up to ~18 000 words) and then ask questions or request rewrites. The context persists for the session so you can iterate freely.",
     example:"A consultant pastes a 12 000‑word RFP into Notebook and asks Copilot to extract all scoring criteria, then to draft responses for each criterion.",
     source:"https://support.microsoft.com/en-us/topic/what-is-copilot-notebook"},
+
+  /* ── GITHUB COPILOT SKILLS ── */
+  {id:"ghc-completions", name:"Code Completion", ecosystem:"GitHub Copilot", category:"Code", status:"Stable",
+    description:"AI‑powered inline code suggestions inside VS Code, JetBrains, Xcode, and other IDEs — ghost‑text predictions, multi‑line completions, and next‑edit suggestions that adapt to your codebase context.",
+    trigger:"Start typing in any supported IDE; Copilot suggests completions inline automatically · ",
+    howto:"Install the Copilot extension in your IDE, sign in with a GitHub account, and start typing. Copilot provides inline suggestions that you accept with Tab. Use Ctrl+Enter (or Cmd+Enter on macOS) to see alternative suggestions in a dedicated panel.",
+    example:"Type a function signature in a Python file and Copilot instantly suggests the full implementation matching the existing code style and nearby imports.",
+    source:"https://docs.github.com/en/copilot/concepts/completions/code-suggestions"},
+  {id:"ghc-chat", name:"Copilot Chat", ecosystem:"GitHub Copilot", category:"Code", status:"Stable",
+    description:"Conversational AI chat inside the IDE for natural‑language code explanations, refactoring suggestions, bug diagnosis, and test generation — available in VS Code, JetBrains, and Xcode.",
+    trigger:"Ctrl+I (inline chat), Ctrl+Shift+I (chat panel) · /explain, /fix, /tests, /doc slash commands",
+    howto:"Open the Copilot Chat panel in your IDE. Ask questions about your codebase — 'Explain this function', 'Find the bug in this file', 'Write unit tests for this module'. Use Ctrl+I for inline chat that edits code directly at the cursor.",
+    example:"Select a complex regular expression and type '/explain'; Copilot breaks it down step by step in plain English, then offers a simpler alternative.",
+    source:"https://docs.github.com/en/copilot/concepts/chat"},
+  {id:"ghc-cli", name:"Copilot CLI", ecosystem:"GitHub Copilot", category:"Agentic", status:"Stable",
+    description:"Terminal‑native AI agent with a TUI — interactive plan mode, autopilot for autonomous multi‑step tasks, programmatic -p mode for scripting, and GitHub integration for PRs and issues.",
+    trigger:"copilot command in terminal · copilot -p 'one‑shot task' · Shift+Tab to cycle plan/autopilot modes",
+    howto:"Install via gh copilot extension or direct download. Run 'copilot' for interactive TUI mode with plan/autopilot. Use 'copilot -p \"task\" --allow-tool ..' for scripted automation. Press Shift+Tab to switch between ask, plan, and autopilot modes.",
+    example:"'copilot -p \"Create a PR to add a Node script that outputs user info\"' creates a branch, writes the file, commits, and opens the PR — all without interactive approval.",
+    source:"https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli"},
+  {id:"ghc-cloud-agent", name:"Cloud Agent", ecosystem:"GitHub Copilot", category:"Agentic", status:"Beta",
+    description:"Autonomous coding agent that runs in a cloud sandbox — carries out research, planning, and multi‑file coding tasks independently, with real‑time streaming of progress and artifact reviews.",
+    trigger:"'/agent' in Copilot Chat · assign an issue with @copilot · GitHub Copilot App in pull requests",
+    howto:"In a GitHub issue or PR, type '/agent' followed by your instruction. The cloud agent spawns a sandboxed environment, reads the codebase, plans changes, writes and tests code, and reports back with a summary and diff. You can steer with inline comments at any milestone.",
+    example:"'@copilot Add idempotency keys to all write endpoints in the payment service' — the agent explores the codebase, identifies 7 endpoints, writes the changes, creates a PR with tests, and requests your review.",
+    source:"https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent"},
+  {id:"ghc-code-review", name:"Code Review", ecosystem:"GitHub Copilot", category:"Code", status:"Stable",
+    description:"AI‑driven pull‑request review — catches logic errors, style issues, and security concerns before human review, with inline comments and suggested fixes directly in the PR diff.",
+    trigger:"Open a PR on GitHub and click 'Review with Copilot' · automatic on PR creation in configured repos",
+    howto:"Navigate to any pull request on GitHub and click the 'Review with Copilot' button. Copilot scans the diff, flags issues with severity levels, and leaves inline suggestions. Reviewers can accept, modify, or dismiss each suggestion.",
+    example:"Copilot catches a potential null dereference in a new endpoint, suggests a guard clause, and links to the project's existing error‑handling pattern in a similar function.",
+    source:"https://docs.github.com/en/copilot/concepts/agents/code-review"},
+
+  /* ── GOOGLE ANTIGRAVITY SKILLS ── */
+  {id:"ag-projects", name:"Projects & Worktrees", ecosystem:"Antigravity", category:"Agentic", status:"Stable",
+    description:"Multi‑folder workspaces with scoped permissions and isolated Git worktrees — agents operate in background branches without touching your working copy, with per‑project security presets.",
+    trigger:"Create a Project in the sidebar · New Worktree mode in the setup modal ·",
+    howto:"Click the folder with + icon in the left sidebar, create a New Project, add one or more local folders or Git repos. Choose Local Mode or New Worktree Mode when starting an agent. Each Project maintains its own isolated settings and security policies.",
+    example:"A developer creates a Project for a monorepo with 3 folders, sets permissive security for the trusted internal repo and restrictive for the third‑party dependency, and spawns an agent in a worktree to safely prototype a refactor.",
+    source:"https://antigravity.google/download"},
+  {id:"ag-cli", name:"Antigravity CLI (agy)", ecosystem:"Antigravity", category:"Agentic", status:"Stable",
+    description:"Keyboard‑driven TUI (`agy`) for the terminal — plan mode, multi‑step reasoning, artifact reviews, SSH support, and shared settings sync with the desktop Antigravity 2.0 app.",
+    trigger:"`agy` command in terminal · `agy -p \"task\"` for programmatic one‑shot · `/resume` to continue sessions",
+    howto:"Install via `curl -fsSL https://antigravity.google/cli/install.sh | bash`. Run `agy` in any project directory. Press Shift+Tab to cycle between ask and plan modes. Use `ctrl+r` to review artifacts. Press `ctrl+g` to edit prompts in your $EDITOR.",
+    example:"Over SSH, a developer runs `agy` and pastes the OAuth URL into a browser, pastes the code back into the terminal, and instantly gets a full agent session with their existing settings synced from the desktop app.",
+    source:"https://antigravity.google/docs/cli-getting-started"},
+  {id:"ag-scheduler", name:"Scheduled Tasks", ecosystem:"Antigravity", category:"Agentic", status:"Stable",
+    description:"Time‑based triggers for recurring agent tasks — schedule prompts to run while you are away, with repeatable minute‑level triggers using Gemini 3.5 Flash.",
+    trigger:"`/schedule` slash command · set repeat interval in the scheduler panel",
+    howto:"Type `/schedule` followed by a task description and set the repeat interval. The task runs at the specified cadence. View and manage all active scheduled tasks from the panel. Tasks can be one‑time or recurring.",
+    example:"A maintainer schedules a nightly task: 'Check open PRs for merge conflicts, rebase any that have conflicts, and post a summary in the team channel.'",
+    source:"https://antigravity.google/download"},
+  {id:"ag-artifacts", name:"Artifacts & Co‑steering", ecosystem:"Antigravity", category:"Agentic", status:"Stable",
+    description:"Structured deliverables with human‑in‑the‑loop review — implementation plans, walkthroughs, code diffs, and browser recordings that the agent presents at milestones for inline feedback before applying changes.",
+    trigger:"Agent automatically produces artifacts during plan mode · Press `ctrl+r` in CLI to review",
+    howto:"When the agent produces an artifact (plan, diff, walkthrough), review it in the sidebar or CLI review pane. Leave inline comments on specific lines. Click Proceed to continue or toggle Review to submit feedback. The agent iterates based on your comments before writing any code.",
+    example:"The agent proposes a 10‑file refactoring plan. The user comments on 3 lines: 'Don't touch the rate‑limiter file' and 'Use tokio::spawn instead of std::thread'. The agent revises the plan and re‑requests review before any files are modified.",
+    source:"https://antigravity.google/docs/cli-artifacts"},
 
   /* ── API SKILLS ── */
   {id:"api-anthropic-thinking", name:"Claude Extended Thinking API", ecosystem:"Claude", category:"API", status:"Beta",
@@ -2759,7 +2841,7 @@ const REFS = [
 ];
 
 /* ───── Categories & status (derived) ───── */
-const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex","OpenCode","Gemini","Perplexity","Copilot"];
+const ECOSYSTEMS = ["Claude","Claude Code","ChatGPT","Codex","OpenCode","Gemini","Perplexity","Microsoft 365 Copilot","GitHub Copilot","Antigravity"];
 const CATEGORIES = ["Document","Code","Web","Data","Memory","Integration","Visual","Agentic","API"];
 const STATUSES   = ["Stable","Beta","Deprecated"];
 
@@ -2781,7 +2863,10 @@ const NEW_IDS = new Set([
   "oc-custom-commands","oc-github-action","oc-custom-agents","oc-lsp","oc-plugins",
   "cx-plan-mode","cx-goal-mode","cx-agent-skills","cx-skill-creator","cx-skill-installer",
   "cx-thread-automations","cx-durable-threads","cx-worktree","cx-mcp","cx-voice-input",
-  "cx-steering-queuing","cx-shared-memory"
+  "cx-steering-queuing","cx-shared-memory",
+  /* GitHub Copilot + Antigravity */
+  "ghc-completions","ghc-chat","ghc-cli","ghc-cloud-agent","ghc-code-review",
+  "ag-projects","ag-cli","ag-scheduler","ag-artifacts"
 ]);
 
 /* ───── Favorites (localStorage) ───── */
@@ -2813,9 +2898,11 @@ const ECO_BLURB = {
   "ChatGPT":     "OpenAI's flagship assistant — canvas, custom GPTs, voice mode, connectors and a public marketplace.",
   "Gemini":      "Google's AI assistant across web, mobile and Workspace — Gems, Deep Research, Imagen, Veo, and the Gemini API.",
   "Perplexity":  "Real‑time answer engine with cited web search — Pro Search, Spaces, Pages, Focus modes, and the Sonar API.",
-  "Copilot":     "Microsoft's AI assistant embedded across Windows, Microsoft 365, Bing, and the Edge browser.",
+  "Microsoft 365 Copilot":     "Microsoft's AI assistant embedded across Windows, Microsoft 365, Bing, and the Edge browser.",
   "OpenCode":    "Anomaly's open-source terminal AI coding agent — Plan/Build modes, custom agents, plugins, MCP, LSP, and GitHub Actions integration.",
-  "Codex":       "OpenAI's CLI + desktop coding agent — Goal Mode, durable pinned threads, Worktrees, Automations, Computer Use, and shared memory."
+  "Codex":       "OpenAI's CLI + desktop coding agent — Goal Mode, durable pinned threads, Worktrees, Automations, Computer Use, and shared memory.",
+  "GitHub Copilot": "GitHub's AI coding assistant — code completions, agentic chat in VS Code and JetBrains, TUI via CLI, cloud agents, and PR reviews.",
+  "Antigravity":   "Google's AI coding agent — Projects with worktrees, TUI via agy CLI, scheduled tasks, voice transcription, and artifact co‑steering."
 };
 
 /* ───── Helpers ───── */
@@ -2831,7 +2918,7 @@ function buildChips(){
     const b = document.createElement("button");
     b.className = "chip"; b.setAttribute("aria-pressed","false");
     b.dataset.eco = e; b.dataset.filterVal = e;
-    b.innerHTML = `<span class="glyph-wrap">${GLYPHS[e]}<span>${e}</span></span><span class="badge">${cnt}</span>`;
+    b.innerHTML = `<span class="glyph-wrap">${uniqueSvg(GLYPHS[e])}<span>${e}</span></span><span class="badge">${cnt}</span>`;
     b.addEventListener("click", ()=>toggle(state.ecosystems,e,b));
     ecoBox.appendChild(b);
   });
@@ -2932,7 +3019,7 @@ function render(){
 
     card.innerHTML = `
       <div class="top">
-        <div class="glyph">${GLYPHS[s.ecosystem]}</div>
+        <div class="glyph">${uniqueSvg(GLYPHS[s.ecosystem])}</div>
         <div class="id-wrap">
           <div class="id">${s.id}${s._custom?'<span class="custom-badge">custom</span>':''}${isNew?'<span class="new-badge">new</span>':''}</div>
           <button class="anchor" title="Copy deep link" aria-label="Copy deep link to ${s.name}" data-copy="${s.id}">¶</button>
@@ -3007,7 +3094,7 @@ function openSheet(s, opts){
   sheet.innerHTML = `
     <button class="close" aria-label="Close" id="closeBtn">Close ✕</button>
     <div class="sheet-top">
-      <div class="glyph-lg">${GLYPHS[s.ecosystem]}</div>
+      <div class="glyph-lg">${uniqueSvg(GLYPHS[s.ecosystem])}</div>
       <div class="top-meta" style="flex:1">
         <div><b>${s.ecosystem}</b> &nbsp;·&nbsp; ${s.category} &nbsp;·&nbsp; ${s.status}</div>
         <div>id: ${s.id} &nbsp;·&nbsp; entry № ${String(SKILLS.indexOf(s)+1).padStart(3,'0')} of ${SKILLS.length} &nbsp;·&nbsp; <a href="#${s.id}" id="sheetCopy" style="color:var(--accent);border-bottom:1px solid var(--accent)">copy deep link</a></div>
@@ -3159,7 +3246,7 @@ function buildEcoStrip(){
     cell.setAttribute("aria-label", `Filter to ${eco} — ${count} entries`);
     cell.innerHTML = `
       <div class="eco-head">
-        <div class="eco-glyph">${GLYPHS[eco]}</div>
+        <div class="eco-glyph">${uniqueSvg(GLYPHS[eco])}</div>
         <div class="eco-tag"><b>${String(count).padStart(2,'0')}</b>entries</div>
       </div>
       <h4 class="eco-name">${eco.replace(/(\w+)$/, '<span class="it">$1</span>')}</h4>
@@ -3174,7 +3261,7 @@ function buildEcoStrip(){
         c.setAttribute("aria-pressed", c.dataset.eco === eco ? "true" : "false");
       });
       render();
-      $("#catalog-section").scrollIntoView({behavior:"smooth", block:"start"});
+      $("#eco-strip").scrollIntoView({behavior:"smooth", block:"start"});
     });
     wrap.appendChild(cell);
   });
@@ -3350,7 +3437,7 @@ function buildMatrix(){
     <thead>
       <tr>
         <th>Capability</th>
-        ${ECOSYSTEMS.map(e=>`<th><div class="head-glyph">${GLYPHS[e]}<span>${e}</span></div></th>`).join("")}
+        ${ECOSYSTEMS.map(e=>`<th><div class="head-glyph">${uniqueSvg(GLYPHS[e])}<span>${e}</span></div></th>`).join("")}
       </tr>
     </thead>`;
   const body = `
@@ -3398,7 +3485,7 @@ $("#reset").addEventListener("click", ()=>{
 /* ───── Add Skill modal ───── */
 const ECO_PREFIX = {
   "Claude":"cl","Claude Code":"cc","ChatGPT":"gpt","Gemini":"gm",
-  "Perplexity":"pp","Copilot":"mc","OpenCode":"oc","Codex":"cx"
+  "Perplexity":"pp","Microsoft 365 Copilot":"mc",  "Antigravity":"ag","GitHub Copilot":"ghc","OpenCode":"oc","Codex":"cx"
 };
 function genId(eco, name){
   const prefix = ECO_PREFIX[eco] || "xx";
