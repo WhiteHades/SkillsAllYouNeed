@@ -211,7 +211,7 @@ function openSheet(s, opts){
     <p class="lede">${codeBacktick(escapeHTML(s.description))}</p>
 
     <h4>Trigger</h4>
-    <pre class="field">${codeBacktick(escapeHTML(s.trigger))}</pre>
+    <pre class="field">${splitTriggers(codeBacktick(escapeHTML(s.trigger)))}</pre>
 
     <h4>How to use</h4>
     <p class="field serif">${codeBacktick(escapeHTML(s.howto || HOWTO[s.id] || "See the source link below for setup instructions."))}</p>

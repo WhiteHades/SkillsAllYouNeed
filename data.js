@@ -585,7 +585,7 @@ const SKILLS = [
   /* ── GITHUB COPILOT SKILLS ── */
   {id:"ghc-completions", name:"Code Completion", ecosystem:"GitHub Copilot", category:"Code", status:"Stable",
     description:"AI‑powered inline code suggestions inside VS Code, JetBrains, Xcode, and other IDEs — ghost‑text predictions, multi‑line completions, and next‑edit suggestions that adapt to your codebase context.",
-    trigger:"Start typing in any supported IDE; Copilot suggests completions inline automatically · ",
+    trigger:"Start typing in any supported IDE; Copilot suggests completions inline automatically",
     howto:"Install the Copilot extension in your IDE, sign in with a GitHub account, and start typing. Copilot provides inline suggestions that you accept with Tab. Use Ctrl+Enter (or Cmd+Enter on macOS) to see alternative suggestions in a dedicated panel.",
     example:"Type a function signature in a Python file and Copilot instantly suggests the full implementation matching the existing code style and nearby imports.",
     source:"https://docs.github.com/en/copilot/concepts/completions/code-suggestions"},
@@ -1172,3 +1172,4 @@ const ECO_BLURB = {
 /* ───── Helpers ───── */
 const escapeHTML = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const codeBacktick = s => s.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
+const splitTriggers  = s => s.replace(/·/g, '<br><span class="trigger-sep">·</span> ');

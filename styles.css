@@ -608,6 +608,8 @@
     line-height:1.55;
     color:var(--ink);
     background: linear-gradient(transparent, transparent);
+    overflow-wrap:break-word;
+    word-break:break-word;
   }
   .sheet .field.serif{
     font-family:var(--serif-body);
