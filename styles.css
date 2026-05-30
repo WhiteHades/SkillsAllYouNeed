@@ -25,8 +25,8 @@
     --gutter: clamp(20px, 3.2vw, 44px);
 
     /* Per-ecosystem brand colours */
-    --eco-claude:       #C7401E;   /* = accent */
-    --eco-claude-code:  #1B5296;
+    --eco-claude:       #d97757;   /* warm terracotta */
+    --eco-claude-code:  #d97757;
     --eco-chatgpt:      #1A7A44;
     --eco-gemini:       #4527A0;
     --eco-perplexity:   #1B9E86;
@@ -1121,7 +1121,7 @@
     --rule-soft: rgba(240,237,227,.10);
     --accent:    #E05830;
     --highlight: #F5D77A;
-    --eco-claude-code:  #4A88C8;
+    --eco-claude-code:  #d97757;
     --eco-chatgpt:      #3AAA6A;
     --eco-gemini:       #7A5AE0;
     --eco-perplexity:   #2DC4A8;
