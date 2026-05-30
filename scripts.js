@@ -514,8 +514,8 @@ $("#fav-filter-btn").addEventListener("click", ()=>{
 });
 
 $("#export-btn").addEventListener("click", ()=>{
-  const data = lastFiltered.map(({id,name,ecosystem,category,status,description,trigger,example,source})=>
-    ({id,name,ecosystem,category,status,description,trigger,example,source}));
+  const data = SKILLS.map(({id,name,ecosystem,category,status,description,trigger,howto,example,source})=>
+    ({id,name,ecosystem,category,status,description,trigger,howto,example,source}));
   const blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
   const url  = URL.createObjectURL(blob);
   const a = Object.assign(document.createElement("a"), {href:url, download:`skills-${Date.now()}.json`});
