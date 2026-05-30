@@ -866,6 +866,16 @@
   }
   .eco-cell:hover .eco-link{ color:var(--accent); }
 
+  /* inline code / backtick styling */
+  .inline-code{
+    font-family:var(--mono);
+    font-size:.88em;
+    background:var(--paper-2);
+    padding:1px 6px;
+    border-radius:3px;
+    color:var(--ink);
+  }
+
   /* ── Sort toggle (v1.1) ─── */
   .sort-toggle{
     display:inline-flex; gap:6px; align-items:center;
@@ -2914,6 +2924,7 @@ const ECO_BLURB = {
 const $  = (sel,root=document) => root.querySelector(sel);
 const $$ = (sel,root=document) => Array.from(root.querySelectorAll(sel));
 const escapeHTML = s => s.replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const codeBacktick = s => s.replace(/`([^`]+)`/g, '<code class="inline-code">$1</code>');
 
 /* ───── Build chips ───── */
 function buildChips(){
@@ -3035,8 +3046,8 @@ function render(){
         </div>
       </div>
       <h3 class="name">${nameHTML}</h3>
-      <p class="desc">${escapeHTML(s.description)}</p>
-      <p class="trigger" title="Click to copy trigger phrase">${escapeHTML(s.trigger)}<span class="copy-hint" aria-hidden="true">⎘ copy</span></p>
+      <p class="desc">${codeBacktick(escapeHTML(s.description))}</p>
+      <p class="trigger" title="Click to copy trigger phrase">${codeBacktick(escapeHTML(s.trigger))}<span class="copy-hint" aria-hidden="true">⎘ copy</span></p>
       <div class="bottom">
         <span class="cat" data-cat="${s.category}">${s.category}</span>
         <span class="status" data-status="${s.status}"><span class="status-dot"></span>${s.status}</span>
@@ -3106,16 +3117,16 @@ function openSheet(s, opts){
       </div>
     </div>
     <h3 id="sheet-title">${nameHTML}</h3>
-    <p class="lede">${escapeHTML(s.description)}</p>
+    <p class="lede">${codeBacktick(escapeHTML(s.description))}</p>
 
     <h4>Trigger</h4>
-    <pre class="field">${escapeHTML(s.trigger)}</pre>
+    <pre class="field">${codeBacktick(escapeHTML(s.trigger))}</pre>
 
     <h4>How to use</h4>
-    <p class="field serif">${escapeHTML(s.howto || HOWTO[s.id] || "See the source link below for setup instructions.")}</p>
+    <p class="field serif">${codeBacktick(escapeHTML(s.howto || HOWTO[s.id] || "See the source link below for setup instructions."))}</p>
 
     <h4>Worked example</h4>
-    <p class="field serif">${escapeHTML(s.example)}</p>
+    <p class="field serif">${codeBacktick(escapeHTML(s.example))}</p>
 
     <h4>Source &amp; citation</h4>
     <a class="src" href="${escapeHTML(s.source)}" target="_blank" rel="noopener">${escapeHTML(s.source)}</a>
