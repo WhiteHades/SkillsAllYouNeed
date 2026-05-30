@@ -1293,7 +1293,7 @@
 
   /* hero accent glow */
   .hero-body{
-    background: radial-gradient(ellipse at 0% 70%, rgba(199,64,30,.07) 0%, rgba(199,64,30,.02) 35%, transparent 70%);
+    background: radial-gradient(ellipse at 0% 70%, rgba(199,64,30,.08) 0%, rgba(199,64,30,.04) 30%, rgba(199,64,30,.01) 55%, transparent 85%);
   }
 
   /* ── Add Skill form ─── */
