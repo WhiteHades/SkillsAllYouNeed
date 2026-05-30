@@ -125,7 +125,7 @@ GET https://kishormorol.github.io/SkillsAllYouNeed/skills.json
 
 ```json
 {
-  "version": "2.0",
+  "version": "1.5",
   "count": 155,
   "ecosystems": ["ChatGPT", "Claude", "Claude Code", "Codex", "Microsoft 365 Copilot", "Gemini", "OpenCode", "Perplexity", "GitHub Copilot", "Antigravity"],
   "license": "CC BY 4.0",
@@ -153,9 +153,9 @@ Good for: RAG pipelines · fine-tuning datasets · AI assistant tooling · resea
 
 | Version | What shipped |
 |---------|-------------|
-| **v2.0** | GitHub Copilot + Antigravity ecosystems, Microsoft 365 Copilot rename, 9 new skills, modular architecture (styles.css, data.js, scripts.js), smooth scroll, font fixes |
+| **v1.5** | GitHub Copilot + Antigravity ecosystems, Microsoft 365 Copilot rename, 9 new skills, modular architecture (styles.css, data.js, scripts.js), smooth scroll, font fixes |
 | **v1.4** | OpenCode + Codex ecosystems, 22 new skills, branded SVG icons, 8-ecosystem matrix |
-| **v1.3** | Perplexity + Copilot ecosystems, 13 new skills, related-skills panel, JSON-LD, `skills.json` API, `sitemap.xml`, GitHub star button, 32-row capability matrix |
+| **v1.3** | Perplexity + Microsoft 365 Copilot ecosystems, 13 new skills, related-skills panel, JSON-LD, `skills.json` API, `sitemap.xml`, GitHub star button, 32-row capability matrix |
 | **v1.2** | Dark mode, PWA + favicon, onboarding, presets, ecosystem brand colors, hover effects, modal animations, favorites, chip counts, sheet nav, export, keyboard shortcuts |
 | **v1.1** | +43 entries, API category, hash routing, keyboard shortcuts, ecosystem strip, print stylesheet |
 | **v1.0** | Initial release — 38 entries across four ecosystems |
