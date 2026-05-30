@@ -838,6 +838,7 @@
     border-radius:3px;
     color:var(--ink);
   }
+  .trigger-sep{ color:var(--ink-mute); }
 
   /* ── Sort toggle (v1.1) ─── */
   .sort-toggle{
