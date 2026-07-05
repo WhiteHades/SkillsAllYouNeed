@@ -32,10 +32,23 @@
     --eco-perplexity:   #1B9E86;
     --eco-copilot:      #0078D4;
     --eco-opencode:     #14B85A;
+    --eco-cursor:       #26251E;
     --eco-codex:        #19C37D;
     --eco-github-copilot: #24292F;
     --eco-antigravity: #4285F4;
+    --eco-kiro: #993FF5;
     --eco-pi: #5B6470;
+
+    --eco-cl: var(--eco-claude);
+    --eco-cc: var(--eco-claude-code);
+    --eco-gpt: var(--eco-chatgpt);
+    --eco-cx: var(--eco-codex);
+    --eco-oc: var(--eco-opencode);
+    --eco-gm: var(--eco-gemini);
+    --eco-pp: var(--eco-perplexity);
+    --eco-mc: var(--eco-copilot);
+    --eco-ghc: var(--eco-github-copilot);
+    --eco-ag: var(--eco-antigravity);
   }
 
   *{ box-sizing:border-box; }
@@ -1103,9 +1116,11 @@
     --eco-perplexity:   #2DC4A8;
     --eco-copilot:      #3B9FE8;
     --eco-opencode:     #38C96E;
+    --eco-cursor:       #EDECEC;
     --eco-codex:        #F59E0B;
     --eco-github-copilot: #8B949E;
     --eco-antigravity: #8AB4F8;
+    --eco-kiro: #B76BFF;
     --eco-pi: #9BA4AE;
   }
   [data-theme="dark"] .card.featured{

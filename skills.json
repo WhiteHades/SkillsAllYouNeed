@@ -1,21 +1,23 @@
 {
-  "version": "1.6",
-  "generated": "2026-06-03",
-  "count": 163,
+  "version": "1.7",
+  "generated": "2026-07-05",
+  "count": 181,
   "ecosystems": [
-    "ChatGPT",
     "Claude",
     "Claude Code",
+    "ChatGPT",
     "Codex",
-    "Microsoft 365 Copilot",
-    "Gemini",
     "OpenCode",
+    "Cursor",
+    "Gemini",
     "Perplexity",
+    "Microsoft 365 Copilot",
     "GitHub Copilot",
     "Antigravity",
+    "Kiro",
     "Pi"
   ],
-  "description": "SkillsAllYouNeed — open registry of AI skills for Claude, Claude Code, ChatGPT, Gemini, Perplexity, Microsoft 365 Copilot, OpenCode, Codex, GitHub Copilot, Antigravity, and Pi.",
+  "description": "SkillsAllYouNeed — open registry of AI skills for Claude, Claude Code, ChatGPT, Codex, OpenCode, Cursor, Gemini, Perplexity, Microsoft 365 Copilot, GitHub Copilot, Antigravity, Kiro, and Pi.",
   "license": "CC BY 4.0",
   "source": "https://kishormorol.github.io/SkillsAllYouNeed/",
   "skills": [
@@ -1116,6 +1118,30 @@
       "source": "https://www.perplexity.ai/hub/blog/perplexity-assistant"
     },
     {
+      "id": "pp-comet",
+      "name": "Comet Browser",
+      "ecosystem": "Perplexity",
+      "category": "Web",
+      "status": "Stable",
+      "description": "Perplexity's AI browser with an embedded assistant that can understand the current page, search, compare tabs, and conduct full browsing sessions.",
+      "trigger": "Open Comet → ask in the assistant sidebar",
+      "howto": "Install and open Comet. Use the assistant sidebar while browsing, or ask it to research, compare, summarise, and move across tabs while keeping the current browsing context.",
+      "example": "A user comparing CRM tools opens several pricing pages and asks Comet to extract seat limits, automation features, and contract terms into one sourced table.",
+      "source": "https://www.perplexity.ai/hub/blog/introducing-comet"
+    },
+    {
+      "id": "pp-comet-assistant",
+      "name": "Comet Assistant",
+      "ecosystem": "Perplexity",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Browser-native assistant with tools for perceiving and interacting with web environments, built for multi-step page tasks rather than one-off answers.",
+      "trigger": "Ask Comet Assistant to do a web task",
+      "howto": "Inside Comet, describe the outcome you want instead of each click. Review any confirmation prompts before it takes sensitive actions such as submitting forms or changing account state.",
+      "example": "Asked to plan a work trip, Comet Assistant searches flights and hotels across tabs, narrows choices, and leaves the final booking confirmation for the user.",
+      "source": "https://www.perplexity.ai/hub/blog/the-new-comet-assistant"
+    },
+    {
       "id": "mc-365",
       "name": "Copilot in Microsoft 365",
       "ecosystem": "Microsoft 365 Copilot",
@@ -1164,6 +1190,42 @@
       "source": "https://support.microsoft.com/en-us/topic/what-is-copilot-notebook"
     },
     {
+      "id": "mc-studio-agents",
+      "name": "Copilot Studio Agents",
+      "ecosystem": "Microsoft 365 Copilot",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Low-code environment for building custom Copilot agents with knowledge, topics, actions, channels, governance, and enterprise deployment controls.",
+      "trigger": "Copilot Studio → Create → New agent",
+      "howto": "Open Copilot Studio, create an agent, add instructions and knowledge sources, configure actions or topics, test it in the chat pane, then publish it to the target channel.",
+      "example": "An operations team builds an internal PTO agent that answers policy questions, checks SharePoint documents, and routes edge cases to HR.",
+      "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/fundamentals-what-is-copilot-studio"
+    },
+    {
+      "id": "mc-studio-skills",
+      "name": "Copilot Studio Skills",
+      "ecosystem": "Microsoft 365 Copilot",
+      "category": "Integration",
+      "status": "Stable",
+      "description": "Reusable pro-code skills that extend Copilot Studio agents with organization-specific capabilities deployed into the tenant.",
+      "trigger": "Copilot Studio agent → Skills → Add skill",
+      "howto": "Create and deploy the skill with pro-code tooling, then configure it inside a Copilot Studio agent so the agent can invoke that skill during conversations.",
+      "example": "A finance agent gets a custom purchase-order skill that validates vendor IDs and creates draft approvals in the company's internal system.",
+      "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/configuration-add-skills"
+    },
+    {
+      "id": "mc-agent-flows",
+      "name": "Agent Flows",
+      "ecosystem": "Microsoft 365 Copilot",
+      "category": "Integration",
+      "status": "Stable",
+      "description": "Copilot Studio automation flows that connect agent conversations to deterministic triggers, actions, and business processes.",
+      "trigger": "Copilot Studio → Agent flows → Create flow",
+      "howto": "Create an agent flow in Copilot Studio with a natural-language description or the visual designer. Choose triggers, add actions, test the flow, and connect it to the agent.",
+      "example": "A sales-support agent uses an agent flow to create a CRM follow-up task whenever a customer asks for renewal pricing.",
+      "source": "https://learn.microsoft.com/en-us/microsoft-copilot-studio/flows-overview"
+    },
+    {
       "id": "ghc-completions",
       "name": "Code Completion",
       "ecosystem": "GitHub Copilot",
@@ -1181,9 +1243,9 @@
       "ecosystem": "GitHub Copilot",
       "category": "Code",
       "status": "Stable",
-      "description": "Conversational AI chat inside the IDE for natural‑language code explanations, refactoring suggestions, bug diagnosis, and test generation.",
+      "description": "Conversational AI chat inside the IDE for natural‑language code explanations, refactoring suggestions, bug diagnosis, and test generation — available in VS Code, JetBrains, and Xcode.",
       "trigger": "Ctrl+I (inline chat), Ctrl+Shift+I (chat panel) · /explain, /fix, /tests, /doc slash commands",
-      "howto": "Open the Copilot Chat panel in your IDE. Ask questions about your codebase. Use Ctrl+I for inline chat that edits code directly at the cursor.",
+      "howto": "Open the Copilot Chat panel in your IDE. Ask questions about your codebase — 'Explain this function', 'Find the bug in this file', 'Write unit tests for this module'. Use Ctrl+I for inline chat that edits code directly at the cursor.",
       "example": "Select a complex regular expression and type '/explain'; Copilot breaks it down step by step in plain English, then offers a simpler alternative.",
       "source": "https://docs.github.com/en/copilot/concepts/chat"
     },
@@ -1195,8 +1257,8 @@
       "status": "Stable",
       "description": "Terminal‑native AI agent with a TUI — interactive plan mode, autopilot for autonomous multi‑step tasks, programmatic -p mode for scripting, and GitHub integration for PRs and issues.",
       "trigger": "copilot command in terminal · copilot -p 'one‑shot task' · Shift+Tab to cycle plan/autopilot modes",
-      "howto": "Install via gh copilot extension or direct download. Run 'copilot' for interactive TUI mode. Use 'copilot -p ...' for scripted automation. Press Shift+Tab to switch between ask, plan, and autopilot modes.",
-      "example": "'copilot -p \"Create a PR to add a Node script that outputs user info\"' creates a branch, writes the file, commits, and opens the PR without interactive approval.",
+      "howto": "Install via gh copilot extension or direct download. Run 'copilot' for interactive TUI mode with plan/autopilot. Use 'copilot -p \"task\" --allow-tool ..' for scripted automation. Press Shift+Tab to switch between ask, plan, and autopilot modes.",
+      "example": "'copilot -p \"Create a PR to add a Node script that outputs user info\"' creates a branch, writes the file, commits, and opens the PR — all without interactive approval.",
       "source": "https://docs.github.com/en/copilot/concepts/agents/copilot-cli/about-copilot-cli"
     },
     {
@@ -1205,9 +1267,9 @@
       "ecosystem": "GitHub Copilot",
       "category": "Agentic",
       "status": "Beta",
-      "description": "Autonomous coding agent that runs in a cloud sandbox — carries out research, planning, and multi‑file coding tasks independently.",
+      "description": "Autonomous coding agent that runs in a cloud sandbox — carries out research, planning, and multi‑file coding tasks independently, with real‑time streaming of progress and artifact reviews.",
       "trigger": "'/agent' in Copilot Chat · assign an issue with @copilot · GitHub Copilot App in pull requests",
-      "howto": "In a GitHub issue or PR, type '/agent' followed by your instruction. The cloud agent spawns a sandboxed environment, reads the codebase, plans changes, writes and tests code, and reports back with a summary and diff.",
+      "howto": "In a GitHub issue or PR, type '/agent' followed by your instruction. The cloud agent spawns a sandboxed environment, reads the codebase, plans changes, writes and tests code, and reports back with a summary and diff. You can steer with inline comments at any milestone.",
       "example": "'@copilot Add idempotency keys to all write endpoints in the payment service' — the agent explores the codebase, identifies 7 endpoints, writes the changes, creates a PR with tests, and requests your review.",
       "source": "https://docs.github.com/en/copilot/concepts/agents/cloud-agent/about-cloud-agent"
     },
@@ -1219,7 +1281,7 @@
       "status": "Stable",
       "description": "AI‑driven pull‑request review — catches logic errors, style issues, and security concerns before human review, with inline comments and suggested fixes directly in the PR diff.",
       "trigger": "Open a PR on GitHub and click 'Review with Copilot' · automatic on PR creation in configured repos",
-      "howto": "Navigate to any pull request on GitHub and click the 'Review with Copilot' button. Copilot scans the diff, flags issues with severity levels, and leaves inline suggestions.",
+      "howto": "Navigate to any pull request on GitHub and click the 'Review with Copilot' button. Copilot scans the diff, flags issues with severity levels, and leaves inline suggestions. Reviewers can accept, modify, or dismiss each suggestion.",
       "example": "Copilot catches a potential null dereference in a new endpoint, suggests a guard clause, and links to the project's existing error‑handling pattern in a similar function.",
       "source": "https://docs.github.com/en/copilot/concepts/agents/code-review"
     },
@@ -1229,9 +1291,9 @@
       "ecosystem": "Antigravity",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Multi‑folder workspaces with scoped permissions and isolated Git worktrees — agents operate in background branches without touching your working copy.",
-      "trigger": "Create a Project in the sidebar · New Worktree mode in the setup modal",
-      "howto": "Click the folder with + icon in the left sidebar, create a New Project, add local folders or Git repos. Choose Local Mode or New Worktree Mode when starting an agent.",
+      "description": "Multi‑folder workspaces with scoped permissions and isolated Git worktrees — agents operate in background branches without touching your working copy, with per‑project security presets.",
+      "trigger": "Create a Project in the sidebar · New Worktree mode in the setup modal ·",
+      "howto": "Click the folder with + icon in the left sidebar, create a New Project, add one or more local folders or Git repos. Choose Local Mode or New Worktree Mode when starting an agent. Each Project maintains its own isolated settings and security policies.",
       "example": "A developer creates a Project for a monorepo with 3 folders, sets permissive security for the trusted internal repo and restrictive for the third‑party dependency, and spawns an agent in a worktree to safely prototype a refactor.",
       "source": "https://antigravity.google/download"
     },
@@ -1241,10 +1303,10 @@
       "ecosystem": "Antigravity",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Keyboard‑driven TUI (agy) for the terminal — plan mode, multi‑step reasoning, artifact reviews, SSH support, and shared settings sync with Antigravity 2.0.",
-      "trigger": "`agy` command in terminal · `agy -p \"task\"` for programmatic one‑shot",
-      "howto": "Install via curl script. Run 'agy' in any project directory. Press Shift+Tab to cycle between ask and plan modes. Use 'ctrl+r' to review artifacts. Press 'ctrl+g' to edit prompts in your $EDITOR.",
-      "example": "Over SSH, a developer runs `agy` and pastes the OAuth URL into a browser, pastes the code back into the terminal, and instantly gets a full agent session.",
+      "description": "Keyboard‑driven TUI (`agy`) for the terminal — plan mode, multi‑step reasoning, artifact reviews, SSH support, and shared settings sync with the desktop Antigravity 2.0 app.",
+      "trigger": "`agy` command in terminal · `agy -p \"task\"` for programmatic one‑shot · `/resume` to continue sessions",
+      "howto": "Install via `curl -fsSL https://antigravity.google/cli/install.sh | bash`. Run `agy` in any project directory. Press Shift+Tab to cycle between ask and plan modes. Use `ctrl+r` to review artifacts. Press `ctrl+g` to edit prompts in your $EDITOR.",
+      "example": "Over SSH, a developer runs `agy` and pastes the OAuth URL into a browser, pastes the code back into the terminal, and instantly gets a full agent session with their existing settings synced from the desktop app.",
       "source": "https://antigravity.google/docs/cli-getting-started"
     },
     {
@@ -1255,7 +1317,7 @@
       "status": "Stable",
       "description": "Time‑based triggers for recurring agent tasks — schedule prompts to run while you are away, with repeatable minute‑level triggers using Gemini 3.5 Flash.",
       "trigger": "`/schedule` slash command · set repeat interval in the scheduler panel",
-      "howto": "Type `/schedule` followed by a task description and set the repeat interval. The task runs at the specified cadence. View and manage all active scheduled tasks from the panel.",
+      "howto": "Type `/schedule` followed by a task description and set the repeat interval. The task runs at the specified cadence. View and manage all active scheduled tasks from the panel. Tasks can be one‑time or recurring.",
       "example": "A maintainer schedules a nightly task: 'Check open PRs for merge conflicts, rebase any that have conflicts, and post a summary in the team channel.'",
       "source": "https://antigravity.google/download"
     },
@@ -1265,11 +1327,167 @@
       "ecosystem": "Antigravity",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Structured deliverables with human‑in‑the‑loop review — implementation plans, walkthroughs, code diffs, and browser recordings that the agent presents at milestones for inline feedback.",
+      "description": "Structured deliverables with human‑in‑the‑loop review — implementation plans, walkthroughs, code diffs, and browser recordings that the agent presents at milestones for inline feedback before applying changes.",
       "trigger": "Agent automatically produces artifacts during plan mode · Press `ctrl+r` in CLI to review",
-      "howto": "When the agent produces an artifact (plan, diff, walkthrough), review it in the sidebar or CLI review pane. Leave inline comments on specific lines. The agent iterates based on your comments before writing any code.",
-      "example": "The agent proposes a 10‑file refactoring plan. The user comments on 3 lines. The agent revises the plan and re‑requests review before any files are modified.",
+      "howto": "When the agent produces an artifact (plan, diff, walkthrough), review it in the sidebar or CLI review pane. Leave inline comments on specific lines. Click Proceed to continue or toggle Review to submit feedback. The agent iterates based on your comments before writing any code.",
+      "example": "The agent proposes a 10‑file refactoring plan. The user comments on 3 lines: 'Don't touch the rate‑limiter file' and 'Use tokio::spawn instead of std::thread'. The agent revises the plan and re‑requests review before any files are modified.",
       "source": "https://antigravity.google/docs/cli-artifacts"
+    },
+    {
+      "id": "cur-agent-mode",
+      "name": "Agent Mode",
+      "ecosystem": "Cursor",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Autonomous coding mode inside Cursor that reads the codebase, edits files, runs terminal commands, and iterates toward a stated engineering outcome.",
+      "trigger": "Cursor Agent pane → describe the task",
+      "howto": "Open Cursor's Agent pane from the editor, describe the task and constraints, then review proposed tool calls and diffs before accepting changes.",
+      "example": "A developer asks Agent Mode to add OAuth callback handling. Cursor finds the auth routes, edits three files, runs tests, and presents the patch for review.",
+      "source": "https://cursor.com/docs/agent/overview"
+    },
+    {
+      "id": "cur-plan-mode",
+      "name": "Plan Mode",
+      "ecosystem": "Cursor",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Read-first agent mode that builds an implementation plan before applying edits, useful for large or risky changes that need human review first.",
+      "trigger": "Switch Agent to Plan mode",
+      "howto": "Choose Plan mode before sending a task. Let Cursor inspect the repo and return a plan. Comment on the plan until it is safe, then move to implementation.",
+      "example": "Before migrating a billing service, Cursor maps the model, routes, and tests, then returns a staged migration plan without editing files.",
+      "source": "https://cursor.com/docs/agent/plan-mode"
+    },
+    {
+      "id": "cur-rules",
+      "name": "Rules",
+      "ecosystem": "Cursor",
+      "category": "Memory",
+      "status": "Stable",
+      "description": "Project and user-level instruction files that keep Cursor aligned with repository conventions, domain terminology, testing rules, and code style.",
+      "trigger": "Create or edit Cursor Rules",
+      "howto": "Define rules in Cursor's rules UI or repository rule files. Keep them short, scoped, and concrete so the agent receives durable context without bloating every prompt.",
+      "example": "A monorepo rule tells Cursor to use pnpm, avoid barrel exports, run the package-local tests, and never edit generated GraphQL types by hand.",
+      "source": "https://cursor.com/docs/rules"
+    },
+    {
+      "id": "cur-skills",
+      "name": "Skills",
+      "ecosystem": "Cursor",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Reusable task capability packs for Cursor agents, giving repeated workflows their own instructions, context, and activation criteria.",
+      "trigger": "Install or author a Cursor Skill",
+      "howto": "Open the Cursor Skills docs, create a skill for a repeated workflow, then reference it naturally or invoke it when the task matches its description.",
+      "example": "A release skill encodes the team's changelog, versioning, test, and publish steps so Cursor follows the same release harness every time.",
+      "source": "https://cursor.com/docs/skills"
+    },
+    {
+      "id": "cur-mcp",
+      "name": "MCP Servers",
+      "ecosystem": "Cursor",
+      "category": "Integration",
+      "status": "Stable",
+      "description": "Model Context Protocol integration that lets Cursor agents call external tools such as docs, databases, ticket systems, and internal APIs.",
+      "trigger": "Cursor Settings → MCP → add server",
+      "howto": "Add an MCP server in Cursor settings or project configuration, authenticate it if needed, then mention the connected tool in an agent task.",
+      "example": "A database MCP lets Cursor inspect a local Postgres schema before writing a migration, avoiding guesses about table names and constraints.",
+      "source": "https://cursor.com/docs/mcp"
+    },
+    {
+      "id": "cur-cloud-agent",
+      "name": "Cloud Agent",
+      "ecosystem": "Cursor",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Remote Cursor agent that runs coding tasks in managed environments, with setup, capabilities, runtime choices, mobile access, and self-hosted pool options.",
+      "trigger": "Cursor Cloud Agent → start task",
+      "howto": "Configure Cloud Agent, choose the runtime or machine pool, grant repository access, and submit a task. Review the streamed progress and resulting branch or diff.",
+      "example": "A manager starts a Cloud Agent from mobile to fix a flaky Playwright test; the agent reproduces it in the cloud and opens a reviewable patch.",
+      "source": "https://cursor.com/docs/cloud-agent"
+    },
+    {
+      "id": "cur-bugbot",
+      "name": "Bugbot",
+      "ecosystem": "Cursor",
+      "category": "Code",
+      "status": "Stable",
+      "description": "Automated Cursor code-review bot that scans changes for bugs and review issues before they reach or during pull-request review.",
+      "trigger": "Enable Bugbot for a repo or review flow",
+      "howto": "Open the Bugbot docs, enable the integration for the relevant repository or workflow, then review its comments alongside human code review.",
+      "example": "Bugbot flags a stale async cleanup in a React effect and links the finding to the exact changed line before the PR is merged.",
+      "source": "https://cursor.com/docs/bugbot"
+    },
+    {
+      "id": "cur-cli",
+      "name": "Cursor CLI",
+      "ecosystem": "Cursor",
+      "category": "Code",
+      "status": "Stable",
+      "description": "Terminal and headless interface for running Cursor agent workflows from scripts, shells, and CI-adjacent developer loops.",
+      "trigger": "Install Cursor CLI → run cursor-agent commands",
+      "howto": "Install the CLI from Cursor's CLI docs, authenticate, then use interactive, shell, or headless modes depending on whether the task needs a human in the loop.",
+      "example": "A team wraps Cursor CLI in a local 'fix-ci' script that collects failing logs, starts the agent headlessly, and asks for a minimal patch.",
+      "source": "https://cursor.com/docs/cli/overview"
+    },
+    {
+      "id": "kiro-specs",
+      "name": "Specs",
+      "ecosystem": "Kiro",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Spec-driven workflow that turns a prompt into requirements, design, and tasks before implementation, keeping product intent and engineering work linked.",
+      "trigger": "Kiro → Specs → create or refine a spec",
+      "howto": "Create a spec, review the generated requirements and design, then let Kiro produce tasks.md. Execute tasks only after the spec matches the intended behavior.",
+      "example": "A vague 'add team billing' request becomes acceptance criteria, architecture notes, and a sequenced task list before any files are changed.",
+      "source": "https://kiro.dev/docs/specs/"
+    },
+    {
+      "id": "kiro-task-execution",
+      "name": "Task Execution",
+      "ecosystem": "Kiro",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Task interface that analyzes tasks.md dependencies, sequences work, and lets agents implement spec tasks with traceability back to requirements.",
+      "trigger": "Open tasks.md in Kiro → Execute task",
+      "howto": "Review the generated task list, select a task, and let Kiro execute it. Keep tasks small enough that each one can be verified against the spec before moving on.",
+      "example": "Kiro implements the 'create subscription table' task, runs the migration checks, and marks the task complete while leaving later billing UI tasks untouched.",
+      "source": "https://kiro.dev/docs/specs/"
+    },
+    {
+      "id": "kiro-steering",
+      "name": "Steering",
+      "ecosystem": "Kiro",
+      "category": "Memory",
+      "status": "Stable",
+      "description": "Durable project directives, including AGENTS.md-compatible guidance, that keep Kiro aligned with architecture, conventions, and domain language.",
+      "trigger": "Add steering files or AGENTS.md",
+      "howto": "Write steering files or an AGENTS.md with concrete repository rules, architecture constraints, and verification commands. Kiro reads them as persistent project context.",
+      "example": "A steering file tells Kiro that API contracts live in OpenAPI first, migrations must be reversible, and every feature needs a contract test.",
+      "source": "https://kiro.dev/docs/steering/"
+    },
+    {
+      "id": "kiro-hooks",
+      "name": "Hooks",
+      "ecosystem": "Kiro",
+      "category": "Integration",
+      "status": "Stable",
+      "description": "Automated responses to IDE events such as file saves, file creation/deletion, prompt submission, and agent turns.",
+      "trigger": "Kiro → Hooks → configure event automation",
+      "howto": "Create a hook for the event you care about, define the automated action, and test it on a safe project before using it in active development.",
+      "example": "A save hook runs the formatter and updates generated docs whenever schema files change, so agent edits stay inside the team's harness.",
+      "source": "https://kiro.dev/docs/hooks/"
+    },
+    {
+      "id": "kiro-powers",
+      "name": "Powers",
+      "ecosystem": "Kiro",
+      "category": "Agentic",
+      "status": "Stable",
+      "description": "Composable Kiro capabilities such as specs, steering, hooks, and automated tasks that can be mixed into an agentic engineering workflow.",
+      "trigger": "Enable the relevant Kiro power for the workflow",
+      "howto": "Use the Powers docs to decide whether a job needs a spec, steering directive, hook, or task automation. Keep each power tied to a concrete verification step.",
+      "example": "A team combines specs for product intent, steering for codebase rules, and hooks for formatting to make agent edits reviewable instead of ad hoc.",
+      "source": "https://kiro.dev/docs/powers/"
     },
     {
       "id": "api-anthropic-thinking",
@@ -1512,7 +1730,7 @@
       "status": "Stable",
       "description": "A read-only mode that disables all file writes so OpenCode can propose and iterate on an implementation plan before touching any code.",
       "trigger": "Press Tab to toggle Plan/Build mode",
-      "example": "User presses Tab -> types 'Refactor auth to use JWT' -> OpenCode returns a 5-step plan with no file changes -> user says 'also handle refresh tokens' -> plan updates -> Tab back to Build -> 'implement it'",
+      "example": "User presses Tab → types 'Refactor auth to use JWT' → OpenCode returns a 5-step plan with no file changes → user says 'also handle refresh tokens' → plan updates → Tab back to Build → 'implement it'",
       "source": "https://opencode.ai/docs/"
     },
     {
@@ -1523,7 +1741,7 @@
       "status": "Stable",
       "description": "Snapshot-based undo and redo that rolls back or reapplies all file changes the agent made during the last operation.",
       "trigger": "/undo or /redo in the TUI",
-      "example": "Agent refactors the wrong module -> user types /undo -> all files restored to original state -> user adds 'only touch auth.ts' -> resubmits",
+      "example": "Agent refactors the wrong module → user types /undo → all files restored to original state → user adds 'only touch auth.ts' → resubmits",
       "source": "https://opencode.ai/docs/config/"
     },
     {
@@ -1532,20 +1750,20 @@
       "ecosystem": "OpenCode",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Reusable instruction files the agent discovers and loads on demand. Place a SKILL.md file in .opencode/skills/<name>/ to define a repeatable workflow.",
+      "description": "Reusable instruction files the agent discovers and loads on-demand. Place a SKILL.md file in .opencode/skills/<name>/ to define a repeatable workflow.",
       "trigger": "Create .opencode/skills/<name>/SKILL.md with name and description frontmatter",
-      "example": "Skill 'git-release' defines steps for tagging and writing changelogs -> user asks 'cut a release for v2.1.0' -> agent loads the skill and follows the steps exactly",
+      "example": "Skill 'git-release' defines steps for tagging and writing changelogs → user asks 'cut a release for v2.1.0' → agent loads the skill and follows the steps exactly without improvising",
       "source": "https://opencode.ai/docs/skills/"
     },
     {
       "id": "oc-session-share",
       "name": "Session Share",
       "ecosystem": "OpenCode",
-      "category": "Integration",
+      "category": "Agentic",
       "status": "Stable",
       "description": "Generates a public shareable link to the full agent conversation including all prompts, reasoning steps, and file diffs.",
       "trigger": "/share in the TUI",
-      "example": "Agent implements a new API endpoint -> developer types /share -> link copied -> pasted in PR description so reviewers can see every decision the agent made",
+      "example": "Agent implements a new API endpoint → developer types /share → link copied → pasted in PR description so reviewers can see every decision the agent made",
       "source": "https://opencode.ai/docs/config/"
     },
     {
@@ -1554,9 +1772,9 @@
       "ecosystem": "OpenCode",
       "category": "API",
       "status": "Stable",
-      "description": "Connect external tools via MCP (Model Context Protocol) servers by configuring them in opencode.json.",
+      "description": "Connect external tools — databases, APIs, internal systems — by configuring MCP (Model Context Protocol) servers in opencode.json.",
       "trigger": "Add an mcp key to opencode.json with server definitions",
-      "example": "Configure a Postgres MCP server -> ask 'show me users created this week' -> agent queries the DB directly through the MCP tool",
+      "example": "Configure a Postgres MCP server → ask 'show me users created this week' → agent queries the DB directly through the MCP tool without writing a script",
       "source": "https://opencode.ai/docs/config/"
     },
     {
@@ -1567,7 +1785,7 @@
       "status": "Stable",
       "description": "Define custom slash commands for repetitive workflows as markdown files in .opencode/commands/ or in opencode.json.",
       "trigger": "Type /your-command-name in the TUI",
-      "example": "Command 'fix-types' defined as 'Find all TypeScript type errors and fix them' -> user types /fix-types -> agent runs the full workflow immediately",
+      "example": "Command 'fix-types' defined as 'Find all TypeScript type errors and fix them without changing logic' → user types /fix-types → agent runs the full workflow immediately",
       "source": "https://opencode.ai/docs/config/"
     },
     {
@@ -1576,9 +1794,9 @@
       "ecosystem": "OpenCode",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Trigger OpenCode in CI/CD by commenting /opencode or /oc on any GitHub issue or PR. Supports automatic PR review, issue triage, and scheduled runs.",
+      "description": "Trigger OpenCode in CI/CD by commenting /opencode or /oc on any GitHub issue or PR. Supports automatic PR review, issue triage, scheduled runs, and code-line comments.",
       "trigger": "Comment /opencode <task> or /oc <task> on a GitHub issue or PR",
-      "example": "Reviewer comments '/opencode add input validation to the form fields' -> agent runs in GitHub Actions -> commits the changes -> replies with a summary",
+      "example": "Reviewer comments '/opencode add input validation to the form fields in this PR' → agent runs in GitHub Actions → commits the changes → replies with a summary in the PR thread",
       "source": "https://opencode.ai/docs/github/"
     },
     {
@@ -1589,7 +1807,7 @@
       "status": "Stable",
       "description": "Define specialized agents with their own model, system prompt, and tool permissions using markdown files in .opencode/agents/.",
       "trigger": "Create .opencode/agents/<name>.md with YAML frontmatter defining the agent",
-      "example": "Agent 'security-reviewer' defined with read-only permissions and a system prompt focused on OWASP checks -> user audits a new endpoint before merging",
+      "example": "Agent 'security-reviewer' defined with strict read-only permissions and a system prompt focused on OWASP checks → user starts a session with it to audit a new endpoint before merging",
       "source": "https://opencode.ai/docs/agents/"
     },
     {
@@ -1598,9 +1816,9 @@
       "ecosystem": "OpenCode",
       "category": "Agentic",
       "status": "Beta",
-      "description": "Connect Language Server Protocol servers so the agent can use go-to-definition, find references, and get real-time diagnostics.",
+      "description": "Connect Language Server Protocol servers so the agent can use go-to-definition, find references, and get real-time diagnostics instead of guessing from file content alone.",
       "trigger": "Add an lsp key to opencode.json with server definitions",
-      "example": "Agent needs to rename a function -> calls the LSP find-references tool and gets exact locations including dynamic call sites",
+      "example": "Agent needs to rename a function → instead of grep-searching for usages, it calls the LSP find-references tool and gets exact locations including dynamic call sites",
       "source": "https://opencode.ai/docs/config/"
     },
     {
@@ -1609,9 +1827,9 @@
       "ecosystem": "OpenCode",
       "category": "API",
       "status": "Beta",
-      "description": "Extend OpenCode with custom executable tools the LLM can call. Place JS/TS files in .opencode/plugins/ or load from npm via the plugin key in opencode.json.",
+      "description": "Extend OpenCode with custom executable tools the LLM can call — beyond instructions. Place JS/TS files in .opencode/plugins/ or load from npm via the plugin key in opencode.json.",
       "trigger": "Place a plugin file in .opencode/plugins/ or add plugin key in opencode.json",
-      "example": "Plugin defines a 'deploy-preview' tool that calls Vercel's API -> agent runs tests, then calls deploy-preview -> gets the URL and pastes it into the PR description",
+      "example": "Plugin defines a 'deploy-preview' tool that calls Vercel's API → agent runs tests, then calls deploy-preview → gets the URL and pastes it into the PR description",
       "source": "https://opencode.ai/docs/config/"
     },
     {
@@ -1620,9 +1838,9 @@
       "ecosystem": "Codex",
       "category": "Agentic",
       "status": "Stable",
-      "description": "A read-only planning mode where Codex proposes an implementation plan without writing any files. Iterate on approach before committing to execution.",
+      "description": "A read-only planning mode where Codex proposes an implementation plan without writing any files. Use it to iterate on approach before committing to execution.",
       "trigger": "$plan or toggle Plan Mode in the thread composer",
-      "example": "User types $plan -> 'Migrate this Express API to Fastify' -> Codex returns a 7-step migration plan -> user asks 'keep the existing middleware' -> plan updates -> user says 'go ahead'",
+      "example": "User types $plan → 'Migrate this Express API to Fastify' → Codex returns a 7-step migration plan → user asks 'keep the existing middleware' → plan updates → user says 'go ahead and implement it'",
       "source": "https://developers.openai.com/codex/app/features/"
     },
     {
@@ -1633,7 +1851,7 @@
       "status": "Stable",
       "description": "Long-running autonomous task execution toward a measurable finish line. Codex keeps working, across hours or days, until the goal's success criterion is met.",
       "trigger": "/goal in the thread composer",
-      "example": "User sets goal: 'Migrate the Python CLI to Rust, done when all existing tests pass' -> Codex works for hours -> pauses when it needs a decision -> user resumes after lunch",
+      "example": "User sets goal: 'Migrate the Python CLI to Rust, done when all existing tests pass' → Codex works for hours, committing incremental changes → pauses when it needs a decision → user resumes after lunch",
       "source": "https://developers.openai.com/codex/use-cases/follow-goals"
     },
     {
@@ -1644,7 +1862,7 @@
       "status": "Stable",
       "description": "Reusable workflow packages with instructions, scripts, and resources. Codex auto-discovers skills from .agents/skills/ and loads the right one when your task matches.",
       "trigger": "Type $skill-name or $ to browse skills; or describe a task that matches a skill's description",
-      "example": "Skill 'linear-pr' packages steps for creating a Linear ticket and linking a PR -> user asks 'create a ticket for this bug and open a PR' -> Codex loads the skill and follows the exact steps",
+      "example": "Skill 'linear-pr' packages steps for creating a Linear ticket and linking a PR → user asks 'create a ticket for this bug and open a PR' → Codex loads the skill and follows the exact steps",
       "source": "https://developers.openai.com/codex/skills/"
     },
     {
@@ -1655,7 +1873,7 @@
       "status": "Stable",
       "description": "A built-in system skill that interviews you about a workflow and generates a ready-to-use SKILL.md file for it.",
       "trigger": "$skill-creator",
-      "example": "User types $skill-creator -> answers 3 questions about their deploy workflow -> Codex writes a complete SKILL.md with instructions and saves it to .agents/skills/deploy/",
+      "example": "User types $skill-creator → answers 3 questions about their deploy workflow → Codex writes a complete SKILL.md with instructions and saves it to .agents/skills/deploy/",
       "source": "https://developers.openai.com/codex/skills/"
     },
     {
@@ -1666,7 +1884,7 @@
       "status": "Stable",
       "description": "A built-in system skill that installs curated third-party skills from the community skills registry into your local Codex setup.",
       "trigger": "$skill-installer <skill-name>",
-      "example": "User types '$skill-installer linear' -> Codex installs the Linear skill -> user can now say '$linear create a ticket for this issue' in any thread",
+      "example": "User types '$skill-installer linear' → Codex installs the Linear skill → user can now say '$linear create a ticket for this issue' in any thread",
       "source": "https://developers.openai.com/codex/skills/"
     },
     {
@@ -1676,8 +1894,8 @@
       "category": "Agentic",
       "status": "Stable",
       "description": "Scheduled recurring wake-up calls that return to the same Codex thread on a cron-like schedule, keeping a workflow running while you're away.",
-      "trigger": "Set up via Settings -> Automations; attach to a pinned thread",
-      "example": "Chief-of-Staff thread set to run every 30 minutes: checks Slack and Gmail for unanswered messages, researches answers, drafts replies",
+      "trigger": "Set up via Settings → Automations; attach to a pinned thread",
+      "example": "Chief-of-Staff thread set to run every 30 minutes: checks Slack and Gmail for unanswered messages, researches answers, drafts replies — user reviews on return",
       "source": "https://developers.openai.com/codex/app/automations/"
     },
     {
@@ -1687,8 +1905,8 @@
       "category": "Agentic",
       "status": "Stable",
       "description": "Long-running Codex threads that preserve working context, decisions, and preferences across repeated sessions. Accessible instantly via Cmd+1 through Cmd+9.",
-      "trigger": "Pin a thread via the thread menu; use Cmd+1-9 to jump back",
-      "example": "User pins a 'Release Thread' -> each sprint, opens it with Cmd+1 -> Codex already knows the team's release process, past blockers, and preferences",
+      "trigger": "Pin a thread via the thread menu; use Cmd+1–9 to jump back",
+      "example": "User pins a 'Release Thread' → each sprint, opens it with Cmd+1 → Codex already knows the team's release process, past blockers, and preferences → picks up where it left off",
       "source": "https://developers.openai.com/codex/app/features/"
     },
     {
@@ -1699,7 +1917,7 @@
       "status": "Stable",
       "description": "Isolate Codex changes in a Git worktree so the agent can work on a parallel branch without touching your current working files.",
       "trigger": "Choose 'Worktree' when starting a new thread in the Codex app",
-      "example": "User starts a Worktree thread -> asks Codex to try a risky refactor -> Codex works in isolation -> user reviews the diff -> decides to merge or discard",
+      "example": "User starts a Worktree thread → asks Codex to try a risky refactor → Codex works in isolation → user reviews the diff → decides to merge or discard without any cleanup needed",
       "source": "https://developers.openai.com/codex/app/features/"
     },
     {
@@ -1709,19 +1927,19 @@
       "category": "API",
       "status": "Stable",
       "description": "Connect external tools and services via Model Context Protocol servers. Shared across Codex app, CLI, and IDE Extension automatically.",
-      "trigger": "Open Settings -> MCP in the Codex app or configure in CLI config",
-      "example": "Add the OpenAI Docs MCP server -> ask 'how do I use streaming with the Responses API?' -> Codex fetches live docs through the MCP tool",
+      "trigger": "Open Settings → MCP in the Codex app or configure in CLI config",
+      "example": "Add the OpenAI Docs MCP server → ask 'how do I use streaming with the Responses API?' → Codex fetches live docs through the MCP tool and answers with the exact current syntax",
       "source": "https://developers.openai.com/codex/app/features/"
     },
     {
       "id": "cx-voice-input",
       "name": "Voice Input",
       "ecosystem": "Codex",
-      "category": "Agentic",
+      "category": "Visual",
       "status": "Stable",
-      "description": "Dictate prompts directly into Codex using your microphone. Useful for vague or rough thoughts that are natural to say but awkward to type.",
+      "description": "Dictate prompts directly into Codex using your microphone. Especially useful for vague or rough thoughts that are natural to say but awkward to type.",
       "trigger": "Hold Ctrl+M while the composer is visible",
-      "example": "User holds Ctrl+M -> says 'I think there's a race condition somewhere in the auth flow, go look' -> Codex transcribes and starts investigating",
+      "example": "User holds Ctrl+M → says 'I think there's a race condition somewhere in the auth flow, it only happens under load, go look' → Codex transcribes and starts investigating",
       "source": "https://developers.openai.com/codex/app/features/"
     },
     {
@@ -1730,9 +1948,9 @@
       "ecosystem": "Codex",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Steering interrupts an in-flight task with new direction before it finishes. Queuing adds the next task to run after the current step completes.",
+      "description": "Steering interrupts an in-flight task with new direction before it finishes. Queuing adds the next task to run after the current step completes. Both keep you close to the work as it unfolds.",
       "trigger": "Type or speak mid-task to steer; add a follow-up message to queue",
-      "example": "Codex is reviewing a page -> user steers: 'make that header smaller' -> Codex adjusts mid-task. User queues: 'once done, send the preview link to the reviewer in Slack'",
+      "example": "Codex is reviewing a page → user steers: 'make that header smaller' → Codex adjusts mid-task. Then user queues: 'once done, send the preview link to the reviewer in Slack'",
       "source": "https://developers.openai.com/codex/app/features/"
     },
     {
@@ -1741,9 +1959,9 @@
       "ecosystem": "Codex",
       "category": "Agentic",
       "status": "Stable",
-      "description": "Durable context stored outside any single thread so future sessions can resume from something explicit. Define it via AGENTS.md and a structured vault folder.",
+      "description": "Durable context stored outside any single thread so future sessions can resume from something explicit. Define it via AGENTS.md and a structured vault folder of plain files.",
       "trigger": "Create AGENTS.md at the repo root or vault root with memory routing instructions",
-      "example": "AGENTS.md tells Codex to update vault/people/ and vault/projects/ after every session -> next session picks up the last decision, owner, and blocker",
+      "example": "AGENTS.md tells Codex to update vault/people/ and vault/projects/ after every session → next session picks up the last decision, owner, and blocker without re-explaining the full context",
       "source": "https://developers.openai.com/codex/memories/"
     },
     {
