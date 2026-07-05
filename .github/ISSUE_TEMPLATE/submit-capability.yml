@@ -25,9 +25,16 @@ body:
         - Claude
         - Claude Code
         - ChatGPT
+        - Codex
+        - OpenCode
+        - Cursor
         - Gemini
         - Perplexity
-        - Copilot
+        - Microsoft 365 Copilot
+        - GitHub Copilot
+        - Antigravity
+        - Kiro
+        - Pi
     validations:
       required: true
 
