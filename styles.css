@@ -369,7 +369,7 @@
       min-width:0;
       flex-wrap:wrap;
       justify-content:flex-start;
-      gap:10px;
+      gap:5px;
     }
     .hero-nav > a,
     .hero-nav > button{
