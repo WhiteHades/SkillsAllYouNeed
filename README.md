@@ -141,6 +141,7 @@ GET https://kishormorol.github.io/SkillsAllYouNeed/skills.json
       "status": "Stable",
       "description": "...",
       "trigger": "...",
+      "howto": "...",
       "example": "...",
       "source": "..."
     }
@@ -172,9 +173,11 @@ Good for: RAG pipelines · fine-tuning datasets · AI assistant tooling · resea
 Found a missing skill? Spotted an error? Two ways to help:
 
 1. **[Open an issue](https://github.com/kishormorol/SkillsAllYouNeed/issues/new?template=submit-capability.yml)** using the structured submission form
-2. **Fork and PR** — add entries directly to the `SKILLS` array in `data.js` and update `skills.json`
+2. **Fork and PR** — run `npm ci`, add entries to the `SKILLS` array in `data.js`, then run `npm run generate`
 
 Every entry needs: `id`, `name`, `ecosystem`, `category`, `status`, `description`, `trigger`, `howto`, `example`, `source`.
+
+Run `npm run validate` before opening a PR. It checks the registry, comparison matrix, submission form, workflow, and generated `skills.json`.
 
 ---
 

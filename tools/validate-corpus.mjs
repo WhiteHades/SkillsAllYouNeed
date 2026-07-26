@@ -1,9 +1,13 @@
 import fs from "node:fs";
 import vm from "node:vm";
+import { parse } from "yaml";
 
 const root = new URL("../", import.meta.url);
 const path = (file) => new URL(file, root);
 const writeJson = process.argv.includes("--write-json");
+const VERSION = "1.7";
+const LICENSE = "CC BY 4.0";
+const SOURCE = "https://kishormorol.github.io/SkillsAllYouNeed/";
 
 function read(file) {
   return fs.readFileSync(path(file), "utf8");
@@ -37,17 +41,39 @@ function sameJson(a, b) {
   return JSON.stringify(a) === JSON.stringify(b);
 }
 
+function issueField(id, expectedType) {
+  const field = issueForm.body?.find((item) => item.id === id);
+  if (!field) fail(`submit-capability.yml is missing ${id}`);
+  if (field.type !== expectedType) fail(`submit-capability.yml ${id} must use type ${expectedType}`);
+  if (field.validations?.required !== true) {
+    fail(`submit-capability.yml ${id} must set validations.required to true`);
+  }
+  return field;
+}
+
+function issueOptions(id) {
+  const options = issueField(id, "dropdown").attributes?.options;
+  if (!Array.isArray(options)) fail(`submit-capability.yml ${id} must define dropdown options under attributes`);
+  return options;
+}
+
 const data = loadData();
 const jsonPath = path("skills.json");
 const skillsJson = JSON.parse(read("skills.json"));
 const styles = read("styles.css");
 const issueTemplate = read(".github/ISSUE_TEMPLATE/submit-capability.yml");
+const issueForm = parse(issueTemplate);
+parse(read(".github/workflows/validate-corpus.yml"));
 
 const ecosystemNames = Object.keys(data.ECO);
 const skillIds = new Set();
+const skillsWithHowto = data.SKILLS.map((skill) => ({
+  ...skill,
+  howto: skill.howto || data.HOWTO[skill.id]
+}));
 
-for (const skill of data.SKILLS) {
-  for (const field of ["id", "name", "ecosystem", "category", "status", "description", "trigger", "example", "source"]) {
+for (const skill of skillsWithHowto) {
+  for (const field of ["id", "name", "ecosystem", "category", "status", "description", "trigger", "howto", "example", "source"]) {
     if (!skill[field]) fail(`${skill.id || skill.name || "unknown skill"} is missing ${field}`);
   }
   if (skillIds.has(skill.id)) fail(`duplicate skill id: ${skill.id}`);
@@ -55,6 +81,10 @@ for (const skill of data.SKILLS) {
   if (!data.ECO[skill.ecosystem]) fail(`${skill.id} uses unknown ecosystem: ${skill.ecosystem}`);
   if (!data.CATEGORIES.includes(skill.category)) fail(`${skill.id} uses unknown category: ${skill.category}`);
   if (!data.STATUSES.includes(skill.status)) fail(`${skill.id} uses unknown status: ${skill.status}`);
+}
+
+for (const id of Object.keys(data.HOWTO)) {
+  if (!skillIds.has(id)) fail(`HOWTO references missing skill: ${id}`);
 }
 
 for (const [ecosystem, config] of Object.entries(data.ECO)) {
@@ -78,21 +108,38 @@ for (const id of data.NEW_IDS) {
   if (!skillIds.has(id)) fail(`NEW_IDS references missing skill: ${id}`);
 }
 
-const issueOptions = [...issueTemplate.matchAll(/^\s{8}- (.+)$/gm)].map((match) => match[1]);
-const issueEcosystems = issueOptions.slice(0, ecosystemNames.length);
-if (!sameJson(issueEcosystems, ecosystemNames)) {
-  fail(`submit-capability.yml ecosystem options are stale: ${JSON.stringify(issueEcosystems)} !== ${JSON.stringify(ecosystemNames)}`);
+for (const [field, type] of Object.entries({
+  name: "input",
+  ecosystem: "dropdown",
+  category: "dropdown",
+  status: "dropdown",
+  description: "textarea",
+  trigger: "input",
+  howto: "textarea",
+  example: "textarea",
+  source: "input"
+})) {
+  issueField(field, type);
 }
 
+for (const [id, expected] of [["ecosystem", ecosystemNames], ["category", data.CATEGORIES], ["status", data.STATUSES]]) {
+  const actual = issueOptions(id);
+  if (!sameJson(actual, expected)) {
+    fail(`submit-capability.yml ${id} options are stale: ${JSON.stringify(actual)} !== ${JSON.stringify(expected)}`);
+  }
+}
+
+if (!/^\d{4}-\d{2}-\d{2}$/.test(skillsJson.generated)) fail("skills.json generated date must use YYYY-MM-DD");
+
 const expectedJson = {
-  version: "1.7",
+  version: VERSION,
   generated: skillsJson.generated,
-  count: data.SKILLS.length,
+  count: skillsWithHowto.length,
   ecosystems: ecosystemNames,
   description: `SkillsAllYouNeed — open registry of AI skills for ${ecosystemNames.slice(0, -1).join(", ")}, and ${ecosystemNames.at(-1)}.`,
-  license: skillsJson.license,
-  source: skillsJson.source,
-  skills: data.SKILLS
+  license: LICENSE,
+  source: SOURCE,
+  skills: skillsWithHowto
 };
 
 if (writeJson) {
@@ -108,4 +155,4 @@ if (!sameJson(currentJson, comparableExpectedJson)) {
   fail("skills.json is out of sync with data.js; run `node tools/validate-corpus.mjs --write-json`");
 }
 
-console.log(`corpus ok: ${data.SKILLS.length} skills, ${ecosystemNames.length} ecosystems, ${data.MATRIX_ROWS.length} matrix rows`);
+console.log(`corpus ok: ${skillsWithHowto.length} skills, ${ecosystemNames.length} ecosystems, ${data.MATRIX_ROWS.length} matrix rows`);
