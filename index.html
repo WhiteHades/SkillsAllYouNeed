@@ -155,7 +155,7 @@
       <div class="search-wrap">
         <span class="lbl">Q</span>
         <input id="q" type="search" placeholder="search names, descriptions, triggers…" aria-label="Search skills" />
-        <span class="count"><b id="count">92</b>&nbsp;of&nbsp;<b id="total-count">92</b>&nbsp;skills</span>
+        <span class="count"><b id="count">181</b>&nbsp;of&nbsp;<b id="total-count">181</b>&nbsp;skills</span>
       </div>
 
       <!-- quick presets -->
@@ -204,6 +204,27 @@
     <div id="grid" class="grid" aria-live="polite" style="border-top:0"></div>
   </section>
 
+  <!-- ─── CAPABILITY MATRIX ─── -->
+  <section class="section" id="matrix-section">
+    <div class="section-head">
+      <div>
+        <div class="label">Compare</div>
+        <h2>Capability <span class="it">matrix.</span></h2>
+      </div>
+      <div class="right">
+        <span id="matrix-count">36</span> capabilities<br/>
+        <span id="matrix-ecosystem-count">13</span> ecosystems<br/>
+        scroll horizontally to compare
+      </div>
+    </div>
+
+    <div class="matrix-wrap" role="region" aria-label="Capability comparison table, horizontally scrollable" tabindex="0">
+      <table class="matrix" id="matrix">
+        <caption><b>Comparison.</b> &nbsp;Side-by-side capability coverage across every catalogued ecosystem. Cells are coded ✓ supported · ✗ not supported · partial (limited or via third party).</caption>
+      </table>
+    </div>
+  </section>
+
   <!-- ─── CONTRIBUTE BANNER ─── -->
   <section class="section tight" id="contribute-section">
     <div class="section-head">
@@ -223,7 +244,7 @@
          style="display:flex;flex-direction:column;padding:32px 28px;border-right:1px solid var(--rule-soft);text-decoration:none;transition:background .14s ease;"
          onmouseover="this.style.background='var(--paper-2)'" onmouseout="this.style.background=''">
         <span style="font-family:var(--serif-display);font-size:clamp(28px,3vw,40px);line-height:1;margin-bottom:10px;">Submit a <em style="color:var(--accent)">capability</em></span>
-        <span style="font-family:var(--serif-body);font-size:16px;color:var(--ink-2);line-height:1.45;max-width:40ch;">Know a first‑party skill we're missing? Fill in the structured form — name, ecosystem, trigger, example, source — and we'll add it.</span>
+        <span style="font-family:var(--serif-body);font-size:16px;color:var(--ink-2);line-height:1.45;max-width:40ch;">Know a first‑party skill we're missing? Fill in the structured form — name, ecosystem, trigger, how-to, example, source — and we'll add it.</span>
         <span style="font-family:var(--mono);font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);margin-top:20px;">→ Open submission form</span>
       </a>
       <a href="https://github.com/kishormorol/SkillsAllYouNeed/issues/new?template=report-correction.yml"
